@@ -1,0 +1,55 @@
+/**
+* Extra small devices (portrait phones, less than 576px)
+*/
+
+// Home
+.hero-slider {
+   &__navigation {
+      bottom: -35px;
+
+      #next-btn,
+      #prev-btn {
+         @include hexagon-button(70px);
+      }
+
+      .icon {
+         //  width: 4px;
+         //  height:
+      }
+
+      #prev-btn {
+         & .icon {
+            transform: rotate(180deg) translateY(50%);
+         }
+      }
+   }
+   &__content {
+      .subtitle {
+         max-width: 250px;
+      }
+      .logo {
+         margin-top: 16px;
+      }
+   }
+}
+
+.mission-value {
+   &__content {
+      .section-subtitle {
+         font-size: 56px;
+      }
+   }
+}
+
+.about-us-banner__container {
+   padding-bottom: 34px;
+   display: flex;
+   align-items: flex-end;
+   .about-us-banner__title {
+      h2 {
+         font-weight: 700;
+         font-size: 56px;
+         line-height: 61px;
+      }
+   }
+}

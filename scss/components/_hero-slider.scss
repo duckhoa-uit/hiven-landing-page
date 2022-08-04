@@ -1,0 +1,95 @@
+.hero-slider {
+   width: 100%;
+   height: 100%;
+
+   &__container {
+      width: 100%;
+      height: 900px;
+
+      position: relative;
+
+      img {
+         object-fit: cover;
+      }
+   }
+
+   &__navigation {
+      position: absolute;
+      right: 260px;
+      bottom: -60px;
+      z-index: 1;
+      display: flex;
+   }
+   &__pagination {
+      width: fit-content !important;
+      background-color: $color--blue-grey;
+      border: 2px solid rgba($color: #fff, $alpha: 0.3);
+      border-radius: 75px;
+      z-index: 1;
+      padding: 16px;
+
+      &.swiper-pagination-horizontal {
+         width: fit-content;
+      }
+      .swiper-pagination-bullet {
+         color: #ffffff;
+         opacity: 0.5;
+         width: unset;
+      }
+      .swiper-pagination-bullet + .swiper-pagination-bullet {
+         margin-left: 18px;
+      }
+      .swiper-pagination-bullet-active {
+         background: unset;
+         opacity: 1;
+      }
+   }
+
+   &__content {
+      position: absolute;
+      bottom: 60px;
+      left: 260px;
+      z-index: 1;
+      color: #fff;
+
+      .logo {
+         margin-top: 32px;
+      }
+      .subtitle {
+         margin-top: 16px;
+         text-transform: uppercase;
+      }
+   }
+}
+
+#next-btn {
+   @include hexagon-button(120px);
+   @include flex-center;
+   transition: transform 0.4s ease;
+   cursor: pointer;
+
+   background-color: $color--blue-grey;
+   color: #fff;
+
+   &:hover {
+      transform: rotate(10deg);
+   }
+}
+
+#prev-btn {
+   @include hexagon-button(120px);
+   @include flex-center;
+   transition: transform 0.4s ease;
+   cursor: pointer;
+
+   background-color: #fff;
+   color: $color--blue-grey;
+
+   &:hover {
+      transform: rotate(-10deg);
+   }
+
+   & .icon {
+      transform: rotate(180deg) translateY(50%);
+   }
+}

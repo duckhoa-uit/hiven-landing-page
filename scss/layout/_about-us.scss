@@ -1,0 +1,141 @@
+.about-us-banner__container {
+   width: 100%;
+   height: 600px;
+   background-image: url(../../assets/images/about-us-banner.svg);
+   background-size: cover;
+   background-position: center;
+   padding-left: 260px;
+   padding-top: 442px;
+   z-index: 2;
+   .about-us-banner__title {
+      h2 {
+         font-family: 'Poppins';
+         font-style: normal;
+         font-weight: 700;
+         font-size: 110px;
+         line-height: 120px;
+         color: #ffffff;
+      }
+      h1 {
+         font-family: 'Poppins';
+         font-style: normal;
+         font-weight: 400;
+         font-size: 180px;
+         line-height: 181px;
+      }
+   }
+}
+.about-us-content__container {
+   padding-top: 160px;
+   padding-bottom: 62px;
+   .title {
+      padding-left: 260px;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 180px;
+      line-height: 210px;
+      pre {
+         color: #878b99;
+      }
+   }
+}
+
+.about-us-container-full {
+   color: $color--blue-grey;
+   padding: 102px 260px 62px;
+   .about-us-group-content:nth-child(3){
+      justify-content: end;
+      margin-top: -202px;
+      margin-right: -146px;
+   }
+   
+
+   .about-us-group-content {
+      display: flex;
+      justify-content: space-between;
+      .CJIA {
+         width: 50%;
+      }
+      .KKFung {
+         width: 50%;
+      }
+      .web-intro {
+         width: 550px;
+         .intro {
+            margin-bottom: 11px;
+         }
+      }
+      &-final {
+         width: 50%;
+         margin-top: -100px;
+         .web-intro {
+            margin-top: 80px;
+            padding-left: 118px;
+            .intro {
+               margin-bottom: 11px;
+            }
+         }
+         .KKFung {
+            display: flex;
+            align-items: center;
+         }
+         .web-intro {
+            width: 546px;
+         }
+      }
+      // .hexagon-image__container:nth-child(2) {
+      //    right: -170px;
+      //    bottom: -530px;
+      // }
+   }
+   .hexagon-image__container:nth-child(1) {
+   //    display: flex;
+      margin-left: -85px;
+      // margin-top: -100px;
+   //    .hexagon-image {
+   //       width: 805px;
+   //       height: 775px;
+   //       opacity: 1;
+   //       transform: rotate(30deg);
+   //    }
+   
+   //    .hexagon__outer-1 {
+   //       transform: translate(-50%, -50%) scale(1);
+   //       opacity: 1;
+   //       width: 855px;
+   //    }
+   //    .hexagon__outer-2 {
+   //       transform: translate(-50%, -50%) scale(1.1);
+   //       opacity: 1;
+   //       width: 970px;
+   //    }
+   }
+   .hexagon-image__container:nth-child(2) {
+      //    display: flex;
+         margin-right: -85px;
+   }
+
+   .hexagon-image__container{
+      transform: scale(1.255);
+   }
+}
+
+.CJIA-website {
+   background-image: url(../../assets/images/CJIA-logo.svg);
+   background-size: cover;
+   background-position: center;
+   width: 335px;
+   height: 106.69px;
+}
+.KKFung-Title {
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 42.2098px;
+   line-height: 100%;
+   text-transform: capitalize;
+   color: $color--blue;
+
+   margin-left: 10px;
+}

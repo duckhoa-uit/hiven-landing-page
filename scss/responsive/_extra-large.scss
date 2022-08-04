@@ -1,0 +1,81 @@
+.hero-slider {
+   &__navigation {
+      right: 80px;
+   }
+   &__content {
+      left: 80px;
+   }
+}
+
+.hexagon-image {
+   @include hexagon-shape(630px);
+
+   &__container {
+      position: relative;
+      margin-left: 60px;
+      margin-right: 60px;
+   }
+}
+
+.hexagon__outer-1 {
+   transform: translate(-50%, -50%) scale(calc(630 / 808));
+
+   &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+      transform: translate(-50%, -50%) translateZ(0) scale(calc(630 / 808));
+   }
+}
+
+.hexagon__outer-2 {
+   transform: translate(-50%, -50%) scale(calc(630 / 808) * 1.1);
+
+   &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+      transform: translate(-50%, -50%) translateZ(0) scale(calc(630 / 808) * 1.1);
+   }
+}
+
+.mission-value {
+   &__inner {
+      gap: 130px;
+   }
+}
+
+.business-area {
+   &__images {
+      padding: 0;
+
+      &--grid {
+         gap: 80px;
+      }
+   }
+   &__image {
+   }
+   &__content {
+      padding-left: 60px;
+   }
+}
+
+.about-us-banner__container {
+   padding-left: 160px;
+}
+.about-us-content__container {
+   .title {
+      padding-left: 160px;
+   }
+}
+
+.news-banner__container {
+   padding-left: 160px;
+}
+.news-content__container {
+   .title {
+      padding-left: 160px;
+   }
+}
+.cards-grid {
+   padding: 140px 0;
+}
+.news {
+   &__inner {
+      padding: 0 100px;
+   }
+}

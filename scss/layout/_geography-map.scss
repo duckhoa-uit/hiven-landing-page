@@ -1,0 +1,151 @@
+.investment-region {
+   padding-top: 140px;
+   padding-bottom: 120px;
+   padding-left: 260px;
+
+   &__title {
+      @include font(500, 160, 180);
+      cursor: default;
+      margin-bottom: 45px;
+      span {
+         color: rgba($color: $color--blue-grey, $alpha: 0.5);
+      }
+   }
+
+   &__content {
+      width: 100%;
+      position: relative;
+      display: flex;
+      min-height: 100vh;
+      &::before {
+         content: "";
+         margin-top: 77%;
+      }
+   }
+
+   // card control
+   &__control {
+      height: 100%;
+      margin-top: auto;
+      margin-bottom: auto;
+      min-width: 573px;
+      display: grid;
+      gap: 16px;
+      margin-right: 19px;
+
+      &--title {
+         font-weight: 700;
+         font-size: 90px;
+         line-height: 100%;
+         margin-bottom: 16px;
+         color: $color--blue;
+         cursor: default;
+      }
+
+      &--item {
+         background-color: white;
+         opacity: 0.5;
+         padding: 28px 24px;
+         gap: 16px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         font-weight: 600;
+         font-size: 24px;
+         line-height: 36px;
+         cursor: pointer;
+         transition: all 0.3s ease;
+         svg {
+            transition: all 0.15s ease;
+         }
+
+         &.active {
+            opacity: 1;
+            svg {
+               color: $color--pink;
+            }
+         }
+      }
+   }
+}
+
+// geography-map
+.geography-map {
+   padding-top: 285px;
+   width: 100%;
+   position: relative;
+
+   &__container {
+      height: 100%;
+      position: relative;
+   }
+
+   &__graph {
+      position: relative;
+      svg {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: auto;
+      }
+   }
+
+   &__region {
+      position: absolute;
+      z-index: 1;
+
+      &--node {
+         width: 25px;
+         height: 25px;
+         border-radius: 50%;
+         position: relative;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         background-color: white;
+         z-index: 2;
+         cursor: pointer;
+
+         &::before {
+            content: "";
+            position: absolute;
+            height: 21px;
+            width: 21px;
+            background-color: $color--blue-grey;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+         }
+      }
+
+      &--highlight-circle {
+         position: absolute;
+         z-index: 1;
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+         width: 0px;
+         height: 0px;
+         border-radius: 50%;
+         background-color: transparent;
+         opacity: 0;
+         transition: all 0.3s ease;
+      }
+
+      &.active {
+         z-index: 2;
+         .geography-map__region--node {
+            &::before {
+               width: 17px;
+               height: 17px;
+               background-color: $color--pink;
+            }
+         }
+         .geography-map__region--highlight-circle {
+            width: 200px;
+            height: 200px;
+            background-color: $color--pink;
+            opacity: 0.3;
+         }
+      }
+   }
+}

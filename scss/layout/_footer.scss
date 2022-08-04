@@ -1,0 +1,211 @@
+.footer-container {
+   width: 100%;
+
+   .row {
+      display: inline-flex;
+      .Hiven-info {
+         width: 244px;
+
+         .footer-logo {
+            color: #fff;
+         }
+         svg {
+            margin-bottom: 24px;
+         }
+         h3 {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 36px;
+            text-transform: capitalize;
+            color: #ffffff;
+            opacity: 0.5;
+            width: fit-content;
+         }
+      }
+   }
+}
+.contact-us-container {
+   background-color: white;
+   padding: 0 60px;
+   align-items: center;
+   display: flex;
+   justify-content: space-between;
+   height: 148px;
+   width: 100%;
+
+   transition: color 0.3s ease;
+
+   &:hover {
+      color: $color--pink;
+      cursor: pointer;
+      .bounce {
+         animation: bounce 2s infinite;
+      }
+      @keyframes bounce {
+         0%,
+         20%,
+         50%,
+         80%,
+         100% {
+            transform: translateX(0);
+         }
+         40% {
+            transform: translateX(-30px);
+         }
+         60% {
+            transform: translateX(-15px);
+         }
+      }
+      path {
+         transition: fill 0.3s ease;
+         fill: $color--pink;
+      }
+      .contact-with-us {
+         transition: color 0.3s ease;
+         color: $color--pink;
+      }
+   }
+   .contact-with-us {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 60px;
+      line-height: 132px;
+      color: $color--blue;
+      display: flex;
+   }
+   .next-ic {
+      text-align: center;
+      &:hover {
+         cursor: pointer;
+      }
+   }
+
+   .bounce {
+      &:hover {
+         animation: bounce 2s infinite;
+      }
+   }
+   @keyframes bounce {
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+         transform: translateX(0);
+      }
+      40% {
+         transform: translateX(-30px);
+      }
+      60% {
+         transform: translateX(-15px);
+      }
+   }
+}
+
+.link-group {
+   padding-top: 10px;
+   .quick-link {
+      h6 {
+         font-family: 'Poppins';
+         font-style: normal;
+         font-weight: 600;
+         font-size: 18.5246px;
+         line-height: 28px;
+         text-transform: uppercase;
+         color: #ffffff;
+         margin-bottom: 19px;
+      }
+      a {
+         font-family: 'Poppins';
+         font-style: normal;
+         font-weight: 400;
+         font-size: 18px;
+         line-height: 160%;
+         letter-spacing: -0.01em;
+         color: #9395a0;
+         &:hover {
+            color: $color--pink;
+         }
+      }
+   }
+   display: inline-flex;
+   .contact {
+      margin-left: 137px;
+      h6 {
+         font-family: 'Poppins';
+         font-style: normal;
+         font-weight: 600;
+         font-size: 18.5246px;
+         line-height: 28px;
+         text-transform: uppercase;
+         color: #ffffff;
+         margin-bottom: 19px;
+      }
+      a {
+         font-family: 'Poppins';
+         font-style: normal;
+         font-weight: 400;
+         font-size: 18px;
+         line-height: 160%;
+         letter-spacing: -0.01em;
+         color: #9395a0;
+         &:hover {
+            color: $color--pink;
+         }
+      }
+   }
+}
+
+.footer-content-container {
+   padding: 0 60px;
+   background-color: $color--blue-grey;
+   display: grid;
+   padding: 77px 60px 44px;
+   height: 470px;
+   .footer-content {
+      justify-content: space-between;
+      padding-right: 337px;
+   }
+}
+.copy-right-Social {
+   width: 100%;
+   justify-content: space-between;
+   align-items: flex-end;
+
+   a {
+      color: white;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+   }
+   .social {
+      display: inline-flex;
+      color: #fff;
+
+      p {
+         margin-right: 12px;
+      }
+
+      &-icon {
+         padding: 0 12px;
+      }
+   }
+   p {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      /* identical to box height */
+
+      text-transform: capitalize;
+
+      /* Nature/White */
+
+      color: #fff;
+   }
+}

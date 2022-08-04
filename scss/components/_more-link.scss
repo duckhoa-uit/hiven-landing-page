@@ -1,0 +1,48 @@
+.more-link {
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+
+   .animated-line {
+      color: $color--pink;
+      position: relative;
+
+      &::after {
+         content: '';
+         position: absolute;
+         left: 0;
+         width: 60px;
+         height: 2px;
+         background-color: $color--pink;
+      }
+
+      .hexagon-icon {
+         color: $color--pink;
+         position: absolute;
+         left: 0;
+         top: 50%;
+         transform: translateY(-50%);
+         transition: left 0.7s ease, transform 0.7s ease;
+      }
+   }
+   .text {
+      margin-left: 76px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 600;
+      line-height: 24px;
+      color: #000;
+
+      &.light {
+         color: #fff;
+      }
+   }
+
+   &:hover {
+      .hexagon-icon {
+         left: 48px;
+         transform: translateY(-50%) rotate(60deg);
+         transform-origin: center center;
+      }
+   }
+}
