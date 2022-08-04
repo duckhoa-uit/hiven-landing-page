@@ -8,6 +8,7 @@ import IconLogoRight from '@components/icons/ic-logo-white';
 import IconFacebook from '@components/icons/ic-fb';
 import IconTwitter from '@components/icons/ic-twitter';
 import IconLinkedIn from '@components/icons/ic-linkedin';
+import ContactWithUs from '@components/contact-with-us/contact-with-us';
 
 export default function Footer() {
    const handleScrollToTop = () => {
@@ -16,12 +17,6 @@ export default function Footer() {
 
    return (
       <footer className="footer-container">
-         <div className="row contact-us-container">
-            <div className="contact-with-us">Contact with us</div>
-            <div className="next-ic bounce">
-               <IconNext />
-            </div>
-         </div>
          <div className="footer-content-container" data-cursor="-inverse">
             <div className="row footer-content">
                <div className="Hiven-info">
