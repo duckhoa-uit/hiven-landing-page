@@ -1,0 +1,64 @@
+$sqrt3: 1;
+$edgeSize: 200px;
+$hexWidth: $edgeSize * 2;
+$hexHeight: $sqrt3 * $edgeSize;
+
+// .hexagon--blur {
+//    @include hexagon-shape(400px);
+//    background: rgba(255, 255, 255, 0.17);
+//    //  border: 1px solid #fff;
+//    backdrop-filter: blur(8px);
+//    -webkit-backdrop-filter: blur(8px);
+//    position: relative;
+// }
+
+// .hexagon__inner {
+//    @include hexagon-shape(400px);
+//    background: rgba(255, 255, 255, 0.17);
+//    background-color: #fff;
+//    position: absolute;
+//    top: 50%;
+//    left: 50%;
+//    transform: translate(-50%, -50%);
+//    z-index: 3;
+// }
+.hexagon--blur {
+   @include hexagon-shape(200px);
+   background: rgba(255, 255, 255, 0.07);
+   backdrop-filter: blur(1.5px);
+   -webkit-backdrop-filter: blur(1.5px);
+   position: relative;
+
+   div {
+      position: absolute;
+      top: 15px;
+      width: $edgeSize;
+      height: $hexHeight;
+
+      &:before,
+      &:after {
+         content: ' ';
+         position: absolute;
+         background: #fff;
+         width: $edgeSize - 2px;
+         height: 1px;
+      }
+      &:before {
+         top: 0;
+      }
+      &:after {
+         bottom: 0;
+      }
+      &:nth-child(1) {
+         transform: rotate(30deg);
+      }
+      &:nth-child(2) {
+         transform: rotate(90deg);
+      }
+      &:nth-child(3) {
+         transform: rotate(150deg);
+      }
+
+      transform-origin: center center;
+   }
+}

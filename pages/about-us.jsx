@@ -6,6 +6,8 @@ import HexagonImage from '@components/hexagon-image/hexagon-image';
 import MoreLink from '@components/more-link/more-link';
 import IconKKFung from '@components/icons/ic-KK-Fund';
 import ScrollToTop from '@components/scroll-to-top/scroll-to-top';
+import img1 from '../assets/images/about-us-1.png';
+import img2 from '../assets/images/about-us-2.svg';
 
 const AboutUs = () => {
    return (
@@ -69,18 +71,10 @@ const AboutUs = () => {
                   </div>
                </div>
                <div className="about-us-hexagon-container">
-                  <HexagonImage
-                     source={
-                        'https://images.unsplash.com/photo-1462899006636-339e08d1844e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-                     }
-                  />
+                  <HexagonImage source={'/about-us-1.png'} />
                </div>
                <div className="about-us-hexagon-container">
-                  <HexagonImage
-                     source={
-                        'https://images.unsplash.com/photo-1467803738586-46b7eb7b16a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80'
-                     }
-                  />
+                  <HexagonImage source={'/about-us-2.svg'} />
                </div>
                <div className="about-us-group-content-final">
                   <div className="KKFung" data-aos="fade-up">

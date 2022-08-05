@@ -1,5 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
+import img1 from '../../assets/images/business-area-1.png';
+import img2 from '../../assets/images/business-area-2.png';
+import img3 from '../../assets/images/business-area-3.png';
+import img4 from '../../assets/images/business-area-4.png';
 
 const BusinessAreaImage = ({ src, number, title, ...rest }) => (
    <div className="business-area__image" {...rest}>
@@ -43,25 +47,25 @@ export default function BusinessArea() {
             <div className="business-area__images">
                <div className="business-area__images--grid">
                   <BusinessAreaImage
-                     src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+                     src={img1}
                      number="01"
                      title="Food Tech"
                      data-aos="fade-left"
                   />
                   <BusinessAreaImage
-                     src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                     src={img2}
                      number="02"
                      title="Agri Tech"
                      data-aos="fade-right"
                   />
                   <BusinessAreaImage
-                     src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+                     src={img3}
                      number="03"
                      title="Bio Tech"
                      data-aos="fade-left"
                   />
                   <BusinessAreaImage
-                     src="https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2067&q=80"
+                     src={img4}
                      number="04"
                      title="Media & Entertainment, Mobility, Fin Tech, etc"
                      data-aos="fade-right"

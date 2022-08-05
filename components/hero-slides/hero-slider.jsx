@@ -4,12 +4,13 @@ import { Pagination, Navigation } from 'swiper';
 import Image from 'next/image';
 import IconChevronRight from '@components/icons/ic-chevron-right';
 import IconLogo from '@components/icons/logo';
+import HexagonBlur from '@components/hexagon-blur/hexagon-blur';
 
 const IMAGES = [
-   'https://images.unsplash.com/photo-1471039497385-b6d6ba609f9c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-   'https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-   'https://images.unsplash.com/photo-1542361345-89e58247f2d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-   'https://images.unsplash.com/photo-1462899006636-339e08d1844e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+   'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+   'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+   'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+   'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
 ];
 
 const HeroSliderNavigation = () => (
@@ -50,6 +51,25 @@ export default function HeroSlider() {
             {IMAGES.map((img) => (
                <SwiperSlide key={img}>
                   <Image src={img} alt="" layout="fill" />
+                  {/* <div className="blur-hexagons--left">
+                     <HexagonBlur size={57} />
+                     <HexagonBlur size={300} />
+                  </div> */}
+                  {/* <div className="hex hex-2">
+                     <HexagonBlur size={135} />
+                  </div>
+                  <div className="hex hex-3">
+                     <HexagonBlur size={255} />
+                  </div>
+                  <div className="hex hex-1">
+                     <HexagonBlur size={57} />
+                  </div>
+                  <div className="hex hex-4">
+                     <HexagonBlur size={50} rotate={-45} blur={12} />
+                  </div>
+                  <div className="hex hex-5">
+                     <HexagonBlur size={104} rotate={-45} blur={12} />
+                  </div> */}
                </SwiperSlide>
             ))}
          </Swiper>

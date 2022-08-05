@@ -38,7 +38,7 @@ export default function MissionAndValue() {
                         is to fund start-ups that are building the sustainable businesses
                         of the future.
                      </p>
-                     <MoreLink text={'Find Out More'} />
+                     <MoreLink text={'Find Out More'} link='/about-us'/>
                   </div>
                </div>
             </div>

@@ -5,6 +5,7 @@
    &__container {
       width: 100%;
       height: 900px;
+      max-height: 100vh;
 
       position: relative;
 
@@ -15,6 +16,32 @@
          // opacity: 0;
          animation: up 1.5s;
          animation-delay: 0.5s;
+      }
+
+      .hex {
+         width: fit-content;
+         position: absolute;
+
+         &-1 {
+            left: 535px;
+            top: 180px;
+         }
+         &-2 {
+            left: 620px;
+            top: 128px;
+         }
+         &-3 {
+            left: 460px;
+            top: 220px;
+         }
+         &-4 {
+            right: 305px;
+            top: 433px;
+         }
+         &-5 {
+            right: 253px;
+            top: 488px;
+         }
       }
    }
 
@@ -99,5 +126,30 @@
 
    & .icon {
       transform: rotate(180deg) translateY(50%);
+   }
+}
+
+.blur-hexagons {
+   &--left {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      div {
+         position: relative;
+
+         &:nth-child(1) {
+            left: 620px;
+            top: 256px;
+         }
+         &:nth-child(2) {
+            left: 650px;
+            top: 144px;
+         }
+         &:nth-child(3) {
+            left: 422px;
+            top: 152px;
+         }
+      }
    }
 }

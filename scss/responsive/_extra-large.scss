@@ -5,6 +5,30 @@
    &__content {
       left: 80px;
    }
+   &__container {
+      .hex {
+         &-1 {
+            left: 205px;
+            top: 180px;
+         }
+         &-2 {
+            left: 280px;
+            top: 128px;
+         }
+         &-3 {
+            left: 130px;
+            top: 220px;
+         }
+         &-4 {
+            right: 305px;
+            top: 433px;
+         }
+         &-5 {
+            right: 253px;
+            top: 488px;
+         }
+      }
+   }
 }
 
 .hexagon-image {
