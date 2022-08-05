@@ -5,6 +5,15 @@
    &__content {
       left: 80px;
    }
+
+   &__hexagon-group {
+      left: 50px;
+   }
+
+   &__hexagon-group2 {
+      right: 40px;
+      bottom: 132px;
+   }
    &__container {
       .hex {
          &-1 {
@@ -31,6 +40,12 @@
    }
 }
 
+.hexagon-group {
+   .hexagon {
+      transform: scale(0.9);
+   }
+}
+
 .hexagon-image {
    @include hexagon-shape(630px);
 
@@ -44,7 +59,7 @@
 .hexagon__outer-1 {
    transform: translate(-50%, -50%) scale(calc(630 / 808));
 
-   &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+   &[data-aos^="zoom"][data-aos^="zoom"].aos-animate {
       transform: translate(-50%, -50%) translateZ(0) scale(calc(630 / 808));
    }
 }
@@ -52,7 +67,7 @@
 .hexagon__outer-2 {
    transform: translate(-50%, -50%) scale(calc(630 / 808) * 1.1);
 
-   &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+   &[data-aos^="zoom"][data-aos^="zoom"].aos-animate {
       transform: translate(-50%, -50%) translateZ(0) scale(calc(630 / 808) * 1.1);
    }
 }
@@ -84,6 +99,15 @@
    }
 }
 .about-us-banner__container {
+   .about-us-banner__hexagon-group {
+      bottom: 164px;
+      left: 125px;
+   }
+
+   .about-us-banner__hexagon-group2 {
+      right: 160px;
+      bottom: 141px;
+   }
 }
 .about-us-content {
    &__inner {
@@ -117,7 +141,7 @@
          .hexagon__outer-1 {
             transform: translate(-50%, -50%) scale(calc(603 / 808));
 
-            &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+            &[data-aos^="zoom"][data-aos^="zoom"].aos-animate {
                transform: translate(-50%, -50%) translateZ(0) scale(calc(603 / 808));
             }
          }
@@ -125,7 +149,7 @@
          .hexagon__outer-2 {
             transform: translate(-50%, -50%) scale(calc(603 / 808) * 1.1);
 
-            &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+            &[data-aos^="zoom"][data-aos^="zoom"].aos-animate {
                transform: translate(-50%, -50%) translateZ(0) scale(calc(603 / 808) * 1.1);
             }
          }
@@ -136,6 +160,14 @@
 .news-banner {
    &__inner {
       padding: 0 100px;
+   }
+   &__hexagon-group {
+      bottom: 33px;
+      left: 158px;
+   }
+   &__hexagon-group2 {
+      bottom: 33px;
+      right: 160px;
    }
 }
 .news-content__container {
@@ -182,7 +214,7 @@
       .hexagon__outer-1 {
          transform: translate(-50%, -50%) scale(calc(525 / 808));
 
-         &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+         &[data-aos^="zoom"][data-aos^="zoom"].aos-animate {
             transform: translate(-50%, -50%) translateZ(0) scale(calc(525 / 808));
          }
       }
@@ -190,7 +222,7 @@
       .hexagon__outer-2 {
          transform: translate(-50%, -50%) scale(calc(525 / 808) * 1.1);
 
-         &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+         &[data-aos^="zoom"][data-aos^="zoom"].aos-animate {
             transform: translate(-50%, -50%) translateZ(0) scale(calc(525 / 808) * 1.1);
          }
       }

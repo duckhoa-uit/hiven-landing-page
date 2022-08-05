@@ -6,12 +6,13 @@
       background-size: cover;
       background-position: center;
       padding-top: 442px;
+      position: relative;
    }
    &__title {
       display: flex;
       justify-content: flex-start;
       h2 {
-         font-family: 'Poppins';
+         font-family: "Poppins";
          font-style: normal;
          font-weight: 700;
          font-size: 110px;
@@ -19,7 +20,7 @@
          color: #ffffff;
       }
       h1 {
-         font-family: 'Poppins';
+         font-family: "Poppins";
          font-style: normal;
          font-weight: 400;
          font-size: 180px;
@@ -30,6 +31,15 @@
       padding: 0 200px;
       width: 100%;
       max-width: 2300px;
+   }
+
+   &__hexagon-group {
+      bottom: 33px;
+      left: 159px;
+   }
+   &__hexagon-group2 {
+      bottom: 33px;
+      right: 160px;
    }
 }
 

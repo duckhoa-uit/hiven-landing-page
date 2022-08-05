@@ -1,7 +1,7 @@
 // missing size responsive
 .hexagon-image {
    @include hexagon-shape(808px);
-   background-image: url('https://images.unsplash.com/photo-1462899006636-339e08d1844e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+   background-image: url("https://images.unsplash.com/photo-1462899006636-339e08d1844e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
    background-position: center;
    background-size: cover;
    z-index: 100;
@@ -27,10 +27,10 @@
 
    transition: all 0.3s ease;
 
-   &[data-aos='zoom-in'] {
+   &[data-aos="zoom-in"] {
       transform: translate(-50%, -50%) scale(0.6);
    }
-   &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+   &[data-aos^="zoom"][data-aos^="zoom"].aos-animate {
       transform: translate(-50%, -50%) translateZ(0) scale(1);
    }
 }
@@ -46,10 +46,69 @@
 
    transition: all 0.3s ease 0.1s;
 
-   &[data-aos='zoom-in'] {
+   &[data-aos="zoom-in"] {
       transform: translate(-50%, -50%) scale(0.6);
    }
-   &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+   &[data-aos^="zoom"][data-aos^="zoom"].aos-animate {
       transform: translate(-50%, -50%) translateZ(0) scale(1.1);
+   }
+}
+
+.hexagon {
+   position: relative;
+   width: 200px;
+   height: 250px;
+   svg {
+      z-index: 1;
+      position: relative;
+   }
+   &__bg {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: inline-block;
+      box-sizing: border-box;
+      -webkit-clip-path: polygon(0% 25%, 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%);
+      background: rgba(255, 255, 255, 0.17);
+      backdrop-filter: blur(8px);
+   }
+}
+
+.hexagon-group {
+   position: absolute;
+   .hex1 {
+      z-index: 1;
+      position: relative;
+   }
+   .hex2 {
+      position: absolute;
+      top: 104px;
+      left: 198px;
+      z-index: 2;
+      path {
+         stroke-opacity: 0.5;
+      }
+   }
+
+   .hex3 {
+      position: absolute;
+      top: -8px;
+      left: 227px;
+      z-index: 0;
+   }
+}
+
+.hexagon-group2 {
+   position: absolute;
+   .hex1 {
+      transform: rotate(-45deg);
+      position: absolute;
+      top: -4px;
+      left: -12px;
+   }
+   .hex2 {
+      transform: rotate(-45deg);
    }
 }

@@ -95,6 +95,20 @@
          text-transform: uppercase;
       }
    }
+
+   &__hexagon-group {
+      position: absolute;
+      left: 422px;
+      bottom: 370px;
+      z-index: 2;
+   }
+
+   &__hexagon-group2 {
+      position: absolute;
+      bottom: 150px;
+      right: 254px;
+      z-index: 2;
+   }
 }
 
 #next-btn {

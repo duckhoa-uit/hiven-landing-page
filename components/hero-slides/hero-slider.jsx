@@ -4,7 +4,7 @@ import { Pagination, Navigation } from 'swiper';
 import Image from 'next/image';
 import IconChevronRight from '@components/icons/ic-chevron-right';
 import IconLogo from '@components/icons/logo';
-import HexagonBlur from '@components/hexagon-blur/hexagon-blur';
+import Hexagon from '@components/common/hexagon';
 
 const IMAGES = [
    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
@@ -37,6 +37,15 @@ export default function HeroSlider() {
 
    return (
       <section className="hero-slider__container">
+         <div className="hero-slider__hexagon-group hexagon-group" data-aos="zoom-in">
+            <Hexagon className="hex1" />
+            <Hexagon className="hex2" size="s" />
+            <Hexagon className="hex3" size="m" />
+         </div>
+         <div className="hero-slider__hexagon-group2 hexagon-group2" data-aos="zoom-in">
+            <Hexagon className="hex1" size="s" />
+            <Hexagon className="hex2" size="m" />
+         </div>
          <Swiper
             loop
             className="hero-slider"
