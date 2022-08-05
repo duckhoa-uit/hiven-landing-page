@@ -33,18 +33,16 @@ class CardBody extends React.Component {
 
 export default function NewsCard({ url, banner, className = '' }) {
    return (
-      <article className={'card' + className} data-cursor-text="View">
-         <Link href={url} target="_blank" rel="noreferrer">
-            <>
-               <CardHeader image={banner} />
-               <CardBody
-                  title={'New Joint Venture Fund'}
-                  text={
-                     'Global grain trading CJ International Asia (CJIA) and Singapore-based KK Fund have launched Hiven, a joint venture fund to invest in startups developing breakthrough technologies in "food, agriculture, and bio" in Southeast Asia.'
-                  }
-               />
-            </>
-         </Link>
-      </article>
+      <a href={url} target="_blank" rel="noreferrer">
+         <article className={'card' + className} data-cursor-text="View">
+            <CardHeader image={banner} />
+            <CardBody
+               title={'New Joint Venture Fund'}
+               text={
+                  'Global grain trading CJ International Asia (CJIA) and Singapore-based KK Fund have launched Hiven, a joint venture fund to invest in startups developing breakthrough technologies in "food, agriculture, and bio" in Southeast Asia.'
+               }
+            />
+         </article>
+      </a>
    );
 }
