@@ -63,7 +63,13 @@ export default function HeroSlider() {
                height={133}
                className="logo"
             />
-            <p data-aos="fade-up" data-aos-duration="500" className="subtitle">
+            <p
+               data-aos="fade-up"
+               data-aos-anchor=".logo"
+               data-aos-duration="500"
+               data-aos-delay="100"
+               className="subtitle textWrapper"
+            >
                Unlock potential in south-east area
             </p>
          </div>

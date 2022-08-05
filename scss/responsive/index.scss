@@ -1,8 +1,8 @@
-$res_xs: 'screen and (max-width: 379.98px)';
-$res_sm: 'screen and (max-width: 767.98px)';
-$res_md: 'screen and (max-width: 1199.98px)';
-$res_lg: 'screen and (max-width: 1439.98px)';
-$res_xl: 'screen and (max-width: 1919.98px)';
+$res_xs: "screen and (max-width: 379.98px)";
+$res_sm: "screen and (max-width: 767.98px)";
+$res_md: "screen and (max-width: 1199.98px)";
+$res_lg: "screen and (max-width: 1439.98px)";
+$res_xl: "screen and (max-width: 1919.98px)";
 
 @mixin media_sm() {
    @media #{$res_sm} {
@@ -37,21 +37,21 @@ $res_xl: 'screen and (max-width: 1919.98px)';
 }
 // Large devices (desktops, less than 1200px)
 @include media_xl {
-   @import 'extra-large';
+   @import "extra-large";
 }
 // Large devices (desktops, less than 1200px)
 @include media_lg {
-   @import 'large';
+   @import "large";
 }
 // Medium devices (tablets, less than 992px)
 @include media_md {
-   @import 'medium';
+   @import "medium";
 }
 // Small devices (landscape phones, less than 768px)
 @include media_sm {
-   @import 'small';
+   @import "small";
 }
 // Extra small devices (portrait phones, less than 576px)
 @include media_xs {
-   @import 'extra-small';
+   @import "extra-small";
 }

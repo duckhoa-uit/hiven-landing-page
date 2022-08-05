@@ -18,17 +18,23 @@ const AboutUs = () => {
 
          <main style={{ height: 'auto' }}>
             <div className="about-us-banner__container">
-               <div className="about-us-banner__title">
-                  <h2 data-aos="fade-up" data-aos-delay="500">
-                     About Us
-                  </h2>
+               <div className="container-full">
+                  <div className="about-us-banner__inner">
+                     <div className="about-us-banner__title">
+                        <h2 data-aos="fade-up">About Us</h2>
+                     </div>
+                  </div>
                </div>
             </div>
             <div className="about-us-content">
                <div className="about-us-content__container">
-                  <div className="title">
-                     <pre data-aos="fade-down">Corporate</pre>
-                     <p data-aos="fade-up">Profile</p>
+                  <div className="container-full">
+                     <div className="about-us-content__inner">
+                        <div className="title">
+                           <pre data-aos="fade-down">Corporate</pre>
+                           <p data-aos="fade-up">Profile</p>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
@@ -62,14 +68,14 @@ const AboutUs = () => {
                      </p>
                   </div>
                </div>
-               <div className="about-us-group-content">
+               <div className="about-us-hexagon-container">
                   <HexagonImage
                      source={
                         'https://images.unsplash.com/photo-1462899006636-339e08d1844e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
                      }
                   />
                </div>
-               <div className="about-us-group-content">
+               <div className="about-us-hexagon-container">
                   <HexagonImage
                      source={
                         'https://images.unsplash.com/photo-1467803738586-46b7eb7b16a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80'

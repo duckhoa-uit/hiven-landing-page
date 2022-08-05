@@ -2,13 +2,17 @@
    &__container {
       background-color: $color--blue-grey;
       padding: 200px 0;
-      margin-bottom: -432px;
+      margin-bottom: -436px;
    }
    &__inner {
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 150px;
+      justify-content: space-between;
+      // gap: 40px;
+      max-width: 2300px;
+      width: 100%;
+      padding: 0 200px;
    }
    &__content {
       .title {

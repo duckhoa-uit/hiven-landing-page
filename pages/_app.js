@@ -1,8 +1,9 @@
+import BreakpointProvider from '@components/common/breakpoint/breakpoint-provider';
+import { EmptyLayout } from '@components/layouts/empty-layout';
 import { memo, useEffect } from 'react';
 import gsap from 'gsap';
 
 import MouseFollower from '@components/mouse-follower/mouse-follower';
-import { EmptyLayout } from '@components/layouts/empty-layout';
 import '../scss/main.scss';
 
 // AOS styles
@@ -20,6 +21,8 @@ const MyApp = memo(({ Component, pageProps }) => {
    useEffect(() => {
       AOS.init({
          startEvent: 'DOMContentLoaded',
+         duration: 500,
+         once: true,
       });
 
       MouseFollower.registerGSAP(gsap);
@@ -42,9 +45,11 @@ const MyApp = memo(({ Component, pageProps }) => {
    }, []);
 
    return (
-      <Layout>
-         <Component {...pageProps} />
-      </Layout>
+      <BreakpointProvider>
+         <Layout>
+            <Component {...pageProps} />
+         </Layout>
+      </BreakpointProvider>
    );
 });
 

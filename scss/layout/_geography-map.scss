@@ -1,7 +1,11 @@
+$region-control-width: 573px;
+
 .investment-region {
    padding-top: 140px;
    padding-bottom: 120px;
    padding-left: 260px;
+   max-width: 100vw;
+   overflow: hidden;
 
    &__title {
       @include font(500, 160, 180);
@@ -17,21 +21,24 @@
       position: relative;
       display: flex;
       min-height: 100vh;
+      overflow: hidden;
       &::before {
-         content: "";
+         content: '';
          margin-top: 77%;
       }
    }
 
    // card control
    &__control {
-      height: 100%;
-      margin-top: auto;
-      margin-bottom: auto;
-      min-width: 573px;
-      display: grid;
+      position: absolute;
+      height: max-content;
+      width: $region-control-width;
+      display: flex;
+      flex-direction: column;
       gap: 16px;
-      margin-right: 19px;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
 
       &--title {
          font-weight: 700;
@@ -72,7 +79,8 @@
 // geography-map
 .geography-map {
    padding-top: 285px;
-   width: 100%;
+   width: calc(100% - (#{$region-control-width} + 19px));
+   margin-left: calc(#{$region-control-width} + 19px);
    position: relative;
 
    &__container {
@@ -82,6 +90,8 @@
 
    &__graph {
       position: relative;
+      overflow: hidden;
+      pointer-events: none;
       svg {
          position: absolute;
          top: 0;
@@ -90,9 +100,17 @@
       }
    }
 
+   &__region-list {
+      z-index: 1;
+   }
+
    &__region {
       position: absolute;
-      z-index: 1;
+      z-index: 2;
+
+      &.mask {
+         z-index: 0;
+      }
 
       &--node {
          width: 25px;
@@ -103,11 +121,11 @@
          align-items: center;
          justify-content: center;
          background-color: white;
-         z-index: 2;
+         z-index: 3;
          cursor: pointer;
 
          &::before {
-            content: "";
+            content: '';
             position: absolute;
             height: 21px;
             width: 21px;
@@ -131,8 +149,25 @@
          transition: all 0.3s ease;
       }
 
+      &--polyline {
+         z-index: 1;
+         position: absolute;
+         fill: none;
+         stroke: transparent;
+         pointer-events: none;
+
+         path {
+            fill: none;
+            stroke: transparent;
+            stroke-width: 2;
+         }
+      }
+
       &.active {
-         z-index: 2;
+         z-index: 3;
+         &.mask {
+            z-index: 0;
+         }
          .geography-map__region--node {
             &::before {
                width: 17px;
@@ -146,6 +181,67 @@
             background-color: $color--pink;
             opacity: 0.3;
          }
+      }
+   }
+
+   &__card {
+      position: absolute;
+      z-index: 10;
+      color: $color--blue-grey;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      transition: all 0.6s ease;
+      opacity: 0;
+      pointer-events: none;
+      width: 0;
+      overflow: hidden;
+      &--container {
+         width: 380px;
+      }
+
+      &.active {
+         opacity: 1;
+         pointer-events: all;
+         width: 380px;
+      }
+
+      .head {
+         display: grid;
+      }
+      .body {
+         padding: 24px 24px 20px;
+         font-weight: 600;
+         font-size: 24px;
+         line-height: 36px;
+         &__no {
+            font-weight: 400;
+            font-size: 180px;
+            line-height: 100%;
+         }
+      }
+      .foot {
+         height: 170px;
+         padding: 20px 24px 24px 28px;
+         display: grid;
+         &__content {
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 48px;
+            span {
+               color: $color--pink;
+            }
+         }
+         &__addr {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 160%;
+            letter-spacing: -0.01em;
+         }
+      }
+      .linebreak {
+         height: 2px;
+         background-color: rgba(0, 0, 0, 0.2);
+         margin-right: 24px;
       }
    }
 }

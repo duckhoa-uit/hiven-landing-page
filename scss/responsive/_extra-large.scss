@@ -35,7 +35,7 @@
 
 .mission-value {
    &__inner {
-      gap: 130px;
+      padding: 0 20px;
    }
 }
 
@@ -54,17 +54,65 @@
    }
 }
 
-.about-us-banner__container {
-   padding-left: 160px;
+.about-us-banner {
+   &__inner {
+      padding: 0 100px;
+   }
 }
-.about-us-content__container {
-   .title {
-      padding-left: 160px;
+.about-us-banner__container {
+}
+.about-us-content {
+   &__inner {
+      padding: 0 100px;
+   }
+}
+.about-us-container-full {
+   .about-us-hexagon-container {
+      &:nth-child(2) {
+         .hexagon-image__container {
+            margin-left: -643px;
+         }
+      }
+      &:nth-child(3) {
+         .hexagon-image__container {
+            margin-right: -643px;
+            margin-top: -297px;
+         }
+      }
+      .hexagon-image__container {
+         .hexagon-image {
+            @include hexagon-shape(603px);
+
+            &__container {
+               position: relative;
+               margin-left: 60px;
+               margin-right: 60px;
+            }
+         }
+
+         .hexagon__outer-1 {
+            transform: translate(-50%, -50%) scale(calc(603 / 808));
+
+            &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+               transform: translate(-50%, -50%) translateZ(0) scale(calc(603 / 808));
+            }
+         }
+
+         .hexagon__outer-2 {
+            transform: translate(-50%, -50%) scale(calc(603 / 808) * 1.1);
+
+            &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+               transform: translate(-50%, -50%) translateZ(0) scale(calc(603 / 808) * 1.1);
+            }
+         }
+      }
    }
 }
 
-.news-banner__container {
-   padding-left: 160px;
+.news-banner {
+   &__inner {
+      padding: 0 100px;
+   }
 }
 .news-content__container {
    .title {
@@ -77,5 +125,50 @@
 .news {
    &__inner {
       padding: 0 100px;
+   }
+}
+
+.investment-region {
+   padding-left: 68px;
+   padding-top: 120px;
+}
+
+.geography-map {
+   &__region {
+      &.active {
+         .geography-map__region--highlight-circle {
+            width: 120px;
+            height: 120px;
+         }
+      }
+   }
+}
+
+.contact-info {
+   &__container {
+      margin-bottom: -462px;
+   }
+   &__inner {
+      padding: 0 100px;
+
+      .hexagon-image {
+         @include hexagon-shape(525px);
+      }
+
+      .hexagon__outer-1 {
+         transform: translate(-50%, -50%) scale(calc(525 / 808));
+
+         &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+            transform: translate(-50%, -50%) translateZ(0) scale(calc(525 / 808));
+         }
+      }
+
+      .hexagon__outer-2 {
+         transform: translate(-50%, -50%) scale(calc(525 / 808) * 1.1);
+
+         &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+            transform: translate(-50%, -50%) translateZ(0) scale(calc(525 / 808) * 1.1);
+         }
+      }
    }
 }

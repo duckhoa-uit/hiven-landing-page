@@ -51,26 +51,66 @@
 .contact-us-container {
    padding: 0 20px;
 }
-.footer-content-container{
+.footer-content-container {
    padding: 77px 20px 44px;
 }
 
-.Hiven-info{
+.Hiven-info {
    width: 243px;
    height: 192px;
 }
 
-.contact{
+.contact {
    margin-left: 88px;
 }
 
-.cards-grid{
+.investment-region {
+   padding-left: 20px;
+   padding-top: 80px;
+   padding-bottom: 80px;
+
+   &__title {
+      font-weight: 500;
+      font-size: 126px;
+      line-height: 144px;
+      margin-bottom: 80px;
+   }
+
+   &__content {
+      max-height: unset;
+      flex-direction: column;
+      height: max-content !important;
+   }
+
+   &__control {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: none;
+      &--title {
+         font-weight: 700;
+         font-size: 80px;
+         line-height: 100%;
+      }
+   }
+
+   // &__content {
+   //    max-height: calc(100vh + 285px);
+   // }
+}
+
+.geography-map {
+   margin-left: 0;
+   width: 100%;
+   // padding-top: 209px;
+}
+.cards-grid {
    grid-template-columns: 100%;
    justify-items: center;
    align-items: center;
 }
 
-.card{
+.card {
    width: 541px;
    height: 702px;
 }

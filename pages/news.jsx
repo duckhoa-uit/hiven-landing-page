@@ -1,8 +1,14 @@
+import AnimatedAppearText from '@components/animated-appear-text/animated-appear-text';
 import MainLayout from '@components/layouts/main-layout';
 import NewsCard from '@components/news-card/news-card';
 import Head from 'next/head';
+import { useEffect } from 'react';
 
 const News = () => {
+   useEffect(() => {
+      const text = new AnimatedAppearText([['Latest&nbsp']]);
+   }, []);
+
    return (
       <>
          <Head>
@@ -12,19 +18,27 @@ const News = () => {
          </Head>
 
          <main style={{ height: 'auto' }}>
-            <div className="about-us-banner__container">
-               <div className="about-us-banner__title">
-                  <h2 data-aos="fade-up" data-aos-delay="500">
-                     News
-                  </h2>
+            <div className="news-banner__container">
+               <div className="container-full">
+                  <div className="news-banner__inner">
+                     <div className="news-banner__title">
+                        <h2 data-aos="fade-up" data-aos-delay="500">
+                           News
+                        </h2>
+                     </div>
+                  </div>
                </div>
             </div>
             <div className="news">
                <div className="container-full">
                   <div className="news__inner">
                      <div className="news__title">
-                        <h3 data-aos="fade-down" data-aos-delay="500">
-                           Latest
+                        <h3>
+                           <div className="wordContainer">
+                              <div className="word">
+                                 <p>Latest</p>
+                              </div>
+                           </div>
                         </h3>
                      </div>
                      <div className="cards-grid">
@@ -34,9 +48,6 @@ const News = () => {
                               'https://cdn.dealstreetasia.com/uploads/2022/06/1st-picture-scaled-e1655137376173.jpg'
                            }
                         />
-                        {/* <NewsCard className=" up"></NewsCard>
-                        <NewsCard></NewsCard>
-                        <NewsCard className=" up"></NewsCard> */}
                      </div>
                   </div>
                </div>

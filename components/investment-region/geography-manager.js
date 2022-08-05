@@ -1,3 +1,5 @@
+import exampleRegionImg from '../../assets/images/example_region.png';
+
 const CONTAINER_WIDTH = 1188;
 const CONTAINER_HEIGHT = 999;
 
@@ -34,14 +36,60 @@ export const areas = [
    },
 ];
 
+export const getContainerSize = (containerH) => {
+   const containerW = containerH * (CONTAINER_WIDTH / CONTAINER_HEIGHT);
+   return {
+      containerW,
+      containerH,
+   };
+};
+
 export const getCoordinate = (x, y, containerH) => {
    if (!containerH) return { x: 0, x: 0 };
    if (x != null && y != null) {
-      const containerW = containerH * (CONTAINER_WIDTH / CONTAINER_HEIGHT);
+      const containerSize = getContainerSize(containerH);
       return {
-         x: containerW * (x / CONTAINER_WIDTH),
-         y: containerH * (y / CONTAINER_HEIGHT),
+         ...containerSize,
+         x: containerSize.containerW * (x / CONTAINER_WIDTH),
+         y: containerSize.containerH * (y / CONTAINER_HEIGHT),
       };
    }
    return { x, y };
+};
+
+const _dummyRegionData = {
+   Singapore: {
+      no: '06',
+      address: '20 Cecil Street',
+      imgUrl: exampleRegionImg,
+   },
+   Vietnam: {
+      no: '05',
+      address: '20 Cecil Street',
+      imgUrl: exampleRegionImg,
+   },
+   Indonesia: {
+      no: '04',
+      address: '20 Cecil Street',
+      imgUrl: exampleRegionImg,
+   },
+   Malaysia: {
+      no: '03',
+      address: '20 Cecil Street',
+      imgUrl: exampleRegionImg,
+   },
+   Thailand: {
+      no: '02',
+      address: '20 Cecil Street',
+      imgUrl: exampleRegionImg,
+   },
+   Philippines: {
+      no: '01',
+      address: '20 Cecil Street',
+      imgUrl: exampleRegionImg,
+   },
+};
+
+export const getRegionInfo = (regionName) => {
+   return _dummyRegionData[regionName] || null;
 };

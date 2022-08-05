@@ -5,12 +5,9 @@ import React, { useEffect, useState, useRef } from 'react';
 class CardHeader extends React.Component {
    render() {
       const { image } = this.props;
-      const style = {
-         backgroundImage: 'url(' + image + ')',
-      };
       return (
-         <div style={style} id={image} className="card-header">
-            {/* <h4 className="card-header--title">News</h4> */}
+         <div id={image} className="card-header">
+            <img src={image} alt="" />
          </div>
       );
    }
@@ -38,7 +35,7 @@ export default function NewsCard({ url, banner, className = '' }) {
    return (
       <article className={'card' + className} data-cursor-text="View">
          <Link href={url} target="_blank" rel="noreferrer">
-            <a target="_blank">
+            <>
                <CardHeader image={banner} />
                <CardBody
                   title={'New Joint Venture Fund'}
@@ -46,7 +43,7 @@ export default function NewsCard({ url, banner, className = '' }) {
                      'Global grain trading CJ International Asia (CJIA) and Singapore-based KK Fund have launched Hiven, a joint venture fund to invest in startups developing breakthrough technologies in "food, agriculture, and bio" in Southeast Asia.'
                   }
                />
-            </a>
+            </>
          </Link>
       </article>
    );

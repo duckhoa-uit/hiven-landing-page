@@ -1,0 +1,49 @@
+/* First, we wrap every single word in a .wordContainer div */
+/* We set that one to hide it's overflow */
+.wordContainer {
+   overflow: hidden;
+}
+
+/* We define the animation */
+@keyframes up {
+   100% {
+      // opacity: 1;
+      transform: translateY(0%);
+   }
+}
+
+/* Then, every single word gets animated up */
+.word {
+   // opacity: 0;
+   animation: up 1.5s;
+   animation-delay: 1.2s;
+   animation-fill-mode: forwards;
+   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+   transform: translateY(115%);
+}
+
+/* Delay for staggering effect */
+.textWrapper .wordContainer:nth-child(2) .word {
+   animation-delay: 1.35s;
+}
+.textWrapper .wordContainer:nth-child(3) .word {
+   animation-delay: 1.5s;
+}
+.textWrapper .wordContainer:nth-child(4) .word {
+   animation-delay: 1.65s;
+}
+.textWrapper .wordContainer:nth-child(5) .word {
+   animation-delay: 1.8s;
+}
+
+// .textWrapper {
+//    font-weight: 800;
+//    font-size: 7vw;
+//    color: black;
+// }
+.wordContainer {
+   float: left;
+}
+.textWrapper .wordContainer:nth-child(3) {
+   clear: both;
+}
