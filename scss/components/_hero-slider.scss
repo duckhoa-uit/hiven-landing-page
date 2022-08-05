@@ -44,6 +44,9 @@
       .swiper-pagination-bullet + .swiper-pagination-bullet {
          margin-left: 18px;
       }
+      .swiper-pagination-bullet {
+         background: unset;
+      }
       .swiper-pagination-bullet-active {
          background: unset;
          opacity: 1;
