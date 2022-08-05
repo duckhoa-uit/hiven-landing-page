@@ -71,10 +71,10 @@ const AboutUs = () => {
                   </div>
                </div>
                <div className="about-us-hexagon-container">
-                  <HexagonImage source={'/about-us-1.png'} />
+                  <HexagonImage source={'/about-us-1.svg'} />
                </div>
                <div className="about-us-hexagon-container">
-                  <HexagonImage source={'/about-us-2.svg'} />
+                  <HexagonImage source={'/black.svg'} />
                </div>
                <div className="about-us-group-content-final">
                   <div className="KKFung" data-aos="fade-up">

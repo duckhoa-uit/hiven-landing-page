@@ -77,7 +77,7 @@
 
 @mixin hexagon-shape($width) {
    width: $width;
-   height: calc($width * 1.1547);
+   height: calc($width * 1.15);
    display: inline-block;
    font-size: initial; /* we reset the font-size if we want to add some content */
    clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
