@@ -1,6 +1,5 @@
 .footer-container {
    width: 100%;
-
    .row {
       display: inline-flex;
       .Hiven-info {
@@ -106,6 +105,9 @@
 
 .link-group {
    padding-top: 10px;
+   li{
+      list-style-type: none;
+   }
    .quick-link {
       h6 {
          font-family: 'Poppins';

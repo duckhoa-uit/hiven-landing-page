@@ -79,6 +79,14 @@
       padding: 0 200px;
       width: 100%;
       max-width: 2300px;
+      .cards-grid{
+         > a:nth-child(2){
+            margin-top: -80px;
+         }
+         > a:nth-child(4){
+            margin-top: -80px;
+         }
+      }
    }
    &__title {
       z-index: -1;

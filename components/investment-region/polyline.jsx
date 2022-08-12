@@ -1,8 +1,10 @@
 /* eslint-disable react/display-name */
+import useBreakpoint from '@components/common/breakpoint/useBreakpoint';
 import React, { memo, useEffect, useRef, useMemo } from 'react';
 import { getCoordinate } from './geography-manager';
 
 const Polyline = memo(({ x, y, containerHeight, containerWidth }) => {
+   const {windowWidth} = useBreakpoint();
    const lineRef = useRef();
    const animated = useRef(false);
 
@@ -43,7 +45,26 @@ const Polyline = memo(({ x, y, containerHeight, containerWidth }) => {
       }
    }, []);
 
-   const topLineCoor = getCoordinate(510, 192, containerHeight);
+   const topPointCoor = {
+      x: 510,
+      y: 192,
+   };
+   if(windowWidth <= 1199) {
+      topPointCoor.x = 470;
+      topPointCoor.y = 416;
+
+      if(windowWidth <= 767) {
+         topPointCoor.x = 670;
+         topPointCoor.y = 283;
+      }
+
+      if(windowWidth <= 380) {
+         topPointCoor.x = 370;
+         topPointCoor.y = 283;
+      }
+   }
+   
+   const topLineCoor = getCoordinate(topPointCoor.x, topPointCoor.y, containerHeight);
 
    return (
       <svg

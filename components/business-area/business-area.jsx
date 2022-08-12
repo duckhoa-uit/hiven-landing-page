@@ -1,5 +1,8 @@
+import MoreLink from '@components/more-link/more-link';
 import Image from 'next/image';
 import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation } from 'swiper';
 import img1 from '../../assets/images/business-area-1.png';
 import img2 from '../../assets/images/business-area-2.png';
 import img3 from '../../assets/images/business-area-3.png';
@@ -17,7 +20,16 @@ const BusinessAreaImage = ({ src, number, title, ...rest }) => (
    </div>
 );
 
+const BusinessSliderPagination = () => <div className="business-slider__pagination" />;
+
 export default function BusinessArea() {
+   const pagination = {
+      el: '.business-slider__pagination',
+      clickable: true,
+      renderBullet: function (index, className) {
+         return '<span class="' + className + '">' + '</span>';
+      },
+   };
    return (
       <section className="business-area__container" data-cursor="-inverse">
          <div className="business-area__content">
@@ -71,6 +83,56 @@ export default function BusinessArea() {
                      data-aos="fade-right"
                   />
                </div>
+            </div>
+
+            <Swiper
+               loop
+               slidesPerView={"auto"}
+               pagination={
+                  // clickable: true,
+                  pagination
+               }
+               spaceBetween={30}
+               modules={[Pagination]}
+               className="mySwiper"
+               >
+               <SwiperSlide>
+                  <BusinessAreaImage
+                     src={img1}
+                     number="01"
+                     title="Food Tech"
+                     data-aos="fade-left"
+                  />
+               </SwiperSlide>
+               <SwiperSlide>
+                  <BusinessAreaImage
+                     src={img2}
+                     number="02"
+                     title="Agri Tech"
+                     data-aos="fade-right"
+                  />
+               </SwiperSlide>
+               <SwiperSlide>
+                  <BusinessAreaImage
+                     src={img3}
+                     number="03"
+                     title="Bio Tech"
+                     data-aos="fade-left"
+                  />
+               </SwiperSlide>
+               <SwiperSlide>
+                  <BusinessAreaImage
+                     src={img4}
+                     number="04"
+                     title="Media & Entertainment, Mobility, Fin Tech, etc"
+                     data-aos="fade-right"
+                  />
+               </SwiperSlide>
+            </Swiper>
+            <BusinessSliderPagination />
+
+            <div className='more-link-wrapper'>
+               <MoreLink text={'Find Out More'} link='/about-us'/>
             </div>
          </div>
       </section>

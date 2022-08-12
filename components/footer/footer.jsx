@@ -88,12 +88,12 @@ export default function Footer() {
                         </li>
                         <li>
                            <a
-                              href="mailto:info@hiven.com"
+                              href="mailto:info@hiven.com.sg"
                               className="translate-btn"
-                              data-text="info@hiven.com"
+                              data-text="info@hiven.com.sg"
                               data-cursor="-opaque"
                            >
-                              <span>info@hiven.com</span>
+                              <span>info@hiven.com.sg</span>
                            </a>
                         </li>
                      </ul>

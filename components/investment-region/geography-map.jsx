@@ -1,4 +1,5 @@
 /* eslint-disable react/display-name */
+import useBreakpoint from '@components/common/breakpoint/useBreakpoint';
 import ResizeDetector from '@components/common/resize-detector';
 import React, { useCallback, useMemo, useState, memo, Fragment } from 'react';
 import { areas, getCoordinate } from './geography-manager';
@@ -55,6 +56,7 @@ const GeographyMap = (props) => {
                   height: containerSize.h,
                }}
                data-aos="zoom-in"
+               data-aos-delay="300"
             >
                <MapGraph height={containerSize.h} />
             </div>
@@ -65,6 +67,7 @@ const GeographyMap = (props) => {
 };
 
 const Region = ({ name, x, y, containerWidth, containerHeight, isSelected, onClick }) => {
+   const { windowWidth } = useBreakpoint();
    const coodinate = useMemo(() => {
       return getCoordinate(x, y, containerHeight);
    }, [x, y, containerHeight]);
@@ -98,7 +101,12 @@ const Region = ({ name, x, y, containerWidth, containerHeight, isSelected, onCli
                top: coodinate.y,
             }}
          >
-            <div style={{ width: 25, height: 25 }}></div>
+            <div
+               style={{
+                  width: windowWidth > 768 ? 25 : 16,
+                  height: windowWidth > 768 ? 25 : 16,
+               }}
+            ></div>
             <div className="geography-map__region--highlight-circle"></div>
          </div>
       </>

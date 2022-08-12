@@ -13,7 +13,14 @@ import 'aos/dist/aos.css';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
+
 import Magnetic from '@components/mouse-follower/magnetic';
+import { Provider } from 'react-redux';
+import store from '@utils/store';
+
+// Toastify
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyApp = memo(({ Component, pageProps }) => {
    const Layout = Component.Layout ?? EmptyLayout;
@@ -25,31 +32,32 @@ const MyApp = memo(({ Component, pageProps }) => {
          once: true,
       });
 
-      MouseFollower.registerGSAP(gsap);
-      const cursor = new MouseFollower({
-         // className: 'cb-cursor',
-         // innerClassName: 'cb-cursor-inner',
-         // textClassName: 'cb-cursor-text',
-         // mediaClassName: 'cb-cursor-media',
-         // mediaBoxClassName: 'cb-cursor-media-box',
-         // iconSvgClassName: 'cb-svgsprite',
-      });
-
       document.querySelectorAll('[data-magnetic]').forEach(function (el) {
          new Magnetic(el);
       });
 
-      return () => {
-         cursor.destroy();
-      };
+      return () => {};
    }, []);
 
    return (
-      <BreakpointProvider>
-         <Layout>
-            <Component {...pageProps} />
-         </Layout>
-      </BreakpointProvider>
+      <Provider store={store}>
+         <BreakpointProvider>
+            <Layout>
+               <Component {...pageProps} />
+            </Layout>
+         </BreakpointProvider>
+
+         <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop
+            draggable={false}
+            pauseOnVisibilityChange
+            closeOnClick
+            pauseOnHover
+         />
+      </Provider>
    );
 });
 

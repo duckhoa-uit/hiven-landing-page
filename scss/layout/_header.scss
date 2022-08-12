@@ -62,14 +62,13 @@ header {
    display: flex;
    height: 100%;
 
+   li {
+      height: 100%;
+      @include flex-center;
+   }
    li:last-child {
       display: none;
    }
-}
-
-li {
-   height: 100%;
-   @include flex-center;
 }
 
 .nav-link {

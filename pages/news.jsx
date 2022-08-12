@@ -64,15 +64,33 @@ const News = () => {
                               'https://cdn.dealstreetasia.com/uploads/2022/06/1st-picture-scaled-e1655137376173.jpg'
                            }
                         />
+                        {/* <NewsCard
+                           url="https://www.dealstreetasia.com/stories/cj-international-asia-kk-fund-jv-296381"
+                           banner={
+                              'https://cdn.dealstreetasia.com/uploads/2022/06/1st-picture-scaled-e1655137376173.jpg'
+                           }
+                        />
+                        <NewsCard
+                           url="https://www.dealstreetasia.com/stories/cj-international-asia-kk-fund-jv-296381"
+                           banner={
+                              'https://cdn.dealstreetasia.com/uploads/2022/06/1st-picture-scaled-e1655137376173.jpg'
+                           }
+                        />
+                        <NewsCard
+                           url="https://www.dealstreetasia.com/stories/cj-international-asia-kk-fund-jv-296381"
+                           banner={
+                              'https://cdn.dealstreetasia.com/uploads/2022/06/1st-picture-scaled-e1655137376173.jpg'
+                           }
+                        /> */}
                      </div>
                   </div>
                </div>
             </div>
-            <div className="load-more-post">
+            {/* <div className="load-more-post">
                <span data-magnetic>
                   <div className="load-more-post_button">LOAD MORE POST</div>
                </span>
-            </div>
+            </div> */}
          </main>
       </>
    );

@@ -2,7 +2,32 @@
    &__container {
       background-color: $color--blue-grey;
       padding-top: 160px;
-      padding-bottom: 460px;
+      padding-bottom: 160px;
+      
+      .container-full{
+         .mySwiper{
+            display: none;
+         }
+         .business-slider__pagination{
+            display: none;
+         }
+         .more-link-wrapper{
+            display: none;
+            margin-top: 100px;
+            width: 100%;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 16px;
+            .more-link{
+               font-weight: 600;
+               font-size: 16px;
+               line-height: 24px;
+               a{
+                  color: white;
+               }
+            }
+         }
+      }
    }
 
    &__content {

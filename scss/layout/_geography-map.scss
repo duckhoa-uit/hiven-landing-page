@@ -74,6 +74,21 @@ $region-control-width: 573px;
          }
       }
    }
+
+   &__mb-control-container{
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      gap: 16px;
+   }
+   &__mb-control{
+      margin-top: 32px;
+      max-width: 100%;
+      overflow: auto;
+      &::-webkit-scrollbar {
+         display: none;
+      }
+   }
 }
 
 // geography-map
@@ -207,6 +222,8 @@ $region-control-width: 573px;
 
       .head {
          display: grid;
+         width: 100%;
+         height: 254px;
       }
       .body {
          padding: 24px 24px 20px;

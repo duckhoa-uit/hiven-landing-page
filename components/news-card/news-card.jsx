@@ -34,7 +34,7 @@ class CardBody extends React.Component {
 export default function NewsCard({ url, banner, className = '' }) {
    return (
       <a href={url} target="_blank" rel="noreferrer">
-         <article className={'card' + className} data-cursor-text="View">
+         <article className={'card' + className} >
             <CardHeader image={banner} />
             <CardBody
                title={'New Joint Venture Fund'}

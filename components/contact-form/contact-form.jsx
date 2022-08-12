@@ -6,11 +6,19 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 const schema = yup.object({
-   fullName: yup.string().max(255).required().label('Name'),
-   address: yup.string().max(500).required().label('Address'),
+   fullName: yup
+      .string()
+      .max(255)
+      .matches(/^[a-zA-Z0-9]*$/, 'Only alphabets are allowed for this field')
+      .required()
+      .label('Name'),
+   address: yup
+      .string()
+      .max(500)
+      .matches(/^[a-zA-Z0-9]*$/, 'Only alphabets are allowed for this field')
+      .label('Address'),
    phoneNumber: yup
       .string()
-      .max(15)
       .matches(
          /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
          'Phone number is not valid'
@@ -47,7 +55,11 @@ export default function ContactForm() {
                         <ContactFormInput label="Your Name" name="fullName" />
                         <ContactFormInput label="Your Add" name="address" />
                         <ContactFormInput label="Phone Number" name="phoneNumber" />
-                        <ContactFormInput label="Message" name="message" />
+                        <ContactFormInput
+                           label="Message"
+                           name="message"
+                           multiline={true}
+                        />
 
                         <button type="submit" id="submit-btn">
                            <MoreLink text={'SEND MAIL'} padding light />

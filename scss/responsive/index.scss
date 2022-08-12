@@ -31,10 +31,6 @@ $res_xl: "screen and (max-width: 1919.98px)";
    }
 }
 
-// Extra large devices (desktops, less than 1200px)
-@include media_xl {
-   @import 'extra-large';
-}
 // Large devices (desktops, less than 1200px)
 @include media_xl {
    @import "extra-large";

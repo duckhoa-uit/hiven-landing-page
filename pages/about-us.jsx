@@ -1,15 +1,10 @@
-import HeroSlider from '@components/hero-slides/hero-slider';
-import MainLayout from '@components/layouts/main-layout';
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import HexagonImage from '@components/hexagon-image/hexagon-image';
-import MoreLink from '@components/more-link/more-link';
-import IconKKFung from '@components/icons/ic-KK-Fund';
-import ScrollToTop from '@components/scroll-to-top/scroll-to-top';
-import img1 from '../assets/images/about-us-1.png';
-import img2 from '../assets/images/about-us-2.svg';
-import Link from 'next/link';
 import Hexagon from '@components/common/hexagon';
+import HexagonImage from '@components/hexagon-image/hexagon-image';
+import IconKKFung from '@components/icons/ic-KK-Fund';
+import MainLayout from '@components/layouts/main-layout';
+import MoreLink from '@components/more-link/more-link';
+import ScrollToTop from '@components/scroll-to-top/scroll-to-top';
+import Head from 'next/head';
 
 const AboutUs = () => {
    return (

@@ -53,3 +53,37 @@
       }
    }
 }
+
+.about-us-content__container {
+   .container-full {
+      padding: 5px;
+   }
+}
+
+.about-us-container-full {
+   padding: 60px 5px;
+}
+
+.investment-region {
+   &__content {
+      .geography-map__container {
+         min-height: 450px;
+      }
+   }
+}
+.geography-map__region--polyline {
+   display: none;
+}
+
+.geography-map {
+   &__card {
+      .body,
+      .linebreak,
+      .foot {
+         display: none;
+      }
+   }
+}
+.icon-scroll-to-top {
+   bottom: 60px;
+}
