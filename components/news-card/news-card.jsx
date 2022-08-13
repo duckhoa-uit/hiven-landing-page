@@ -17,7 +17,7 @@ class CardBody extends React.Component {
    render() {
       return (
          <div className="card-body">
-            <p className="date">Admin 01 - 2022-06-13 </p>
+            <p className="date">Admin 01 - 13-06-2022 </p>
 
             <h2>{this.props.title}</h2>
 
@@ -34,7 +34,7 @@ class CardBody extends React.Component {
 export default function NewsCard({ url, banner, className = '' }) {
    return (
       <a href={url} target="_blank" rel="noreferrer">
-         <article className={'card' + className} >
+         <article className={'card' + className}>
             <CardHeader image={banner} />
             <CardBody
                title={'New Joint Venture Fund'}

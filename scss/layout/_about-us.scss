@@ -7,13 +7,33 @@
       background-position: center;
       padding-top: 442px;
       position: relative;
+
+      &:before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         background: linear-gradient(
+               2.92deg,
+               rgba(29, 34, 58, 0.5) -4.66%,
+               rgba(29, 34, 58, 0) 22.49%
+            ),
+            linear-gradient(
+               180deg,
+               rgba(29, 34, 58, 0.5) -8.48%,
+               rgba(29, 34, 58, 0) 19.11%
+            );
+         z-index: 1;
+      }
    }
 
    &__title {
       display: flex;
       justify-content: flex-start;
       h2 {
-         font-family: "Poppins";
+         font-family: 'Poppins';
          font-style: normal;
          font-weight: 700;
          font-size: 110px;
@@ -21,7 +41,7 @@
          color: #ffffff;
       }
       h1 {
-         font-family: "Poppins";
+         font-family: 'Poppins';
          font-style: normal;
          font-weight: 400;
          font-size: 180px;
@@ -97,7 +117,7 @@
          .hexagon__outer-1 {
             transform: translate(-50%, -50%) scale(calc(808 / 808));
 
-            &[data-aos^="zoom"][data-aos^="zoom"].aos-animate {
+            &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
                transform: translate(-50%, -50%) translateZ(0) scale(calc(808 / 808));
             }
          }
@@ -105,7 +125,7 @@
          .hexagon__outer-2 {
             transform: translate(-50%, -50%) scale(calc(808 / 808) * 1.1);
 
-            &[data-aos^="zoom"][data-aos^="zoom"].aos-animate {
+            &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
                transform: translate(-50%, -50%) translateZ(0) scale(calc(808 / 808) * 1.1);
             }
          }
@@ -156,7 +176,7 @@
    height: 106.69px;
 }
 .KKFung-Title {
-   font-family: "Poppins";
+   font-family: 'Poppins';
    font-style: normal;
    font-weight: 700;
    font-size: 42.2098px;

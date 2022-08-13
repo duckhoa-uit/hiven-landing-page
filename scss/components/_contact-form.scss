@@ -103,6 +103,7 @@
          &:focus ~ span {
             transform-origin: bottom left;
             transform: scaleX(1);
+            bottom: 3px;
          }
       }
 

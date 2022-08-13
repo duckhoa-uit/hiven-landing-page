@@ -52,16 +52,6 @@ export default function Footer() {
                         </li>
                         <li>
                            <a
-                              href="/portfolio"
-                              className="translate-btn"
-                              data-text="Portfolio"
-                              data-cursor="-opaque"
-                           >
-                              <span>Portfolio</span>
-                           </a>
-                        </li>
-                        <li>
-                           <a
                               href="/news"
                               className="translate-btn"
                               data-text="New"

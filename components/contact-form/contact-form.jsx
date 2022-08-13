@@ -23,6 +23,7 @@ const schema = yup.object({
          /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
          'Phone number is not valid'
       )
+      .max(255)
       .required()
       .label('Phone number'),
    message: yup.string().max(1000).required().label('Message'),
