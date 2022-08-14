@@ -46,11 +46,20 @@
          font-size: 180px;
          line-height: 181px;
       }
+      .icon {
+         display: flex;
+         align-items: flex-end;
+
+         color: $color--pink;
+         padding-bottom: 22px;
+         margin-left: 15px;
+      }
    }
    &__inner {
       padding: 0 200px;
       width: 100%;
       max-width: 2300px;
+      z-index: 1;
    }
 
    &__hexagon-group {
@@ -125,6 +134,7 @@
 
       .word {
          transform: translateY(-115%);
+         font-weight: 300;
       }
    }
 }

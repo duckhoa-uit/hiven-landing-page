@@ -22,7 +22,7 @@ export default function MissionAndValue() {
                         data-aos="fade-up"
                         data-aos-delay="100"
                      >
-                        Mission & Value
+                        Mission <br/>& Value
                      </h4>
                   </div>
                   <div

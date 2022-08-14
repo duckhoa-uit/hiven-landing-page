@@ -1,5 +1,6 @@
 import Hexagon from '@components/common/hexagon';
 import HexagonImage from '@components/hexagon-image/hexagon-image';
+import IconHexagonSmall from '@components/icons/ic-hexagon-small';
 import IconKKFung from '@components/icons/ic-KK-Fund';
 import MainLayout from '@components/layouts/main-layout';
 import MoreLink from '@components/more-link/more-link';
@@ -34,8 +35,11 @@ const AboutUs = () => {
                </div>
                <div className="container-full">
                   <div className="about-us-banner__inner">
-                     <div className="about-us-banner__title">
-                        <h2 data-aos="fade-up">About Us</h2>
+                     <div className="about-us-banner__title" data-aos="fade-up">
+                        <h2>About Us</h2>
+                        <div className="icon">
+                           <IconHexagonSmall width={28} height={32} />
+                        </div>
                      </div>
                   </div>
                </div>

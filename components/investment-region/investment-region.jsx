@@ -2,7 +2,7 @@ import Breakpoint from '@components/common/breakpoint/breakpoint';
 import useBreakpoint from '@components/common/breakpoint/useBreakpoint';
 import ResizeDetector from '@components/common/resize-detector';
 import IconChevron from '@components/icons/ic-chevron';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { areas, getRegionInfo } from './geography-manager';
 import GeographyMap from './geography-map';
 
@@ -24,16 +24,12 @@ const InvestmentRegion = () => {
          <>
             {areas.map((region) => {
                return (
-                  <div
-                     className={`investment-region__control--item ${
-                        selectedRegion === region.name ? 'active' : ''
-                     }`}
+                  <RegionItem
+                     isActive={selectedRegion === region.name}
                      key={region.name}
-                     onClick={() => setSelectedRegion(region.name)}
-                  >
-                     <span>{region.name}</span>
-                     <IconChevron />
-                  </div>
+                     setSelectedRegion={setSelectedRegion}
+                     {...region}
+                  />
                );
             })}
          </>
@@ -51,7 +47,7 @@ const InvestmentRegion = () => {
    }, []);
 
    const getRegionsMb = () => {
-      if (windowWidth > 380) {
+      if (windowWidth > 444) {
          return (
             <div className="investment-region__mb-control">
                <div className="investment-region__mb-control-container">{regions}</div>
@@ -100,12 +96,12 @@ const InvestmentRegion = () => {
                   Investment <br />
                   Area
                </h3>
-               <Breakpoint lg up>
+               <Breakpoint xl up>
                   {regions}
                </Breakpoint>
             </div>
             <GeographyMap selected={selectedRegion} onChange={handleChangeRegion} />
-            <Breakpoint md down>
+            <Breakpoint lg down>
                {getRegionsMb()}
             </Breakpoint>
             <ResizeDetector onResize={onResize} />
@@ -138,5 +134,27 @@ const RegionInfoSmall = ({ name }) => {
       </div>
    );
 };
+
+const RegionItem = (props) => {
+   const ref = useRef();
+   const onClick = () => {
+      console.log('click');
+      props.setSelectedRegion(props.name);
+      ref.current.scrollIntoView({behavior : 'smooth', block : 'nearest', inline : 'nearest'});
+   }
+
+   return (
+      <div
+         ref={ref}
+         className={`investment-region__control--item ${
+            props.isActive ? 'active' : ''
+         }`}
+         onClick={onClick}
+      >
+         <span>{props.name}</span>
+         <IconChevron />
+      </div>
+   )
+}
 
 export default InvestmentRegion;

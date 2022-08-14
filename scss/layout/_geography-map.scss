@@ -8,7 +8,7 @@ $region-control-width: 573px;
    overflow: hidden;
 
    &__title {
-      @include font(500, 160, 180);
+      @include font(300, 160, 180);
       cursor: default;
       margin-bottom: 45px;
       span {
@@ -80,6 +80,7 @@ $region-control-width: 573px;
       align-items: center;
       white-space: nowrap;
       gap: 16px;
+      width: max-content;
    }
    &__mb-control{
       margin-top: 32px;

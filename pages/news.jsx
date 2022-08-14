@@ -1,5 +1,6 @@
 import AnimatedAppearText from '@components/animated-appear-text/animated-appear-text';
 import Hexagon from '@components/common/hexagon';
+import IconHexagonSmall from '@components/icons/ic-hexagon-small';
 import MainLayout from '@components/layouts/main-layout';
 import NewsCard from '@components/news-card/news-card';
 import Head from 'next/head';
@@ -37,10 +38,11 @@ const News = () => {
                </div>
                <div className="container-full">
                   <div className="news-banner__inner">
-                     <div className="news-banner__title">
-                        <h2 data-aos="fade-up" data-aos-delay="500">
-                           News
-                        </h2>
+                     <div className="news-banner__title" data-aos="fade-up">
+                        <h2 data-aos-delay="500">News</h2>
+                        <div className="icon">
+                           <IconHexagonSmall width={28} height={32} />
+                        </div>
                      </div>
                   </div>
                </div>

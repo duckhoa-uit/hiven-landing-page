@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import ResizeDetector from '../resize-detector';
 import { BreakpointContext } from './breakpoint-context';
 
 class BreakpointProvider extends PureComponent {
@@ -6,22 +7,11 @@ class BreakpointProvider extends PureComponent {
       windowWidth: 0,
    };
 
-   componentWillUnmount() {
-      window.removeEventListener('resize', this.updateDimensions);
-   }
-
-   componentDidMount() {
+   onResize = (w, h) => {
       this.setState({
-         windowWidth: window.innerWidth,
+         windowWidth: w,
       });
-      window.addEventListener('resize', this.updateDimensions);
    }
-
-   updateDimensions = () => {
-      this.setState({
-         windowWidth: window.innerWidth,
-      });
-   };
 
    render() {
       return (
@@ -31,6 +21,7 @@ class BreakpointProvider extends PureComponent {
             }}
          >
             {this.props.children && this.props.children}
+            <ResizeDetector onResize={this.onResize} />
          </BreakpointContext.Provider>
       );
    }

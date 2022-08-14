@@ -2,22 +2,28 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import IconLogo from '@components/icons/logo';
 import ActiveLink from '@components/active-link/active-link';
+import { useRouter } from 'next/router';
 
 export default function Header() {
    const [activeMobileMenu, setActiveMobileMenu] = useState(false);
    const [stickyHeader, setStickyHeader] = useState(false);
+   const { pathname } = useRouter();
 
    useEffect(() => {
       const listener = () =>
          window.scrollY > 160 ? setStickyHeader(true) : setStickyHeader(false);
-         window.addEventListener('scroll', listener);
+      window.addEventListener('scroll', listener);
 
       return () => {
          window.removeEventListener('scroll', listener);
       };
    }, []);
 
-   const toggleMobileMenu = (e) => {
+   useEffect(() => {
+      setActiveMobileMenu(false);
+   }, [pathname]);
+
+   const toggleMobileMenu = () => {
       setActiveMobileMenu(!activeMobileMenu);
    };
 

@@ -16,20 +16,14 @@ export default function ContactInformation() {
                   </div>
 
                   <div className="contact-info__details">
-                     <div className="row" data-aos="fade-up" data-aos-delay="100">
-                        <p className="field">Address</p>
-                        <div className="detail">
-                           20 Cecil Street <br /> #12-03 PLUS <br /> Singapore 049705
-                        </div>
+                     <div>Address</div>
+                     <div>
+                        20 Cecil Street <br /> #12-03 PLUS <br /> Singapore 049705
                      </div>
-                     <div className="row" data-aos="fade-up" data-aos-delay="200">
-                        <p className="field">Phone</p>
-                        <div className="detail">+65 6645 3838</div>
-                     </div>
-                     <div className="row" data-aos="fade-up" data-aos-delay="300">
-                        <p className="field">Email</p>
-                        <div className="detail">info@hiven.com.sg</div>
-                     </div>
+                     <div>Phone</div>
+                     <div>+65 6645 3838</div>
+                     <div>Email</div>
+                     <div>info@hiven.com.sg</div>
                   </div>
                </div>
 

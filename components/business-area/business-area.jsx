@@ -34,7 +34,7 @@ export default function BusinessArea() {
       <section className="business-area__container" data-cursor="-inverse">
          <div className="business-area__content">
             <h3 className="section-title" data-aos="fade-up">
-               Portfolio
+               POFTOLIO
             </h3>
             <div className="divider" />
 

@@ -3,6 +3,9 @@
    align-items: center;
    cursor: pointer;
    width: fit-content;
+   font-weight: 600;
+   font-size: 16px;
+   line-height: 24px;
 
    .animated-line {
       color: $color--pink;

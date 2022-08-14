@@ -6,6 +6,7 @@ import IconChevronRight from '@components/icons/ic-chevron-right';
 import IconLogo from '@components/icons/logo';
 import Hexagon from '@components/common/hexagon';
 import heroSliderImage from '../../assets/images/hero-slider-1.png';
+import LogoLarge from '@components/icons/logo-large';
 
 const IMAGES = [heroSliderImage, heroSliderImage, heroSliderImage, heroSliderImage];
 
@@ -81,11 +82,9 @@ export default function HeroSlider() {
 
          <div className="hero-slider__content">
             <HeroSliderPagination />
-            <IconLogo
+            <LogoLarge
                data-aos="fade-up"
                data-aos-duration="500"
-               width={502}
-               height={133}
                className="logo"
             />
             <p
@@ -95,7 +94,7 @@ export default function HeroSlider() {
                data-aos-delay="100"
                className="subtitle textWrapper"
             >
-               Unlock potential in south-east area
+               Unlocking Potential In South-east Asia
             </p>
          </div>
          <HeroSliderNavigation />

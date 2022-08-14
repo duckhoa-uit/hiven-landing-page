@@ -3,7 +3,9 @@
       background-color: $color--blue-grey;
       padding-top: 160px;
       padding-bottom: 160px;
-      
+      max-width: 100vw;
+      overflow: hidden;
+
       .container-full{
          .mySwiper{
             display: none;
@@ -40,10 +42,15 @@
          background-color: rgba($color: #fff, $alpha: 0.5);
          margin: 24px 0;
       }
+
+
+      .section-description {
+         min-height: 145px;
+      }
    }
 
    &__images {
-      margin-top: -240px;
+      margin-top: -273px;
       width: 100%;
       padding: 0 80px;
       &--grid {
@@ -66,17 +73,17 @@
       }
       &:nth-child(2) {
          order: 1;
-         margin-top: 300px;
+         margin-top: 358px;
       }
       &:nth-child(3) {
          order: 4;
          justify-content: flex-end;
-         margin-top: 80px;
+         margin-top: -202px;
       }
       &:nth-child(4) {
          order: 3;
          justify-content: flex-end;
-         margin-top: 380px;
+         margin-top: 156px;
       }
 
       &-container {

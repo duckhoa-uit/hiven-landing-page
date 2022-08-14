@@ -11,9 +11,17 @@
       width: 100%;
       max-width: 2300px;
       padding: 0 200px 0 20px;
+
+      .section-title {
+         margin-bottom: 8px;
+      }
    }
 
    &__content {
       max-width: 800px;
+
+      .section-description {
+         max-width: 413px;
+      }
    }
 }
