@@ -205,6 +205,7 @@
       margin-bottom: -412px;
    }
    &__inner {
+      margin-top: -80px;
       padding: 0 100px;
 
       .hexagon-image {
@@ -227,7 +228,17 @@
          }
       }
    }
+   &__content {
+      margin-top: 80px;
+   }
    &__details {
       margin-top: 10px;
+      padding-bottom: 270px;
    }
+}
+.contact-form {
+   padding-top: 280px;
+}
+.contact-form__container {
+   margin-top: 50px;
 }

@@ -46,8 +46,8 @@
 }
 .footer-content-container {
    .footer-content {
-      padding-right: 0;
-      justify-content: start;
+      // padding-right: 0;
+      // justify-content: start;
    }
 }
 
@@ -165,6 +165,7 @@
       }
    }
    &__container {
+      max-width: unset;
       form {
          #submit-btn {
             width: 100%;
@@ -178,6 +179,7 @@
 .contact-info {
    &__container {
       margin-bottom: -355px;
+      padding-top: 100px;
    }
    &__inner {
       padding: 0 40px;

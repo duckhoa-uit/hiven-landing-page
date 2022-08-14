@@ -101,6 +101,9 @@
 }
 .footer-content-container {
    padding: 77px 20px 44px;
+   .footer-content{
+      padding-right: 130px;
+   }
 }
 
 .Hiven-info {
@@ -291,5 +294,4 @@
 }
 .contact-form__container {
    margin-top: 40px;
-   max-width: unset;
 }

@@ -3,6 +3,9 @@ import Link from 'next/link';
 import IconLogo from '@components/icons/logo';
 import ActiveLink from '@components/active-link/active-link';
 import { useRouter } from 'next/router';
+import IconFacebook from '@components/icons/ic-fb';
+import IconTwitter from '@components/icons/ic-twitter';
+import IconLinkedIn from '@components/icons/ic-linkedin';
 
 export default function Header() {
    const [activeMobileMenu, setActiveMobileMenu] = useState(false);
@@ -29,7 +32,9 @@ export default function Header() {
 
    return (
       <header
-         className={stickyHeader ? 'sticky-header' : undefined}
+      className={stickyHeader ? 'sticky-header' : undefined}
+
+         // className={`${stickyHeader ? 'sticky-header' : undefined} ${activeMobileMenu ? 'header-active' : ''}`}
          // data-cursor="-inverse"
       >
          <div className="container-full">
@@ -68,9 +73,37 @@ export default function Header() {
                      </ActiveLink>
                   </li>
                   <li>
-                     <Link href="/contact" passHref>
+                     <ActiveLink  activeClassName="active" href="/contact">
+                        <a id="nav-link nav-cta--mobile">Contact Us</a>
+                     </ActiveLink>
+                      {/* <Link href="/contact" passHref>
                         <a id="nav-cta--mobile">Contact Us</a>
-                     </Link>
+                     </Link> */}
+                  </li>
+                 <li>
+                     <div className="social">
+                        <a
+                           href="https://www.facebook.com/"
+                           className="social-icon"
+                           data-cursor="-opaque"
+                        >
+                           <IconFacebook />
+                        </a>
+                        <a
+                           href="https://twitter.com/"
+                           className="social-icon"
+                           data-cursor="-opaque"
+                        >
+                           <IconTwitter />
+                        </a>
+                        <a
+                           href="https://www.linkedin.com/"
+                           className="social-icon"
+                           data-cursor="-opaque"
+                        >
+                           <IconLinkedIn />
+                        </a>
+                     </div>
                   </li>
                </ul>
 

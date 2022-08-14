@@ -154,6 +154,12 @@
          width: 550px;
          .intro {
             margin-bottom: 11px;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 160%;
+            /* or 29px */
+
+            letter-spacing: 0.01em;
          }
       }
       &-final {
@@ -171,7 +177,17 @@
             align-items: center;
          }
          .web-intro {
-            width: 546px;
+            width: 100%;
+            .intro {
+               margin-bottom: 11px;
+               font-weight: 400;
+               font-size: 18px;
+               line-height: 160%;
+               /* or 29px */
+               max-width: 550px;
+   
+               letter-spacing: 0.01em;
+            }
          }
       }
    }
