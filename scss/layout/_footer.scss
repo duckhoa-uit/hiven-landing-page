@@ -111,6 +111,7 @@
       list-style-type: none;
    }
    .quick-link {
+      font-weight: 400;
       h6 {
          font-family: 'Poppins';
          font-style: normal;
@@ -126,7 +127,7 @@
          font-style: normal;
          font-weight: 400;
          font-size: 18px;
-         line-height: 160%;
+         line-height: 28px;
          letter-spacing: -0.01em;
          color: #9395a0;
          &:hover {
@@ -136,7 +137,7 @@
    }
    display: inline-flex;
    .contact {
-      margin-left: 137px;
+      margin-left: 111px;
       h6 {
          font-family: 'Poppins';
          font-style: normal;
@@ -170,7 +171,7 @@
    height: 470px;
    .footer-content {
       justify-content: space-between;
-      padding-right: 337px;
+      padding-right: 267px;
    }
 }
 .copy-right-Social {

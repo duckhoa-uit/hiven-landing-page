@@ -33,7 +33,7 @@ export default function Header() {
    return (
       <header className={stickyHeader ? 'sticky-header' : undefined}>
          <div className="container-full">
-            <nav className="nav">
+            <nav className={`nav ${activeMobileMenu ? 'no-border' : undefined}`}>
                <Link href="/">
                   <a
                      className="logo"
@@ -75,32 +75,19 @@ export default function Header() {
                         <a className="nav-link nav-cta--mobile">Contact Us</a>
                      </ActiveLink>
                   </li>
-                  <li>
-                     <div className="social">
-                        <a
-                           href="https://www.facebook.com/"
-                           className="social-icon"
-                           data-cursor="-opaque"
-                        >
-                           <IconFacebook />
-                        </a>
-                        <a
-                           href="https://twitter.com/"
-                           className="social-icon"
-                           data-cursor="-opaque"
-                        >
-                           <IconTwitter />
-                        </a>
-                        <a
-                           href="https://www.linkedin.com/"
-                           className="social-icon"
-                           data-cursor="-opaque"
-                        >
-                           <IconLinkedIn />
-                        </a>
-                     </div>
-                  </li>
                </ul>
+
+               <div className="social">
+                  <a href="https://www.facebook.com/" className="social-icon">
+                     <IconFacebook />
+                  </a>
+                  <a href="https://twitter.com/" className="social-icon">
+                     <IconTwitter />
+                  </a>
+                  <a href="https://www.linkedin.com/" className="social-icon">
+                     <IconLinkedIn />
+                  </a>
+               </div>
 
                <span data-magnetic>
                   <Link href="/contact">

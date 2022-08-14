@@ -2,9 +2,11 @@
 import React, { memo, useEffect, useMemo, useState } from 'react';
 import { getCoordinate, getRegionInfo } from './geography-manager';
 import Image from 'next/image';
+import useBreakpoint from '@components/common/breakpoint/useBreakpoint';
 
 const RegionCard = memo(({ name, containerWidth, containerHeight, isSelected }) => {
    const [info, setInfo] = useState(null);
+   const { windowWidth } = useBreakpoint();
 
    useEffect(() => {
       const regionInfo = getRegionInfo(name);
@@ -28,17 +30,22 @@ const RegionCard = memo(({ name, containerWidth, containerHeight, isSelected }) 
             <div className="head">
                {info?.imgUrl && <Image src={info.imgUrl} alt={name} />}
             </div>
-            <div className="body">
-               <span className="body__no">{info?.no || ''}</span>Regions
-            </div>
-            <div className="linebreak"></div>
-            <div className="foot">
-               <div className="foot__content">
-                  Headquarter <br />
-                  in <span>{name}</span>
-               </div>
-               <span className="foot__addr">{info?.address}</span>
-            </div>
+            {
+               windowWidth > 444 &&
+               <>
+                  <div className="body">
+                     <span className="body__no">{info?.no || ''}</span>Regions
+                  </div>
+                  <div className="linebreak"></div>
+                  <div className="foot">
+                     <div className="foot__content">
+                        Headquarter <br />
+                        in <span>{name}</span>
+                     </div>
+                     <span className="foot__addr">{info?.address}</span>
+                  </div>
+               </>
+            }
          </div>
       </div>
    );

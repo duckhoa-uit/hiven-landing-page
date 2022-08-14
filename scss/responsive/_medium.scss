@@ -102,7 +102,7 @@
 .footer-content-container {
    padding: 77px 20px 44px;
    .footer-content{
-      padding-right: 130px;
+      padding-right: 110px;
    }
 }
 
@@ -276,9 +276,33 @@
 }
 .about-us-content__inner {
    padding: 0 0px;
+   .title{
+      padding-left: 0;
+   }
 }
 .about-us-container-full {
    padding: 102px 20px 62px;
+   .web-intro{
+      justify-content: center;
+      .intro{
+         max-width: 352px;
+      }
+   }
+   .about-us-group-content-final {
+      .KKFung{
+         margin-left: 0px;
+      }
+      .more-link {
+         margin-left: 0px;
+      }
+      .web-intro{
+         justify-content: center;
+         .intro{
+            max-width: 352px;
+         }
+      }
+   }
+   
 }
 .mf-cursor {
    display: none;
@@ -294,4 +318,29 @@
 }
 .contact-form__container {
    margin-top: 40px;
+}
+
+.news-banner {
+   &__hexagon-group {
+      bottom: 123px;
+      left: 21px;
+   }
+   &__hexagon-group2 {
+      bottom: 108px;
+      right: 20px
+   }
+}
+.about-us-banner__container {
+   .about-us-banner {
+      &__hexagon-group {
+         bottom: 123px;
+         left: 21px;
+         transform: scale(.8);
+      }
+      &__hexagon-group2 {
+         bottom: 108px;
+         right: 20px;
+         transform: scale(.8);
+      }
+   }
 }

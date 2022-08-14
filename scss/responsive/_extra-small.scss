@@ -87,3 +87,13 @@
 .icon-scroll-to-top {
    bottom: 60px;
 }
+.footer-content-container .footer-content .link-group {
+   flex-wrap: wrap;
+   gap: 12px;
+   .contact{
+      margin-left: 0;
+   }
+   .quick-link {
+      margin-right: 68px;
+   }
+}

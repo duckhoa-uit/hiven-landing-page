@@ -115,6 +115,15 @@
    }
 }
 .about-us-container-full {
+   padding: 60px 160px 62px;
+   .about-us-group-content-final {
+      .KKFung{
+         margin-left: -135px;
+      }
+      .more-link {
+         margin-left: -135px;
+      }
+   }
    .about-us-hexagon-container {
       &:nth-child(2) {
          .hexagon-image__container {

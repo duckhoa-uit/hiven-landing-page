@@ -9,6 +9,7 @@ import RegionCard from './region-card';
 
 const GeographyMap = (props) => {
    const { selected, onChange } = props;
+   const { windowWidth } = useBreakpoint();
    const [containerSize, setContainerSize] = useState({
       w: 0,
       h: 0,
@@ -21,9 +22,23 @@ const GeographyMap = (props) => {
       });
    }, []);
 
+   let mapHeight = containerSize.h;
+   let mapMarginLeft = 0;
+   if (windowWidth <= 444) {
+      mapHeight = 557;
+      mapMarginLeft = 60;
+      if(windowWidth <= 390) {
+         mapMarginLeft = 90;
+      }
+     
+   }
+
    return (
       <div className="geography-map">
-         <div className="geography-map__container">
+         <div className="geography-map__container" style={{
+            marginLeft: `-${mapMarginLeft}px`,
+            width: `calc(100% + ${mapMarginLeft}px)`,
+         }}>
             {areas.map((region) => {
                return (
                   <RegionCard
@@ -53,12 +68,12 @@ const GeographyMap = (props) => {
                className="geography-map__graph"
                style={{
                   width: containerSize.w,
-                  height: containerSize.h,
+                  height: mapHeight,
                }}
                data-aos="zoom-in"
                data-aos-delay="300"
             >
-               <MapGraph height={containerSize.h} />
+               <MapGraph height={mapHeight} />
             </div>
             <ResizeDetector onResize={onResize} />
          </div>
