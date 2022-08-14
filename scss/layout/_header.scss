@@ -66,11 +66,11 @@ header {
       height: 100%;
       @include flex-center;
    }
-   li:last-child {
+   li:nth-last-child(-n + 2) {
       display: none;
    }
 
-   .social{
+   .social {
       justify-content: space-between;
       display: none;
       width: 14%;
@@ -178,14 +178,14 @@ header {
 
 /*Apply styles after scroll*/
 
-.header-active{
-   background-color: $color--blue-grey!important;
+.header-active {
+   background-color: $color--blue-grey !important;
    & .logo {
-      color: #fff!important;
+      color: #fff !important;
    }
    .hamburger .line {
-   background-color: #fff!important;
-}
+      background-color: #fff !important;
+   }
 }
 .sticky-header {
    background-color: $color-background;

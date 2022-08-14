@@ -31,16 +31,14 @@ export default function Header() {
    };
 
    return (
-      <header
-      className={stickyHeader ? 'sticky-header' : undefined}
-
-         // className={`${stickyHeader ? 'sticky-header' : undefined} ${activeMobileMenu ? 'header-active' : ''}`}
-         // data-cursor="-inverse"
-      >
+      <header className={stickyHeader ? 'sticky-header' : undefined}>
          <div className="container-full">
             <nav className="nav">
                <Link href="/">
-                  <a className="logo">
+                  <a
+                     className="logo"
+                     style={{ color: activeMobileMenu ? '#fff' : undefined }}
+                  >
                      <IconLogo />
                   </a>
                </Link>
@@ -73,14 +71,11 @@ export default function Header() {
                      </ActiveLink>
                   </li>
                   <li>
-                     <ActiveLink  activeClassName="active" href="/contact">
-                        <a id="nav-link nav-cta--mobile">Contact Us</a>
+                     <ActiveLink activeClassName="active" href="/contact">
+                        <a className="nav-link nav-cta--mobile">Contact Us</a>
                      </ActiveLink>
-                      {/* <Link href="/contact" passHref>
-                        <a id="nav-cta--mobile">Contact Us</a>
-                     </Link> */}
                   </li>
-                 <li>
+                  <li>
                      <div className="social">
                         <a
                            href="https://www.facebook.com/"
