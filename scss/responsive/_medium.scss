@@ -268,8 +268,13 @@
 }
 .about-us-container-full {
    padding: 102px 20px 62px;
+   .about-us-group-content{
+      .web-intro {
+         justify-content: space-between;
+      }
+   }
    .web-intro {
-      justify-content: center;
+      justify-content: space-between;
       .intro {
          max-width: 352px;
       }
@@ -282,9 +287,9 @@
          margin-left: 0px;
       }
       .web-intro {
-         justify-content: center;
+         justify-content: space-between;
          .intro {
-            max-width: 352px;
+            max-width: unset;
          }
       }
    }

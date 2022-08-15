@@ -138,7 +138,7 @@
    }
 }
 .about-us-container-full {
-   padding: 60px 160px 62px;
+   padding: 60px 160px 22px;
    .about-us-group-content {
       max-width: 1120px;
       .web-intro {
@@ -147,6 +147,7 @@
    }
    .about-us-group-content-final {
       max-width: unset;
+      margin-top: -160px;
       .web-intro {
          p {
             width: 550px;

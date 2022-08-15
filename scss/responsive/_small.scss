@@ -252,6 +252,8 @@
    padding-top: 60px;
    padding-bottom: 60px;
    .about-us-group-content {
+      max-width: unset;
+      // margin: unset;
       .more-link {
          margin-bottom: 32px;
       }
@@ -263,7 +265,7 @@
             width: 100%;
          }
          .intro {
-            max-width: 338px;
+            max-width: unset;
             margin: auto;
             &:nth-child(1) {
                margin-bottom: 20px;
@@ -290,7 +292,7 @@
             width: 100%;
          }
          .intro {
-            max-width: 338px;
+            max-width: unset;
             margin: auto;
             &:nth-child(1) {
                margin-bottom: 20px;
