@@ -21,25 +21,29 @@ const News = () => {
 
          <main style={{ height: 'auto' }}>
             <div className="news-banner__container">
-               <div
-                  className="news-banner__hexagon-group hexagon-group"
-                  data-aos="zoom-in"
-               >
-                  <Hexagon className="hex1" />
-                  <Hexagon className="hex2" size="s" />
-                  <Hexagon className="hex3" size="m" />
-               </div>
-               <div
-                  className="news-banner__hexagon-group2 hexagon-group2"
-                  data-aos="zoom-in"
-               >
-                  <Hexagon className="hex1" size="s" />
-                  <Hexagon className="hex2" size="m" />
+               <div className="about-us-banner__hexagon-container">
+                  <div className="news-banner__hexagon__inner">
+                     <div
+                        className="news-banner__hexagon-group hexagon-group"
+                        data-aos="zoom-in"
+                     >
+                        <Hexagon className="hex1" />
+                        <Hexagon className="hex2" size="s" />
+                        <Hexagon className="hex3" size="m" />
+                     </div>
+                     <div
+                        className="news-banner__hexagon-group2 hexagon-group2"
+                        data-aos="zoom-in"
+                     >
+                        <Hexagon className="hex1" size="s" />
+                        <Hexagon className="hex2" size="m" />
+                     </div>
+                  </div>
                </div>
                <div className="container-full">
                   <div className="news-banner__inner">
                      <div className="news-banner__title" data-aos="fade-up">
-                        <h2 data-aos-delay="500">News</h2>
+                        <h2 data-aos-delay="500">New</h2>
                         <div className="icon">
                            <IconHexagonSmall width={28} height={32} />
                         </div>
@@ -66,7 +70,7 @@ const News = () => {
                               'https://cdn.dealstreetasia.com/uploads/2022/06/1st-picture-scaled-e1655137376173.jpg'
                            }
                         />
-                        <NewsCard
+                        {/* <NewsCard
                            url="https://www.dealstreetasia.com/stories/cj-international-asia-kk-fund-jv-296381"
                            banner={
                               'https://cdn.dealstreetasia.com/uploads/2022/06/1st-picture-scaled-e1655137376173.jpg'
@@ -83,7 +87,7 @@ const News = () => {
                            banner={
                               'https://cdn.dealstreetasia.com/uploads/2022/06/1st-picture-scaled-e1655137376173.jpg'
                            }
-                        />
+                        /> */}
                      </div>
                   </div>
                </div>

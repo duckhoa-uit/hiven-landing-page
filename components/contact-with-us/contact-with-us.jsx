@@ -6,10 +6,12 @@ export default function ContactWithUs() {
    return (
         <Link href="/contact" passHref>
             <div className="row contact-us-container">
-                <div className="contact-with-us">Contact with us</div>
-                <div className="next-ic bounce">
-                <IconNext />
-                </div>
+                <div className='contact-with-us__container'>
+                    <div className="contact-with-us">Contact with us</div>
+                    <div className="next-ic bounce">
+                        <IconNext />
+                    </div>
+                </div>                
             </div>    
         </Link>     
    );

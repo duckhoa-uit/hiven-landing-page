@@ -69,15 +69,22 @@
       }
    }
    .contact-with-us {
+      width: 100%;
       font-style: normal;
       font-weight: 500;
       font-size: 60px;
       line-height: 132px;
       color: $color--blue;
-      display: flex;
+      &__container{
+         display: flex;
+         justify-content: space-between;
+         width: 100%;
+         max-width: 1800px;
+         margin: auto;
+      }
    }
    .next-ic {
-      text-align: center;
+      margin: auto;
       &:hover {
          cursor: pointer;
       }
@@ -172,7 +179,7 @@
    .footer-content {
       justify-content: space-between;
       padding-right: 267px;
-      max-width: 1920px;
+      max-width: 1800px;
       width: 100%;
       margin: auto;
    }
@@ -181,7 +188,8 @@
    width: 100%;
    justify-content: space-between;
    align-items: flex-end;
-
+   max-width: 1800px;
+   margin: auto;
    a {
       color: white;
       font-family: 'Poppins';

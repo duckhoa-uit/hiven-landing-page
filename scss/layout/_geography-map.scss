@@ -76,14 +76,14 @@ $region-control-width: 573px;
       }
    }
 
-   &__mb-control-container{
+   &__mb-control-container {
       display: flex;
       align-items: center;
       white-space: nowrap;
       gap: 16px;
       width: max-content;
    }
-   &__mb-control{
+   &__mb-control {
       margin-top: 32px;
       max-width: 100%;
       overflow: auto;
@@ -93,6 +93,10 @@ $region-control-width: 573px;
 
       .investment-region__control--item {
          min-width: 260px;
+
+         &:last-child {
+            margin-right: 20px;
+         }
       }
    }
 }
@@ -219,7 +223,7 @@ $region-control-width: 573px;
       &--container {
          width: 380px;
 
-         &.info-small{
+         &.info-small {
             width: 100%;
          }
       }

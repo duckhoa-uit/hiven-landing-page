@@ -33,15 +33,23 @@ export default function HeroSlider() {
 
    return (
       <section className="hero-slider__container">
-         <div className='hero-slider__hexagon-container'>
-            <div className="hero-slider__hexagon-group hexagon-group" data-aos="zoom-in">
-               <Hexagon className="hex1" />
-               <Hexagon className="hex2" size="s" />
-               <Hexagon className="hex3" size="m" />
-            </div>
-            <div className="hero-slider__hexagon-group2 hexagon-group2" data-aos="zoom-in">
-               <Hexagon className="hex1" size="s" />
-               <Hexagon className="hex2" size="m" />
+         <div className="hero-slider__hexagon-container">
+            <div className="hero-slider__hexagon__inner">
+               <div
+                  className="hero-slider__hexagon-group hexagon-group"
+                  data-aos="zoom-in"
+               >
+                  <Hexagon className="hex1" />
+                  <Hexagon className="hex2" size="s" />
+                  <Hexagon className="hex3" size="m" />
+               </div>
+               <div
+                  className="hero-slider__hexagon-group2 hexagon-group2"
+                  data-aos="zoom-in"
+               >
+                  <Hexagon className="hex1" size="s" />
+                  <Hexagon className="hex2" size="m" />
+               </div>
             </div>
          </div>
          <Swiper
@@ -58,36 +66,13 @@ export default function HeroSlider() {
             {IMAGES.map((img) => (
                <SwiperSlide key={img}>
                   <Image src={img} alt="" layout="fill" />
-                  {/* <div className="blur-hexagons--left">
-                     <HexagonBlur size={57} />
-                     <HexagonBlur size={300} />
-                  </div> */}
-                  {/* <div className="hex hex-2">
-                     <HexagonBlur size={135} />
-                  </div>
-                  <div className="hex hex-3">
-                     <HexagonBlur size={255} />
-                  </div>
-                  <div className="hex hex-1">
-                     <HexagonBlur size={57} />
-                  </div>
-                  <div className="hex hex-4">
-                     <HexagonBlur size={50} rotate={-45} blur={12} />
-                  </div>
-                  <div className="hex hex-5">
-                     <HexagonBlur size={104} rotate={-45} blur={12} />
-                  </div> */}
                </SwiperSlide>
             ))}
          </Swiper>
 
          <div className="hero-slider__content">
             <HeroSliderPagination />
-            <LogoLarge
-               data-aos="fade-up"
-               data-aos-duration="500"
-               className="logo"
-            />
+            <LogoLarge data-aos="fade-up" data-aos-duration="500" className="logo" />
             <p
                data-aos="fade-up"
                data-aos-anchor=".logo"

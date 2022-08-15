@@ -17,7 +17,7 @@ class CardBody extends React.Component {
    render() {
       return (
          <div className="card-body">
-            <p className="date">Admin 01 - 13-06-2022 </p>
+            <p className="date">13/06/2022 </p>
 
             <h2>{this.props.title}</h2>
 

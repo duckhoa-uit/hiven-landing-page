@@ -1,9 +1,9 @@
 .hero-slider {
    &__navigation {
-      right: 80px;
+      padding: 0 80px;
    }
    &__content {
-      left: 60px;
+      padding: 0 80px;
    }
 
    &__hexagon-group {
@@ -74,7 +74,8 @@
 
 .mission-value {
    &__container {
-      max-width: 1440px;
+      max-width: 1720px;
+      margin-bottom: 200px;
    }
    &__inner {
       padding: 0 20px;
@@ -106,6 +107,12 @@
    }
    &__content {
       padding-left: 60px;
+   }
+   &__image:nth-child(3) {
+      margin-top: -276px;
+   }
+   &__image:nth-child(4) {
+      margin-top: 76px;
    }
 }
 

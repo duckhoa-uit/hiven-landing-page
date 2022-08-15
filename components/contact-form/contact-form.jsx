@@ -56,7 +56,7 @@ export default function ContactForm() {
                   <FormProvider {...formMethods}>
                      <form onSubmit={onSubmit}>
                         <ContactFormInput label="Your Name" name="fullName" />
-                        <ContactFormInput label="EMAIL ADD" name="address" />
+                        <ContactFormInput label="EMAIL ADDRESS" name="address" />
                         <ContactFormInput label="Phone Number" name="phoneNumber" />
                         <ContactFormInput
                            label="Message"

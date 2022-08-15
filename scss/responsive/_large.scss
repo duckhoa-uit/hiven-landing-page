@@ -1,19 +1,25 @@
 /**
 * Large devices (desktops, less than 1200px)
 */
+
+header {
+   .container-full {
+      padding: 0 20px;
+   }
+}
 .hero-slider {
    &__navigation {
-      right: 20px;
+      padding: 0 20px;
    }
    &__content {
-      left: 20px;
+      padding: 0 20px;
    }
 }
 
 // .mission-value {
 //    &__inner {
 //       display: flex;
-//       align-items: center; 
+//       align-items: center;
 //    }
 // }
 
@@ -25,7 +31,7 @@
       .section-title {
          margin-bottom: 11px;
       }
-      .hexagon-image__container{
+      .hexagon-image__container {
          margin-top: 48px;
       }
    }
@@ -101,7 +107,6 @@
       padding-top: 80px;
       padding-bottom: 0px;
       .title {
-         padding-left: 20px;
          font-weight: 300;
          font-size: 126px;
          line-height: 141px;
@@ -144,7 +149,7 @@
          padding-left: 0;
          gap: 20px;
          justify-content: center;
-         .intro{
+         .intro {
             max-width: 354px;
          }
          p {
@@ -252,6 +257,7 @@
    grid-template-columns: 100%;
    justify-items: center;
    align-items: center;
+   padding-bottom: 80px;
    padding-top: 80px;
    grid-gap: 0;
 

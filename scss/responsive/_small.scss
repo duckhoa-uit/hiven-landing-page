@@ -87,6 +87,7 @@
 .mission-value {
    &__container {
       width: 100%;
+      margin-bottom: 60px;
    }
    &__inner {
       flex-direction: column;
@@ -108,9 +109,10 @@
    &__content {
       flex-direction: column;
       width: calc(100% + 40px);
-      max-width: 340px;
+
       .section-description {
          margin-top: 0 !important;
+         max-width: unset !important;
       }
       &-title {
          min-width: unset;
@@ -128,6 +130,9 @@
       .title {
          font-size: 24px;
       }
+   }
+   &__container {
+      padding-bottom: 80px;
    }
 }
 .contact-us-container .contact-with-us {
@@ -442,6 +447,7 @@
 }
 .news__inner {
    padding: 0 0px;
+   // padding-bottom: 40px;
    .news__title {
       margin-top: -61px;
       .wordContainer {
@@ -495,7 +501,6 @@
    .business-area__content {
       margin-bottom: 10px;
       padding-left: 20px;
-      max-width: 340px;
 
       .color--light {
          width: 100% !important;
@@ -512,7 +517,6 @@
          font-weight: 400;
          font-size: 18px;
          line-height: 160%;
-         max-width: 340px;
       }
    }
    .container-full {
@@ -554,6 +558,9 @@
 .investment-region {
    padding: 60px 0px 60px;
 
+   &__mb-control {
+      margin-left: 20px;
+   }
    &__title {
       display: none;
    }

@@ -72,7 +72,7 @@ export default function Header() {
                   </li>
                   <li>
                      <ActiveLink activeClassName="active" href="/news">
-                        <a className="nav-link">News</a>
+                        <a className="nav-link">New</a>
                      </ActiveLink>
                   </li>
                   <li>
