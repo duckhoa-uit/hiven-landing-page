@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 import Image from 'next/image';
 import IconChevronRight from '@components/icons/ic-chevron-right';
-import IconLogo from '@components/icons/logo';
 import Hexagon from '@components/common/hexagon';
 import heroSliderImage from '../../assets/images/hero-slider-1.png';
 import LogoLarge from '@components/icons/logo-large';
@@ -34,14 +33,16 @@ export default function HeroSlider() {
 
    return (
       <section className="hero-slider__container">
-         <div className="hero-slider__hexagon-group hexagon-group" data-aos="zoom-in">
-            <Hexagon className="hex1" />
-            <Hexagon className="hex2" size="s" />
-            <Hexagon className="hex3" size="m" />
-         </div>
-         <div className="hero-slider__hexagon-group2 hexagon-group2" data-aos="zoom-in">
-            <Hexagon className="hex1" size="s" />
-            <Hexagon className="hex2" size="m" />
+         <div className='hero-slider__hexagon-container'>
+            <div className="hero-slider__hexagon-group hexagon-group" data-aos="zoom-in">
+               <Hexagon className="hex1" />
+               <Hexagon className="hex2" size="s" />
+               <Hexagon className="hex3" size="m" />
+            </div>
+            <div className="hero-slider__hexagon-group2 hexagon-group2" data-aos="zoom-in">
+               <Hexagon className="hex1" size="s" />
+               <Hexagon className="hex2" size="m" />
+            </div>
          </div>
          <Swiper
             loop

@@ -51,6 +51,7 @@ $region-control-width: 573px;
 
       &--item {
          background-color: white;
+         color: $color--blue;
          opacity: 0.5;
          padding: 28px 24px;
          gap: 16px;
@@ -88,6 +89,10 @@ $region-control-width: 573px;
       overflow: auto;
       &::-webkit-scrollbar {
          display: none;
+      }
+
+      .investment-region__control--item {
+         min-width: 260px;
       }
    }
 }
@@ -213,6 +218,10 @@ $region-control-width: 573px;
       overflow: hidden;
       &--container {
          width: 380px;
+
+         &.info-small{
+            width: 100%;
+         }
       }
 
       &.active {

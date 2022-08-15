@@ -21,6 +21,7 @@ import store from '@utils/store';
 // Toastify
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MainContext from '@components/common/main-context/main-context';
 
 const MyApp = memo(({ Component, pageProps }) => {
    const Layout = Component.Layout ?? EmptyLayout;
@@ -42,9 +43,11 @@ const MyApp = memo(({ Component, pageProps }) => {
    return (
       <Provider store={store}>
          <BreakpointProvider>
-            <Layout>
-               <Component {...pageProps} />
-            </Layout>
+            <MainContext>
+               <Layout>
+                  <Component {...pageProps} />
+               </Layout>
+            </MainContext>
          </BreakpointProvider>
 
          <ToastContainer

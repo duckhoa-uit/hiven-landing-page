@@ -49,19 +49,22 @@ const Polyline = memo(({ x, y, containerHeight, containerWidth }) => {
       x: 510,
       y: 192,
    };
-   console.log(windowWidth);
-   if(windowWidth <= 1199) {
-      topPointCoor.x = 470;
-      topPointCoor.y = 416;
+   if(windowWidth <= 1440) {
+      topPointCoor.x = 460;
 
-      if(windowWidth <= 767) {
-         topPointCoor.x = 670;
-         topPointCoor.y = 283;
-      }
+      if(windowWidth <= 1199) {
+         topPointCoor.x = 470;
+         topPointCoor.y = 416;
 
-      if(windowWidth <= 380) {
-         topPointCoor.x = 370;
-         topPointCoor.y = 283;
+         if(windowWidth <= 767) {
+            topPointCoor.x = 670;
+            topPointCoor.y = 283;
+         }
+
+         if(windowWidth <= 380) {
+            topPointCoor.x = 370;
+            topPointCoor.y = 283;
+         }
       }
    }
    

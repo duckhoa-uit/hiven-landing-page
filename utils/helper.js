@@ -13,3 +13,17 @@ export const formatDate = (ISOString) => {
 
    return dt + '-' + month + '-' + year;
 };
+
+export const markModalOpen = (isOpen) => {
+   const bodyModalClassname = 'modal-open';
+   if (isOpen) {
+      if (!document.body.classList.contains(bodyModalClassname)) {
+         document.body.classList.add(bodyModalClassname);
+      }
+   } else {
+      if (document.body.classList.contains(bodyModalClassname)) {
+         const pattern = new RegExp('(?:^|\\s)' + bodyModalClassname + '(?:\\s|$)', 'g');
+         document.body.className = document.body.className.replace(pattern, '');
+      }
+   }
+};

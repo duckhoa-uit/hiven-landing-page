@@ -18,20 +18,22 @@ const AboutUs = () => {
 
          <main style={{ height: 'auto' }}>
             <div className="about-us-banner__container">
-               <div
-                  className="about-us-banner__hexagon-group hexagon-group"
-                  data-aos="zoom-in"
-               >
-                  <Hexagon className="hex1" />
-                  <Hexagon className="hex2" size="s" />
-                  <Hexagon className="hex3" size="m" />
-               </div>
-               <div
-                  className="about-us-banner__hexagon-group2 hexagon-group2"
-                  data-aos="zoom-in"
-               >
-                  <Hexagon className="hex1" size="s" />
-                  <Hexagon className="hex2" size="m" />
+               <div className="about-us-banner__hexagon-container">
+                  <div
+                     className="about-us-banner__hexagon-group hexagon-group"
+                     data-aos="zoom-in"
+                  >
+                     <Hexagon className="hex1" />
+                     <Hexagon className="hex2" size="s" />
+                     <Hexagon className="hex3" size="m" />
+                  </div>
+                  <div
+                     className="about-us-banner__hexagon-group2 hexagon-group2"
+                     data-aos="zoom-in"
+                  >
+                     <Hexagon className="hex1" size="s" />
+                     <Hexagon className="hex2" size="m" />
+                  </div>
                </div>
                <div className="container-full">
                   <div className="about-us-banner__inner">

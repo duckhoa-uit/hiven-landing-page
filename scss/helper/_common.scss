@@ -17,6 +17,10 @@ body {
 
    height: 100%;
    background-color: $color-background;
+
+   &.modal-open {
+      overflow: hidden;
+   }
 }
 
 *,

@@ -4,6 +4,7 @@ import ResizeDetector from '@components/common/resize-detector';
 import React, { useCallback, useMemo, useState, memo, Fragment } from 'react';
 import { areas, getCoordinate } from './geography-manager';
 import MapGraph from './map-graph';
+import MapGraphMini from './map-graph-mini';
 import Polyline from './polyline';
 import RegionCard from './region-card';
 
@@ -27,10 +28,10 @@ const GeographyMap = (props) => {
    if (windowWidth <= 444) {
       mapHeight = 557;
       mapMarginLeft = 60;
-      if(windowWidth <= 390) {
-         mapMarginLeft = 90;
+      if(windowWidth <= 393) {
+         mapMarginLeft = 45;
+         mapHeight = 457;
       }
-     
    }
 
    return (
@@ -73,7 +74,12 @@ const GeographyMap = (props) => {
                data-aos="zoom-in"
                data-aos-delay="300"
             >
-               <MapGraph height={mapHeight} />
+               {
+                  windowWidth <= 444 ?
+                     <MapGraphMini height={mapHeight} />
+                  :
+                     <MapGraph height={mapHeight} />
+               }
             </div>
             <ResizeDetector onResize={onResize} />
          </div>

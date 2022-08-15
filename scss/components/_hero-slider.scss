@@ -84,6 +84,7 @@
 
       &.swiper-pagination-horizontal {
          width: fit-content;
+         margin-bottom: 40px;
       }
       .swiper-pagination-bullet {
          color: #ffffff;
@@ -140,6 +141,17 @@
       bottom: 150px;
       right: 254px;
       z-index: 2;
+   }
+
+   &__hexagon-container {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      pointer-events: none;
+      max-width: 100vw;
+      overflow: hidden;
    }
 }
 

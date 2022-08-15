@@ -6,11 +6,13 @@ import { useRouter } from 'next/router';
 import IconFacebook from '@components/icons/ic-fb';
 import IconTwitter from '@components/icons/ic-twitter';
 import IconLinkedIn from '@components/icons/ic-linkedin';
+import { useMainContext } from '@components/common/main-context/main-context';
 
 export default function Header() {
    const [activeMobileMenu, setActiveMobileMenu] = useState(false);
    const [stickyHeader, setStickyHeader] = useState(false);
    const { pathname } = useRouter();
+   const {setIsOpenMenuMb} = useMainContext();
 
    useEffect(() => {
       const listener = () =>
@@ -24,10 +26,13 @@ export default function Header() {
 
    useEffect(() => {
       setActiveMobileMenu(false);
+      setIsOpenMenuMb(false);
    }, [pathname]);
 
    const toggleMobileMenu = () => {
-      setActiveMobileMenu(!activeMobileMenu);
+      const isOpen = !activeMobileMenu;
+      setActiveMobileMenu(isOpen);
+      setIsOpenMenuMb(isOpen)
    };
 
    return (

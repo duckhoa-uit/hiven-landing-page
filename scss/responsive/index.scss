@@ -1,9 +1,16 @@
 $res_xs: "screen and (max-width: 379.98px)";
 $res_sm: "screen and (max-width: 767.98px)";
+$res_psm: "screen and (max-width: 768.98px)";
 $res_md: "screen and (max-width: 1199.98px)";
 $res_lg: "screen and (max-width: 1439.98px)";
 $res_xl: "screen and (max-width: 1919.98px)";
 
+
+@mixin media_psm() {
+   @media #{$res_psm} {
+      @content;
+   }
+}
 @mixin media_sm() {
    @media #{$res_sm} {
       @content;
@@ -43,6 +50,10 @@ $res_xl: "screen and (max-width: 1919.98px)";
 @include media_md {
    @import "medium";
 }
+// Pre-Small devices (landscape only for header 768 mobile view)
+@include media_psm {
+   @import "pre-small";
+}
 // Small devices (landscape phones, less than 768px)
 @include media_sm {
    @import "small";
@@ -50,4 +61,12 @@ $res_xl: "screen and (max-width: 1919.98px)";
 // Extra small devices (portrait phones, less than 576px)
 @include media_xs {
    @import "extra-small";
+}
+
+@media screen and (width: 1440px) {
+   @import "1440-only";
+}
+
+@media screen and (width: 1920px) {
+   @import "1920-only";
 }

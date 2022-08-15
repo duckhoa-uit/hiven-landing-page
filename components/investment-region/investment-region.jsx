@@ -79,6 +79,11 @@ const InvestmentRegion = () => {
       );
    };
 
+   const style = {};
+   if(windowWidth >= 1366) {
+      style.minHeight = containerHeight;
+   }
+
    return (
       <div className="investment-region">
          <div className="investment-region__title" data-aos="fade-up">
@@ -89,6 +94,7 @@ const InvestmentRegion = () => {
             className="investment-region__content"
             style={{
                height: containerHeight,
+               ...style,
             }}
          >
             <div className="investment-region__control">
@@ -120,7 +126,7 @@ const RegionInfoSmall = ({ name }) => {
 
    return (
       <div className="region-info-small">
-         <div className="geography-map__card--container">
+         <div className="geography-map__card--container info-small">
             <div className="body">
                <span className="body__no">{info?.no || ''}</span>Regions
             </div>
