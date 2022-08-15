@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import IconLogo from '@components/icons/logo';
+import IconLogo from '@components/icons/ic-logo-footer';
 import ActiveLink from '@components/active-link/active-link';
 import IconNext from '@components/icons/ic-next';
 import IconLogoRight from '@components/icons/ic-logo-white';

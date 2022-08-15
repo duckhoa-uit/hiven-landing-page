@@ -2,6 +2,9 @@
    &__container {
       margin-top: 240px;
       margin-bottom: 240px;
+      width: 100%;
+      max-width: 1920px;
+      margin: 240px auto;
    }
    &__inner {
       display: flex;
@@ -19,9 +22,13 @@
 
    &__content {
       max-width: 800px;
-
+      width: 453px;
+      &-details{
+         width: 453px;
+      }
       .section-description {
-         max-width: 413px;
+         width: 100%;
+         max-width: 453px;
       }
    }
 }

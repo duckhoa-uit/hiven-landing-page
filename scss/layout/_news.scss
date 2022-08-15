@@ -58,7 +58,7 @@
    &__inner {
       padding: 0 200px;
       width: 100%;
-      max-width: 2300px;
+      max-width: 1800px;
       z-index: 1;
    }
 
@@ -107,12 +107,12 @@
    &__inner {
       padding: 0 200px;
       width: 100%;
-      max-width: 2300px;
+      max-width: 1800px;
       .cards-grid {
-         > a:nth-child(2) {
-            margin-top: -80px;
+         > a:nth-child(2n + 1) {
+            margin-top: 0px;
          }
-         > a:nth-child(4) {
+         > a:nth-child(2n) {
             margin-top: -80px;
          }
       }
@@ -125,7 +125,7 @@
       font-weight: 300;
       font-size: 180px;
       line-height: 181px;
-      
+
       h3 {
          font-weight: 400;
          font-size: 180px;

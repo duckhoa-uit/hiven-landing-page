@@ -62,7 +62,7 @@
    &__inner {
       padding: 0 200px;
       width: 100%;
-      max-width: 2300px;
+      max-width: 1800px;
       z-index: 1;
    }
 
@@ -92,9 +92,12 @@
       padding-top: 160px;
       padding-bottom: 62px;
       .title {
-         font-weight: 500;
+         font-weight: 300;
          font-size: 180px;
          line-height: 210px;
+         /* or 117% */
+
+         text-transform: capitalize;
          pre {
             color: #878b99;
          }
@@ -102,7 +105,7 @@
    }
    &__inner {
       width: 100%;
-      max-width: 2300px;
+      max-width: 1800px;
       padding: 0 200px;
    }
 }
@@ -115,6 +118,7 @@
       justify-content: center;
 
       &:nth-child(2) {
+         margin-top: -270px;
          .hexagon-image__container {
             margin-left: -823px;
          }
@@ -158,6 +162,8 @@
    .about-us-group-content {
       display: flex;
       justify-content: space-between;
+      max-width: 1400px;
+      margin: auto;
       .CJIA {
          width: 50%;
       }
@@ -165,9 +171,9 @@
          width: 50%;
       }
       .web-intro {
-         width: 550px;
+         width: 572px;
          .intro {
-            margin-bottom: 11px;
+            margin-bottom: 40px;
             font-weight: 400;
             font-size: 18px;
             line-height: 160%;
@@ -177,8 +183,9 @@
          }
       }
       &-final {
-         width: 50%;
-         margin-top: -100px;
+         width: 100%;
+         max-width: 1400px;
+         margin: -100px auto 62px;
          .web-intro {
             margin-top: 80px;
             padding-left: 118px;
@@ -193,13 +200,13 @@
          .web-intro {
             width: 100%;
             .intro {
-               margin-bottom: 11px;
+               margin-bottom: 40px;
                font-weight: 400;
                font-size: 18px;
                line-height: 160%;
                /* or 29px */
                max-width: 550px;
-   
+
                letter-spacing: 0.01em;
             }
          }

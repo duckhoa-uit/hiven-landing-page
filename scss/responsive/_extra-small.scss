@@ -56,12 +56,11 @@
 
 .about-us-content__container {
    .container-full {
-      padding: 5px;
+      // padding: 5px;
    }
 }
 
 .about-us-container-full {
-   padding: 60px 5px;
 }
 
 .investment-region {
@@ -90,10 +89,19 @@
 .footer-content-container .footer-content .link-group {
    flex-wrap: wrap;
    gap: 12px;
-   .contact{
+   .contact {
       margin-left: 0;
    }
    .quick-link {
-      margin-right: 68px;
+      margin-right: 40px;
+   }
+}
+
+.contact-info {
+   &__details {
+      & > div:not(:nth-child(1)),
+      & > div:not(:nth-child(2)) {
+         margin-top: 30px;
+      }
    }
 }

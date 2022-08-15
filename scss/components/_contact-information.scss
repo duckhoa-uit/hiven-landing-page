@@ -10,9 +10,18 @@
       align-items: center;
       justify-content: space-between;
       // gap: 40px;
-      max-width: 2300px;
+      max-width: 1800px;
       width: 100%;
       padding: 0 200px;
+
+      .hexagon-image {
+         @include hexagon-shape(800px);
+
+         &__container {
+            margin-left: 100px;
+            margin-right: 0;
+         }
+      }
    }
    &__content {
       display: flex;
@@ -48,7 +57,7 @@
 
       & > div:not(:nth-child(1)),
       & > div:not(:nth-child(2)) {
-         margin-top: 32px;
+         margin-top: 40px;
       }
 
       > div:nth-child(2n + 1) {

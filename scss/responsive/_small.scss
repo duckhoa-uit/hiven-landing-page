@@ -65,21 +65,21 @@
    &__hexagon-group {
       left: -60px;
       bottom: 230px;
-      &[data-aos=zoom-in] {
-         transform: scale(.4);
+      &[data-aos='zoom-in'] {
+         transform: scale(0.4);
       }
-      &[data-aos^=zoom][data-aos^=zoom].aos-animate{
-         transform: translateZ(0) scale(.6)
+      &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+         transform: translateZ(0) scale(0.6);
       }
    }
    &__hexagon-group2 {
       right: -96px;
       bottom: 220px;
-      &[data-aos=zoom-in] {
-         transform: scale(.4);
+      &[data-aos='zoom-in'] {
+         transform: scale(0.4);
       }
-      &[data-aos^=zoom][data-aos^=zoom].aos-animate{
-         transform: translateZ(0) scale(.6)
+      &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+         transform: translateZ(0) scale(0.6);
       }
    }
 }
@@ -108,7 +108,7 @@
    &__content {
       flex-direction: column;
       width: calc(100% + 40px);
-
+      max-width: 340px;
       .section-description {
          margin-top: 0 !important;
       }
@@ -134,7 +134,6 @@
    font-weight: 500;
    font-size: 32px;
    line-height: 70px;
-
 }
 
 .footer-content-container {
@@ -144,6 +143,7 @@
       padding-right: 0;
       .link-group {
          margin-left: 0px;
+         margin-top: 40px;
          .contact {
             margin-left: 81px;
          }
@@ -194,21 +194,21 @@
    .about-us-banner__hexagon-group {
       left: -85px;
       bottom: 40px;
-      &[data-aos=zoom-in] {
-         transform: scale(.4);
+      &[data-aos='zoom-in'] {
+         transform: scale(0.4);
       }
-      &[data-aos^=zoom][data-aos^=zoom].aos-animate{
-         transform: translateZ(0) scale(.5)
+      &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+         transform: translateZ(0) scale(0.5);
       }
    }
    .about-us-banner__hexagon-group2 {
       right: -22px;
       bottom: 83px;
-      &[data-aos=zoom-in] {
-         transform: scale(.4);
+      &[data-aos='zoom-in'] {
+         transform: scale(0.4);
       }
-      &[data-aos^=zoom][data-aos^=zoom].aos-animate{
-         transform: translateZ(0) scale(.5)
+      &[data-aos^='zoom'][data-aos^='zoom'].aos-animate {
+         transform: translateZ(0) scale(0.5);
       }
    }
 }
@@ -237,7 +237,7 @@
 
 .about-us-content__container {
    .title {
-      font-weight: 500;
+      font-weight: 300;
       font-size: 65.8064px;
       line-height: 74px;
       padding-left: 0px;
@@ -257,8 +257,12 @@
          p {
             width: 100%;
          }
-         .intro{
-            max-width: none;
+         .intro {
+            max-width: 338px;
+            margin: auto;
+            &:nth-child(1) {
+               margin-bottom: 20px;
+            }
          }
          .intro:nth-child(2) {
             padding-top: 0px;
@@ -280,8 +284,12 @@
          p {
             width: 100%;
          }
-         .intro{
-            max-width: none;
+         .intro {
+            max-width: 338px;
+            margin: auto;
+            &:nth-child(1) {
+               margin-bottom: 20px;
+            }
          }
          .intro:nth-child(2) {
             padding-top: 0px;
@@ -375,6 +383,15 @@
          }
       }
    }
+
+   &__details {
+      padding-bottom: 66px;
+
+      & > div:not(:nth-child(1)),
+      & > div:not(:nth-child(2)) {
+         margin-top: 20px;
+      }
+   }
 }
 
 .contact-form {
@@ -404,6 +421,7 @@
       display: none;
    }
    &__inner {
+      margin-top: 28px;
       padding: 0 0px;
       .news-banner__title {
          h2 {
@@ -435,13 +453,33 @@
       }
    }
    .cards-grid {
-      width: 340px;
       padding: 0;
       .card-header {
          max-height: 218px;
       }
       .card-body {
          padding: 20px;
+
+         h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            line-height: 29px;
+         }
+
+         .body-content {
+            font-size: 18px;
+            line-height: 160%;
+            /* or 29px */
+
+            letter-spacing: -0.01rem;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+         }
       }
    }
 }

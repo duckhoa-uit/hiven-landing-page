@@ -4,39 +4,6 @@
 .nav-link {
    margin: 0 25px;
 }
-.mission-value {
-   &__inner {
-      flex-direction: column-reverse;
-      gap: 105px;
-
-      .section-title {
-         margin-bottom: 11px;
-      }
-   }
-   &__content {
-      max-width: unset;
-      width: calc(100% + 40px);
-      display: flex;
-      gap: 20px;
-
-      &-title {
-         width: 50%;
-      }
-
-      &-details {
-         margin-top: 20px;
-         width: 50%;
-      }
-
-      .section-subtitle {
-         font-size: 80px;
-      }
-   }
-   &__container {
-      margin-top: 120px;
-      margin-bottom: 120px;
-   }
-}
 
 .business-area {
    // &__images {
@@ -101,7 +68,7 @@
 }
 .footer-content-container {
    padding: 77px 20px 44px;
-   .footer-content{
+   .footer-content {
       padding-right: 110px;
    }
 }
@@ -260,49 +227,58 @@
    width: 100%;
    // padding-top: 209px;
 }
-.cards-grid {
-   grid-template-columns: 100%;
-   justify-items: center;
-   align-items: center;
-}
+// .cards-grid {
+//    grid-template-columns: 100%;
+//    justify-items: center;
+//    align-items: center;
+//    padding-top: 80px;
 
-// .card {
-//    width: 541px;
-//    height: 702px;
+//    & > a:nth-child(2n) {
+//       margin-top: 0px !important;
+//    }
 // }
+
+.card {
+   .view-more {
+      opacity: 1;
+   }
+
+   > a:nth-child(2n) {
+      margin-top: 0px;
+   }
+}
 
 .about-us-banner__inner {
    padding: 0 0;
 }
 .about-us-content__inner {
    padding: 0 0px;
-   .title{
+   .title {
       padding-left: 0;
    }
 }
 .about-us-container-full {
    padding: 102px 20px 62px;
-   .web-intro{
+   .web-intro {
       justify-content: center;
-      .intro{
+      .intro {
          max-width: 352px;
       }
    }
    .about-us-group-content-final {
-      .KKFung{
+      .KKFung {
          margin-left: 0px;
       }
       .more-link {
          margin-left: 0px;
       }
-      .web-intro{
+      .web-intro {
          justify-content: center;
-         .intro{
+         .intro {
             max-width: 352px;
          }
       }
    }
-   
 }
 .mf-cursor {
    display: none;
@@ -312,12 +288,19 @@
 }
 
 .contact-info {
-   &__details {
-      // margin-top: 0px;
+   &__inner {
+      .hexagon-image__container {
+         margin-left: 0;
+      }
    }
 }
-.contact-form__container {
-   margin-top: 40px;
+.contact-form {
+   &__container {
+      margin-top: 40px;
+   }
+   &__inner {
+      padding: 0;
+   }
 }
 
 .news-banner {
@@ -327,7 +310,7 @@
    }
    &__hexagon-group2 {
       bottom: 108px;
-      right: 20px
+      right: 20px;
    }
 }
 .about-us-banner__container {
@@ -335,12 +318,12 @@
       &__hexagon-group {
          bottom: 123px;
          left: 21px;
-         transform: scale(.8);
+         transform: scale(0.8);
       }
       &__hexagon-group2 {
          bottom: 108px;
          right: 20px;
-         transform: scale(.8);
+         transform: scale(0.8);
       }
    }
 }

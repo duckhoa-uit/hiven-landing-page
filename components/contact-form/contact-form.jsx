@@ -49,12 +49,14 @@ export default function ContactForm() {
       <div className="contact-form">
          <div className="container-full">
             <div className="contact-form__inner">
-               <h3 data-aos="fade-up">Get In Touch</h3>
+               <div className="contact-form__title">
+                  <h3 data-aos="fade-up">Get In Touch</h3>
+               </div>
                <div className="contact-form__container">
                   <FormProvider {...formMethods}>
                      <form onSubmit={onSubmit}>
                         <ContactFormInput label="Your Name" name="fullName" />
-                        <ContactFormInput label="EMAIL ADDRESS" name="address" />
+                        <ContactFormInput label="EMAIL ADD" name="address" />
                         <ContactFormInput label="Phone Number" name="phoneNumber" />
                         <ContactFormInput
                            label="Message"
