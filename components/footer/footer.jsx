@@ -57,7 +57,7 @@ export default function Footer() {
                               data-text="New"
                               data-cursor="-opaque"
                            >
-                              <span>New</span>
+                              <span>News</span>
                            </a>
                         </li>
                      </ul>

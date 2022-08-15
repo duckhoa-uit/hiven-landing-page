@@ -12,7 +12,7 @@ export default function Header() {
    const [activeMobileMenu, setActiveMobileMenu] = useState(false);
    const [stickyHeader, setStickyHeader] = useState(false);
    const { pathname } = useRouter();
-   const {setIsOpenMenuMb} = useMainContext();
+   const { setIsOpenMenuMb } = useMainContext();
 
    useEffect(() => {
       const listener = () =>
@@ -32,7 +32,7 @@ export default function Header() {
    const toggleMobileMenu = () => {
       const isOpen = !activeMobileMenu;
       setActiveMobileMenu(isOpen);
-      setIsOpenMenuMb(isOpen)
+      setIsOpenMenuMb(isOpen);
    };
 
    return (
@@ -72,7 +72,7 @@ export default function Header() {
                   </li>
                   <li>
                      <ActiveLink activeClassName="active" href="/news">
-                        <a className="nav-link">New</a>
+                        <a className="nav-link">News</a>
                      </ActiveLink>
                   </li>
                   <li>
