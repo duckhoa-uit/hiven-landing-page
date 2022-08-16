@@ -9,7 +9,7 @@ const schema = yup.object({
    fullName: yup
       .string()
       .max(255)
-      .matches(/^[a-zA-Z0-9]*$/, 'Only alphabets are allowed for this field')
+      .matches(/^[A-Za-z\s]*$/, 'Only alphabets are allowed for this field')
       .required()
       .label('Name'),
    email: yup.string().email().max(500).required().label('Email'),
