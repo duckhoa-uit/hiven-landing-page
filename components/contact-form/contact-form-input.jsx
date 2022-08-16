@@ -15,7 +15,12 @@ export default function ContactFormInput({ label, name, multiline = false }) {
       <>
          <div className="contact-form__input">
             {multiline ? (
-               <textarea name="text message" placeholder={label} rows={5}></textarea>
+               <textarea
+                  name="text message"
+                  placeholder={label}
+                  rows={5}
+                  {...field}
+               ></textarea>
             ) : (
                <input type="text" placeholder={label} data-aos="-hidden" {...field} />
             )}

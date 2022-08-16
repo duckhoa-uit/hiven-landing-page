@@ -12,11 +12,7 @@ const schema = yup.object({
       .matches(/^[a-zA-Z0-9]*$/, 'Only alphabets are allowed for this field')
       .required()
       .label('Name'),
-   address: yup
-      .string()
-      .max(500)
-      .matches(/^[a-zA-Z0-9]*$/, 'Only alphabets are allowed for this field')
-      .label('Address'),
+   email: yup.string().email().max(500).required().label('Email'),
    phoneNumber: yup
       .string()
       .matches(
@@ -33,7 +29,7 @@ export default function ContactForm() {
       resolver: yupResolver(schema),
       defaultValues: {
          fullName: '',
-         address: '',
+         email: '',
          phoneNumber: '',
          message: '',
       },
@@ -56,7 +52,7 @@ export default function ContactForm() {
                   <FormProvider {...formMethods}>
                      <form onSubmit={onSubmit}>
                         <ContactFormInput label="Your Name" name="fullName" />
-                        <ContactFormInput label="EMAIL ADDRESS" name="address" />
+                        <ContactFormInput label="EMAIL ADDRESS" name="email" />
                         <ContactFormInput label="Phone Number" name="phoneNumber" />
                         <ContactFormInput
                            label="Message"
