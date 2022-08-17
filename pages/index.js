@@ -1,4 +1,5 @@
 import BusinessArea from '@components/business-area/business-area';
+import ContactWithUs from '@components/contact-with-us/contact-with-us';
 import HeroSlider from '@components/hero-slides/hero-slider';
 import InvestmentRegion from '@components/investment-region/investment-region';
 import MainLayout from '@components/layouts/main-layout';
@@ -18,6 +19,7 @@ const Home = () => {
          <MissionAndValue />
          <BusinessArea />
          <InvestmentRegion />
+         <ContactWithUs />
       </>
    );
 };

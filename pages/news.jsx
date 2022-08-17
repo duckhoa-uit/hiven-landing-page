@@ -8,6 +8,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import background from '../public/images/news-banner.png';
 import useSWR from 'swr';
+import ContactWithUs from '@components/contact-with-us/contact-with-us';
 
 const News = () => {
    const hiven = useSelector((x) => x.hiven.data);
@@ -39,7 +40,8 @@ const News = () => {
 
    useEffect(() => {
       const text = new AnimatedAppearText([['Latest&nbsp']]);
-      if(hiven.attributes.news_banner.data?.attributes.url) setBannerSource(hiven.attributes.news_banner.data?.attributes?.url);
+      if (hiven.attributes.news_banner.data?.attributes.url)
+         setBannerSource(hiven.attributes.news_banner.data?.attributes?.url);
    }, [hiven]);
 
    const handleLoadMore = () => {
@@ -134,6 +136,7 @@ const News = () => {
                </div>
             </div>
          </main>
+         <ContactWithUs />
       </>
    );
 };

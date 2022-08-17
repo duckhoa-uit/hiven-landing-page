@@ -81,7 +81,7 @@ export default function MainLayout({ children }) {
          <Header />
          {children}
          <ScrollToTop />
-         {children.type.name !== 'Contact' && <ContactWithUs />}
+         {/* {children.type.name !== 'Contact' && <ContactWithUs />} */}
          <Footer />
       </>
    );
