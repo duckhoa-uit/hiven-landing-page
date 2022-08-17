@@ -1,3 +1,5 @@
+import axiosClient from '@components/api-client/axios-client';
+import ImageUploadField from '@components/form-controls/image-upload-field';
 import TextInputField from '@components/form-controls/text-input-field';
 import IconReportProblem from '@components/icons/ic-report-problem';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -10,6 +12,7 @@ import {
    CardHeader,
    Divider,
    Grid,
+   Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import axios from 'axios';
@@ -17,6 +20,7 @@ import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
@@ -24,6 +28,9 @@ const schema = yup.object().shape({
       yup.object().shape({
          title: yup.string().max(255).required(),
          description: yup.string().max(255).required('This field is required.'),
+         image: yup
+            .mixed()
+            .test('required', 'Please select an image', (value) => value?.size),
       })
    ),
 });
@@ -47,26 +54,32 @@ export function InvestmentEdit() {
             {
                title: 'Singapore',
                description: '',
+               image: {},
             },
             {
                title: 'Vietnam',
                description: '',
+               image: {},
             },
             {
                title: 'Indonesia',
                description: '',
+               image: {},
             },
             {
                title: 'Malaysia',
                description: '',
+               image: {},
             },
             {
                title: 'Thailand',
                description: '',
+               image: {},
             },
             {
                title: 'Philippines',
                description: '',
+               image: {},
             },
          ],
       },
@@ -84,10 +97,9 @@ export function InvestmentEdit() {
          ? hiven.attributes.investment_region.map((region) => ({
               title: region.title,
               description: region.description,
+              image: region.image ? region.image.data.attributes : {},
            }))
          : [];
-
-      console.log('formData: ', formData);
 
       reset({
          content: formData,
@@ -95,20 +107,37 @@ export function InvestmentEdit() {
    }, [hiven?.id]);
 
    const handleSave = handleSubmit(async (values) => {
+      const updatedBanners = values.content.map(async (region, idx) => {
+         if (region.image.url) {
+            return {
+               id: hiven.attributes.investment_region[idx].image.data.id,
+               ...region.image,
+            };
+         }
+
+         try {
+            const formData = new FormData();
+            formData.append(`files`, region.image);
+            const res = await axiosClient.post(`/upload`, formData);
+            return res[0];
+         } catch ({ error }) {
+            toast.error(error.message);
+         }
+      });
+      const uploadedBanners = await Promise.all(updatedBanners);
+
       try {
-         const res = await axios.put(
-            `/hivens/${hiven.id}`,
-            {
-               data: {
-                  investment_region: values.content,
-               },
+         await axiosClient.put(`/hivens/${hiven.id}`, {
+            data: {
+               investment_region: values.content.map((region, idx) => ({
+                  ...region,
+                  image: uploadedBanners[idx],
+               })),
             },
-            {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            }
-         );
-      } catch (error) {
-         console.log(error);
+         });
+         toast.success('Update Investment Region Success.');
+      } catch ({ error }) {
+         toast.error(error.message);
       }
    });
 
@@ -120,21 +149,34 @@ export function InvestmentEdit() {
             <FormProvider {...formMethods}>
                <form onSubmit={handleSubmit(handleSave)}>
                   {Array.from(new Array(6)).map((_, idx) => (
-                     <Grid
-                        key={idx}
-                        container
-                        columnSpacing={3}
-                        sx={{ mb: 2 }}
-                        alignItems="center"
-                     >
-                        <Grid item md={12} xs={12}>
-                           <TextInputField
-                              disabled={isSubmitting}
-                              name={`content.${idx}.description`}
-                              label={labels[idx]}
-                           />
+                     <>
+                        {idx !== 0 && <Divider />}
+                        <Typography sx={{ mt: 4, mb: 1 }} variant="h5">
+                           {labels[idx]}
+                        </Typography>
+                        <Grid
+                           key={idx}
+                           container
+                           columnSpacing={3}
+                           sx={{ mb: 4 }}
+                           alignItems="center"
+                        >
+                           <Grid item sm={12} md={3}>
+                              <ImageUploadField
+                                 disabled={isSubmitting}
+                                 name={`content.${idx}.image`}
+                                 label="Main Content"
+                              />
+                           </Grid>
+                           <Grid item sm={12} md={9}>
+                              <TextInputField
+                                 disabled={isSubmitting}
+                                 name={`content.${idx}.description`}
+                                 label={'Address'}
+                              />
+                           </Grid>
                         </Grid>
-                     </Grid>
+                     </>
                   ))}
                </form>
             </FormProvider>

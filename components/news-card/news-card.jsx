@@ -1,6 +1,7 @@
 import MoreLink from '@components/more-link/more-link';
-import Link from 'next/link';
-import React, { useEffect, useState, useRef } from 'react';
+import { Skeleton } from '@mui/material';
+import { formatDate } from '@utils/helper';
+import React from 'react';
 
 class CardHeader extends React.Component {
    render() {
@@ -15,34 +16,53 @@ class CardHeader extends React.Component {
 
 class CardBody extends React.Component {
    render() {
+      const { data } = this.props;
+      const { createdAt, title, content, link } = data;
+
       return (
          <div className="card-body">
-            <p className="date">13/06/2022 </p>
-
-            <h2>{this.props.title}</h2>
-
-            <p className="body-content">{this.props.text}</p>
-
+            <p className="date">{formatDate(createdAt)}</p>
+            <h2>{title}</h2>
+            <p className="body-content">{content}</p>
             <div className="view-more">
-               <MoreLink text={'Find Out More'} href={'https://www.kkfund.co/'} />
+               <MoreLink text={'Find Out More'} href={link} />
             </div>
          </div>
       );
    }
 }
 
-export default function NewsCard({ url, banner, className = '' }) {
+export default function NewsCard({ data, className = '' }) {
+   const { link, image } = data;
    return (
-      <a href={url} target="_blank" rel="noreferrer">
+      <a href={link} target="_blank" rel="noreferrer">
          <article className={'card' + className}>
-            <CardHeader image={banner} />
-            <CardBody
-               title={'New Joint Venture Fund'}
-               text={
-                  'Global grain trading CJ International Asia (CJIA) and Singapore-based KK Fund have launched Hiven, a joint venture fund to invest in startups developing breakthrough technologies in "food, agriculture, and bio" in Southeast Asia.'
-               }
-            />
+            <CardHeader image={image.data ? image.data[0].attributes.url : ''} />
+            <CardBody data={data} />
          </article>
       </a>
    );
 }
+
+export const NewsCardSkeleton = () => {
+   return (
+      <article className={'card card--skeleton'}>
+         <div className="card-header">
+            <Skeleton variant="rectangular" width={'100%'} height={'100%'} />
+         </div>
+         <div className="card-body">
+            <p className="date">
+               <Skeleton variant="text" />
+            </p>
+
+            <h2>
+               <Skeleton variant="text" />
+            </h2>
+
+            <p className="body-content">
+               <Skeleton variant="rectangular" width="100%" height={150} />
+            </p>
+         </div>
+      </article>
+   );
+};

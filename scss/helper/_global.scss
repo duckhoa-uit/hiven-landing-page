@@ -6,6 +6,13 @@
    font-family: $font-main;
 }
 
+::selection,
+::-moz-selection,
+::-webkit-selection {
+   background-color: $color--blue-grey;
+   color: #fff;
+}
+
 html {
    scroll-behavior: smooth;
    -webkit-text-size-adjust: 100%;
@@ -119,4 +126,8 @@ body {
    &:hover::after {
       top: 0px;
    }
+}
+.Toastify__toast-body {
+   font-size: 14px;
+   color: $color--blue-grey;
 }

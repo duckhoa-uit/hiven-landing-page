@@ -24,7 +24,7 @@ export const theme = createTheme({
          },
          styleOverrides: {
             root: {
-               fontSize: '14px',
+               fontSize: '16px',
                fontWeight: 500,
                textTransform: 'none',
             },
@@ -67,7 +67,7 @@ export const theme = createTheme({
       MuiCardHeader: {
          defaultProps: {
             titleTypographyProps: {
-               variant: 'h6',
+               variant: 'h4',
             },
             subheaderTypographyProps: {
                variant: 'body2',
@@ -75,7 +75,7 @@ export const theme = createTheme({
          },
          styleOverrides: {
             root: {
-               padding: '32px 24px',
+               padding: '16px 24px',
             },
          },
       },
@@ -209,9 +209,9 @@ export const theme = createTheme({
       divider: '#E6E8F0',
       //xanh dương
       primary: {
-         main: '#3f51b5',
-         light: '#757de8',
-         dark: '#002984',
+         main: '#1d223a',
+         light: '#464964',
+         dark: '#000015',
          contrastText: '#FFFFFF',
          sideBar: '#303f9f',
       },
@@ -251,8 +251,8 @@ export const theme = createTheme({
          contrastText: '#FFFFFF',
       },
       text: {
-         primary: '#263238',
-         secondary: '#4b636e',
+         primary: '#1d223a',
+         secondary: '#181760',
          disabled: 'rgba(55, 65, 81, 0.48)',
       },
    },
@@ -340,7 +340,7 @@ export const theme = createTheme({
          lineHeight: 1.375,
       },
       h4: {
-         fontWeight: 700,
+         fontWeight: 600,
          fontSize: '2rem',
          lineHeight: 1.375,
       },

@@ -20,7 +20,7 @@ export default function ImageUploadField(props) {
    });
 
    const loadFile = (event) => {
-      if (event.target.files) {
+      if (event.target.files.length > 0) {
          onChange(event.target.files[0]);
       }
    };
@@ -51,11 +51,13 @@ export default function ImageUploadField(props) {
             alt=""
             style={{ borderRadius: 4 }}
          />
-         <div className="image-upload__overlay">
-            <label htmlFor={name} style={{ cursor: 'pointer' }}>
-               <IconUpload width={50} height={50} />
-            </label>
-         </div>
+         {!disabled && (
+            <div className="image-upload__overlay">
+               <label htmlFor={name} style={{ cursor: 'pointer' }}>
+                  <IconUpload width={50} height={50} />
+               </label>
+            </div>
+         )}
          <p className="error-message">{error?.message}</p>
       </div>
    );

@@ -61,27 +61,15 @@ export const DashboardNavbar = (props) => {
                sx={{
                   display: {
                      xs: 'inline-flex',
-                     lg: 'none',
+                     md: 'none',
                      color: '#1d223a',
                   },
                }}
             >
-               <IconMenu fill="#1d223a" />
+               <IconMenu fill="#1d223a" width={24} height={24} />
             </IconButton>
             <Box sx={{ flexGrow: 1 }} />
-            {/* <Tooltip title="Contacts">
-               <IconButton sx={{ ml: 1 }}>
-                  <UsersIcon fontSize="small" />
-               </IconButton>
-            </Tooltip>
-            <Tooltip title="Notifications">
-               <IconButton sx={{ ml: 1 }}>
-                  <Badge badgeContent={4} color="primary" variant="dot">
-                     <BellIcon fontSize="small" />
-                  </Badge>
-               </IconButton>
-            </Tooltip> */}
-            <IconButton onClick={(e) => setAnchorEl(e.currentTarget)}>
+            {/* <IconButton onClick={(e) => setAnchorEl(e.currentTarget)}>
                <Avatar
                   sx={{
                      height: 40,
@@ -92,7 +80,7 @@ export const DashboardNavbar = (props) => {
                >
                   <UserCircleIcon fontSize="small" />
                </Avatar>
-            </IconButton>
+            </IconButton> */}
          </Toolbar>
 
          <Menu

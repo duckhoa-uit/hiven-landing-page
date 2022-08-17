@@ -3,20 +3,28 @@ import useBreakpoint from '@components/common/breakpoint/useBreakpoint';
 import ResizeDetector from '@components/common/resize-detector';
 import IconChevron from '@components/icons/ic-chevron';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { areas, getRegionInfo } from './geography-manager';
+import { areas, getRegionInfo, _dummyRegionData } from './geography-manager';
 import GeographyMap from './geography-map';
+import { useSelector } from 'react-redux';
 
 const InvestmentRegion = () => {
    const { windowWidth } = useBreakpoint();
    const [selectedRegion, setSelectedRegion] = useState('');
    const [containerHeight, setContainerHeight] = useState(0);
-
+   const hiven = useSelector((x) => x.hiven.data);
    useEffect(() => {
       setSelectedRegion(areas[0]?.name || '');
    }, []);
 
+   useEffect(() => {
+      hiven.attributes.investment_region.map((region) => {
+         _dummyRegionData[region.title].address =  region.description
+         _dummyRegionData[region.title].imgUrl = region.image?.data.attributes.url
+      })
+   }, [hiven?.id]);
+
    const handleChangeRegion = useCallback((regionName) => {
-      setSelectedRegion(regionName);
+      if(regionName) setSelectedRegion(regionName);
    }, []);
 
    const regions = useMemo(() => {
@@ -144,7 +152,6 @@ const RegionInfoSmall = ({ name }) => {
 const RegionItem = (props) => {
    const ref = useRef();
    const onClick = () => {
-      console.log('click');
       props.setSelectedRegion(props.name);
       ref.current.scrollIntoView({behavior : 'smooth', block : 'nearest', inline : 'nearest'});
    }

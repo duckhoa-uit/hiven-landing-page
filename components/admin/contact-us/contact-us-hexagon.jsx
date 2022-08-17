@@ -13,7 +13,7 @@ import {
    Divider,
    Grid,
    Typography,
-   Label
+   Label,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
@@ -21,11 +21,11 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FormProvider, useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import axiosClient from '@components/api-client/axios-client';
+import { toast } from 'react-toastify';
 
 const schema = yup.object().shape({
-   image:  yup
-      .mixed()
-      .test('required', 'Please select an image', (value) => value?.size),
+   image: yup.mixed().test('required', 'Please select an image', (value) => value?.size),
 });
 
 export function ContactUsHexagonEdit({ onSave }) {
@@ -51,85 +51,49 @@ export function ContactUsHexagonEdit({ onSave }) {
       }
    }, [hiven?.id]);
 
-   const handleSave = handleSubmit(async (values) => {
-      
-      console.log(
-         '🚀 ~ file: mission-value.jsx ~ line 56 ~ handleSave ~ ̥',
-         values,
-         hiven
-      );
-      
+   const handleSave = handleSubmit(async ({ image }) => {
       if (!hiven.id) return;
-      // console.log('🚀 ~ file: contact-us-hexagon.jsx ~ line 56 ~ handleSave ~ ̥', values);
-      // if (onSave) {
-      //    const payload = { ...values };
-      //    await onSave(payload);
-      // }
       try {
          const formData = new FormData();
-         formData.append(`files`, values.image);
-         formData.append('refId', hiven.id);
-         formData.append('ref', 'api::hiven.hiven');
-         formData.append('field', 'contact_banner');
-         const res1 = await axios.post(`/upload`, formData, {
-            baseURL: 'https://hiven-api.herokuapp.com/api',
-         });
-         console.log(
-            '🚀 ~ file: index.jsx ~ line 44 ~ handleUpdateHiven ~ res1',
-            res1.data[0]
-         );
-         const newImage = res1.data[0];
+         formData.append(`files`, image);
+         const res1 = await axiosClient.post(`/upload`, formData);
+         const newImage = res1[0];
 
-         const res = await axios.put(
-            `/hivens/${hiven.id}`,
-            {
-               data: {
-                  contact_banner: newImage,
-               },
+         const res = await axiosClient.put(`/hivens/${hiven.id}`, {
+            data: {
+               contact_banner: newImage,
             },
-            {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            }
-         );
-         console.log('🚀 ~ file: mission-value.jsx ~ line 85 ~ handleSave ~ res', res);
-      } catch (error) {
-         console.log(error);
+         });
+         toast.success('Update Hexagon Image Success.');
+      } catch ({ error }) {
+         console.log('errro', error);
+         toast.error(error.message);
       }
    });
 
    return (
       <Card sx={{ fontSize: 16 }}>
-         <CardHeader title="Hexagon" />
+         <CardHeader title="Hexagon Image" />
          <Divider />
          <CardContent>
             <FormProvider {...formMethods}>
                <form onSubmit={handleSubmit(handleSave)}>
-                    <Grid
-                        key={1}
-                        container
-                        columnSpacing={3}
-                        xs={12} 
-                        sx={{ mb: 4 }}
-                        alignItems="center"
-                     >
-                        <Grid item xs={12} >
-                           <ImageUploadField
-                              disabled={isSubmitting}
-                              name='image'
-                              label="image"
-                              multiline
-                              rows={4}
-                           />
-                        </Grid>
-                        <Grid item xs={12}  alignItems="center">
-                           <label
-                              name="image"
-                            //   label={`Image-${idx+1}'s description`}
-                           >
-                                {`Image`}
-                           </label>
-                        </Grid>
-                     </Grid>               
+                  <Grid
+                     key={1}
+                     container
+                     columnSpacing={3}
+                     xs={12}
+                     sx={{ mb: 4 }}
+                     alignItems="center"
+                  >
+                     <Grid item xs={12}>
+                        <ImageUploadField
+                           disabled={isSubmitting}
+                           name="image"
+                           label="Image"
+                        />
+                     </Grid>
+                  </Grid>
                </form>
             </FormProvider>
          </CardContent>

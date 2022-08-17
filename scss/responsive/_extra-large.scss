@@ -235,7 +235,7 @@
 }
 .cards-grid {
    grid-gap: 17px 20px;
-   padding: 185px 0;
+   padding-top: 185px;
 
    article:nth-of-type(2n) {
       margin-top: -65px;
@@ -256,7 +256,7 @@
 }
 .news {
    &__inner {
-      padding: 0 100px;
+      padding: 0 100px 120px;
    }
 }
 

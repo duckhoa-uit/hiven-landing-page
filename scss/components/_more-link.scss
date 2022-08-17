@@ -43,7 +43,7 @@
    }
 
    &:hover {
-      .hexagon-icon {
+      .hexagon-icon.active {
          left: 48px;
          transform: translateY(-50%) rotate(60deg);
          transform-origin: center center;

@@ -429,7 +429,7 @@
    }
    &__inner {
       margin-top: 28px;
-      padding: 0 0px;
+      padding: 0;
       .news-banner__title {
          h2 {
             font-weight: 700;
@@ -448,8 +448,7 @@
    }
 }
 .news__inner {
-   padding: 0 0px;
-   padding-bottom: 40px;
+   padding: 0 0 40px;
    .news__title {
       margin-top: -61px;
       .wordContainer {
@@ -461,7 +460,7 @@
       }
    }
    .cards-grid {
-      padding: 0;
+      padding-top: 0;
       .card-header {
          max-height: 218px;
       }

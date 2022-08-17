@@ -1,12 +1,11 @@
 import IconHexagonSmall from '@components/icons/ic-hexagon-small';
-import Link from 'next/link';
-import React from 'react';
 
 export default function MoreLink({
    link,
    text,
    padding = false,
    light = false,
+   disabled = false,
    ...rest
 }) {
    return (
@@ -17,7 +16,7 @@ export default function MoreLink({
          data-cursor="-opaque"
       >
          <div className="animated-line">
-            <IconHexagonSmall className="hexagon-icon" />
+            <IconHexagonSmall className={`hexagon-icon ${disabled ? '' : 'active'}`} />
          </div>
          <a href={link} className={`text ${light ? 'light' : ''}`}>
             {text}

@@ -2,7 +2,7 @@
    &__container {
       width: 100%;
       height: 600px;
-      background-image: url(../../assets/images/news-banner.png);
+      // background-image: url(../../assets/images/news-banner.png);
       background-size: cover;
       background-position: center;
       padding-top: 442px;
@@ -100,7 +100,6 @@
    align-items: center;
    padding: 12px 28px;
    gap: 8px;
-   margin-bottom: 120px;
    cursor: pointer;
 
    &_button {
@@ -127,7 +126,7 @@
 
 .news {
    &__inner {
-      padding: 0 200px;
+      padding: 0 200px 120px;
       width: 100%;
       max-width: 1800px;
       .cards-grid {

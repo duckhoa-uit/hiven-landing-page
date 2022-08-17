@@ -11,7 +11,7 @@ export const formatDate = (ISOString) => {
       month = '0' + month;
    }
 
-   return dt + '-' + month + '-' + year;
+   return dt + '/' + month + '/' + year;
 };
 
 export const markModalOpen = (isOpen) => {

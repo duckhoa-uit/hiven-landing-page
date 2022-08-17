@@ -1,16 +1,21 @@
 import HexagonImage from '@components/hexagon-image/hexagon-image';
 import MoreLink from '@components/more-link/more-link';
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function MissionAndValue() {
+   const hiven = useSelector((x) => x.hiven.data);
+   const [bannerSource, setbannerSource] = useState('https://images.unsplash.com/photo-1462899006636-339e08d1844e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+   useEffect(() => {
+      setbannerSource(hiven.attributes.mission_value_image.data?.attributes.url);
+   }, [hiven]);
    return (
       <div className="mission-value__container">
          <div className="container-full">
             <div className="mission-value__inner">
                <HexagonImage
-                  source={
-                     'https://images.unsplash.com/photo-1462899006636-339e08d1844e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-                  }
+                  source={bannerSource}
                />
                <div className="mission-value__content">
                   <div className="mission-value__content-title">

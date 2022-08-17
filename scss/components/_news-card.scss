@@ -2,12 +2,15 @@
 
 .cards-grid {
    display: grid;
-   padding: 240px 0;
+   padding: 240px 0 0;
    grid-gap: 32px 40px;
    grid-template-columns: 50% 50%;
 
    article:nth-of-type(2n) {
       margin-top: -80px;
+   }
+   & > a {
+      width: 100%;
    }
 }
 .card {
@@ -19,9 +22,13 @@
    cursor: pointer;
    position: relative;
 
-   &:hover {
-      max-height: 788px;
+   &--skeleton {
+      .card-body::after {
+         background-color: transparent;
+      }
+   }
 
+   &:hover {
       .card-header {
          img {
             -webkit-transform: scale(1.1);
@@ -37,6 +44,7 @@
 
       .card-body::after {
          background-color: transparent;
+         display: none;
       }
    }
 }

@@ -1,4 +1,4 @@
-import ImageUploadField from '@components/form-controls/image-upload-field';
+import axiosClient from '@components/api-client/axios-client';
 import TextInputField from '@components/form-controls/text-input-field';
 import IconReportProblem from '@components/icons/ic-report-problem';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,45 +11,63 @@ import {
    CardHeader,
    Divider,
    Grid,
-   Typography,
-   Label
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-   sendMail: yup.string().required().email(),
+   email: yup.string().required().email(),
 });
 
 export function ContactUsSendMailEdit({ onSave }) {
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
+   const hiven = useSelector((x) => x.hiven.data);
 
    const formMethods = useForm({
       defaultValues: {
-         sendMail: 'send to this mail',      
+         email: '',
       },
-      resolver: yupResolver(schema), 
+      resolver: yupResolver(schema),
    });
 
    const {
-      formState: { isSubmitting, errors },
+      formState: { isSubmitting },
+      reset,
       handleSubmit,
    } = formMethods;
 
-   const handleSave = handleSubmit(async (values) => {
-      console.log('🚀 ~ file Contact Us Send Mail.jsx ~ line 68 ~ handleSave ~ ̥', values);
-      if (onSave) {
-         const payload = { ...values };
-         await onSave(payload);
+   useEffect(() => {
+      if (hiven?.id) {
+         reset({
+            email: hiven.attributes.contact_form_email_receive || '',
+         });
+      }
+   }, [hiven?.id]);
+
+   const handleSave = handleSubmit(async ({ email }) => {
+      if (!hiven.id) return;
+
+      try {
+         const res = await axiosClient.put(`/hivens/${hiven.id}`, {
+            data: {
+               contact_form_email_receive: email,
+            },
+         });
+         toast.success('Update Email Receive Contact Form Success.');
+      } catch ({ error }) {
+         console.log('errro', error);
+         toast.error(error.message);
       }
    });
 
    return (
-      <Card sx={{ fontSize: 16 }}>
-         <CardHeader title="Send To Mail" />
+      <Card sx={{ fontSize: 16, mt: 4 }}>
+         <CardHeader title="Email Receive Contact Form" />
          <Divider />
          <CardContent>
             <FormProvider {...formMethods}>
@@ -58,10 +76,8 @@ export function ContactUsSendMailEdit({ onSave }) {
                      <Grid item md={12} xs={12}>
                         <TextInputField
                            disabled={isSubmitting}
-                           name={`sendMail`}
-                           label={`sendMail`}
-                           multiline
-                           rows={4}
+                           name={`email`}
+                           label="Email"
                         />
                      </Grid>
                   </Grid>

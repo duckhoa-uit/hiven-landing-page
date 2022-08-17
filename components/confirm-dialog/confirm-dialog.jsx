@@ -25,13 +25,13 @@ export function ConfirmDialog(props) {
             <Box sx={{ flex: 1 }}>
                <DialogTitle>{title}</DialogTitle>
                <DialogContent>
-                  <DialogContentText>{body}</DialogContentText>
+                  <DialogContentText color={'primary'}>{body}</DialogContentText>
                </DialogContent>
             </Box>
          </Box>
          <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleSubmit} autoFocus>
+            <Button onClick={handleSubmit} variant="contained" autoFocus>
                Confirm
             </Button>
          </DialogActions>

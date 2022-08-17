@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, CircularProgress } from '@mui/material';
 import { fetchHivenDetails, fetchHivenNews } from '@utils/hivenSlice';
+import Loading from '@components/loading/loading';
+import Head from 'next/head';
 
 export default function MainLayout({ children }) {
    const hiven = useSelector((x) => x.hiven.data);
@@ -38,24 +40,44 @@ export default function MainLayout({ children }) {
       };
    }, []);
 
-   // if (!hiven?.id) {
-   //    return (
-   //       <Box
-   //          sx={{
-   //             width: '100%',
-   //             height: 300,
-   //             display: 'flex',
-   //             alignItems: 'center',
-   //             justifyContent: 'center',
-   //          }}
-   //       >
-   //          <CircularProgress />
-   //       </Box>
-   //    );
-   // }
+   if (!hiven?.id) {
+      return (
+         <>
+            <Head>
+               <title>Hiven</title>
+            </Head>
+            <Box
+               sx={{
+                  width: '100%',
+                  height: '100vh',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'opacity 0.4s ease',
+               }}
+            >
+               <Loading />
+            </Box>
+         </>
+      );
+   }
 
    return (
       <>
+         <Box
+            sx={{
+               width: '100%',
+               height: '100vh',
+               display: 'flex',
+               alignItems: 'center',
+               justifyContent: 'center',
+               opacity: hiven?.id ? 0 : 1,
+               display: hiven?.id ? 'none' : 'block',
+               transition: 'opacity 0.4s ease',
+            }}
+         >
+            <Loading />
+         </Box>
          <Header />
          {children}
          <ScrollToTop />

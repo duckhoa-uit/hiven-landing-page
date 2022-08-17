@@ -1,5 +1,5 @@
+import axiosClient from '@components/api-client/axios-client';
 import ImageUploadField from '@components/form-controls/image-upload-field';
-import TextInputField from '@components/form-controls/text-input-field';
 import IconReportProblem from '@components/icons/ic-report-problem';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -11,28 +11,20 @@ import {
    CardHeader,
    Divider,
    Grid,
-   Typography,
-   Label,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import * as yup from 'yup';
 
 const schema = yup.object().shape({
-   images: yup.array().of(
-      yup.object().shape({
-         image: yup
-            .mixed()
-            .test('required', 'Please select an image', (value) => value?.size),
-      })
-   ),
+   image: yup.mixed().test('required', 'Please select an image', (value) => value?.size),
 });
 
-export function AboutUsBannerEdit({ onSave }) {
+export function AboutUsBannerEdit() {
    const hiven = useSelector((x) => x.hiven.data);
 
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
@@ -56,30 +48,29 @@ export function AboutUsBannerEdit({ onSave }) {
       }
    }, [hiven?.id]);
 
-   const handleSave = handleSubmit(async (values) => {
-      console.log('🚀 ~ file: about-us-banner.jsx ~ line 56 ~ handleSave ~ ̥', values);
-
+   const handleSave = handleSubmit(async ({ image }) => {
       try {
-         const formData = new FormData();
-         formData.append(`files`, values.image);
-         const res1 = await axios.post(`/upload`, formData, {
-            baseURL: 'https://hiven-api.herokuapp.com/api',
-         });
-         const newImage = res1.data[0];
+         let newImage;
+         if (image.url) {
+            newImage = {
+               id: hiven.attributes.about_us_banner.data.id,
+               ...image,
+            };
+         } else {
+            const formData = new FormData();
+            formData.append(`files`, image);
+            const uploadImage = await axiosClient.post(`/upload`, formData);
+            newImage = uploadImage[0];
+         }
 
-         const res = await axios.put(
-            `/hivens/${hiven.id}`,
-            {
-               data: {
-                  about_us_banner: newImage,
-               },
+         const res = await axiosClient.put(`/hivens/${hiven.id}`, {
+            data: {
+               about_us_banner: newImage,
             },
-            {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            }
-         );
-      } catch (error) {
-         console.log(error);
+         });
+         toast.success('Update About Us Banner Success.');
+      } catch ({ error }) {
+         toast.error(error.message);
       }
    });
 
@@ -90,29 +81,9 @@ export function AboutUsBannerEdit({ onSave }) {
          <CardContent>
             <FormProvider {...formMethods}>
                <form onSubmit={handleSubmit(handleSave)}>
-                  <Grid
-                     key={1}
-                     container
-                     columnSpacing={3}
-                     sx={{ mb: 4 }}
-                     alignItems="center"
-                  >
+                  <Grid container columnSpacing={3} alignItems="center">
                      <Grid item xs={12}>
-                        <ImageUploadField
-                           disabled={isSubmitting}
-                           name="image"
-                           label="Main Content"
-                           multiline
-                           rows={12}
-                        />
-                     </Grid>
-                     <Grid item xs={12} alignItems="center">
-                        <label
-                           name="image"
-                           //   label={`Image-${idx+1}'s description`}
-                        >
-                           {`Image`}
-                        </label>
+                        <ImageUploadField disabled={isSubmitting} name="image" />
                      </Grid>
                   </Grid>
                </form>

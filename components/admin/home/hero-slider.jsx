@@ -21,6 +21,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import axiosClient from '@components/api-client/axios-client';
 
 const schema = yup.object().shape({
    content: yup.string().required(),
@@ -42,7 +44,7 @@ export function HeroSliderEdit({ onSubmit }) {
    });
 
    const {
-      formState: { isSubmitting, errors },
+      formState: { isSubmitting },
       reset,
       handleSubmit,
    } = formMethods;
@@ -61,21 +63,18 @@ export function HeroSliderEdit({ onSubmit }) {
    const handleSave = handleSubmit(async (values) => {
       if (!hiven.id) return;
 
-      console.log('🚀 ~ file: hero-slider.jsx ~ line 68 ~ handleSave ~ ̥', values);
       const updatedBanners = values.images.map(async (image, idx) => {
          if (image.url)
             return {
-               id: hiven.attributes.hero_slider?.banners[idx].id,
+               id: hiven.attributes.hero_slider?.banners.data[idx].id,
                ...image,
             };
 
          try {
             const formData = new FormData();
             formData.append(`files`, image);
-            const res = await axios.post(`/upload`, formData, {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            });
-            return res.data[0];
+            const res = await axiosClient.post(`/upload`, formData);
+            return res[0];
          } catch (error) {
             console.log(error);
          }
@@ -84,23 +83,17 @@ export function HeroSliderEdit({ onSubmit }) {
       const uploadedBanners = await Promise.all(updatedBanners);
 
       try {
-         const res = await axios.put(
-            `/hivens/${hiven.id}`,
-            {
-               data: {
-                  hero_slider: {
-                     subtitle: values.content,
-                     banners: uploadedBanners,
-                  },
+         const res = await axiosClient.put(`/hivens/${hiven.id}`, {
+            data: {
+               hero_slider: {
+                  subtitle: values.content,
+                  banners: uploadedBanners,
                },
             },
-            {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            }
-         );
-         console.log('🚀 ~ file: hero-slider.jsx ~ line 76 ~ handleSave ~ res', res);
-      } catch (error) {
-         console.log(error);
+         });
+         toast.success('Update Hero Slider Success.');
+      } catch ({ error }) {
+         toast.error(error.message);
       }
    });
 
@@ -117,8 +110,6 @@ export function HeroSliderEdit({ onSubmit }) {
                            disabled={isSubmitting}
                            name="content"
                            label="Subtitle"
-                           multiline
-                           rows={4}
                         />
                      </Grid>
                   </Grid>
@@ -126,30 +117,23 @@ export function HeroSliderEdit({ onSubmit }) {
                   <Typography sx={{ mb: 4 }} variant="subtitle1">
                      Images
                   </Typography>
-                  <Grid container columnSpacing={3} sx={{ ml: 1 }} alignItems="center">
+                  <Grid container columnSpacing={3} alignItems="center">
                      {Array.from(new Array(4)).map((_, idx) => (
                         <Grid
                            key={idx}
-                           container
+                           item
+                           md={12}
+                           lg={6}
                            columnSpacing={3}
                            sx={{ mb: 4 }}
-                           md={6} xl={3}
-                           alignItems="center"
                         >
-                           <Grid item xs={12}>
-                              <ImageUploadField
-                                 disabled={isSubmitting}
-                                 name={`images.${idx}`}
-                                 label="Main Content"
-                                 multiline
-                                 rows={4}
-                              />
-                           </Grid>
-                           <Grid item xs={11} alignItems="center">
-                              <label name={`images.${idx}.description`}>
-                                 {`Image ${idx + 1}`}
-                              </label>
-                           </Grid>
+                           <ImageUploadField
+                              disabled={isSubmitting}
+                              name={`images.${idx}`}
+                           />
+                           <label name={`images.${idx}.description`}>
+                              {`Image ${idx + 1}`}
+                           </label>
                         </Grid>
                      ))}
                   </Grid>

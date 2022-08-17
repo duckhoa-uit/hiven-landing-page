@@ -1,3 +1,4 @@
+import axiosClient from '@components/api-client/axios-client';
 import ImageUploadField from '@components/form-controls/image-upload-field';
 import IconReportProblem from '@components/icons/ic-report-problem';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -17,16 +18,11 @@ import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-   images: yup.array().of(
-      yup.object().shape({
-         image: yup
-            .mixed()
-            .test('required', 'Please select an image', (value) => value?.size),
-      })
-   ),
+   image: yup.mixed().test('required', 'Please select an image', (value) => value?.size),
 });
 
 export function NewsBannerEdit() {
@@ -53,28 +49,29 @@ export function NewsBannerEdit() {
       }
    }, [hiven?.id]);
 
-   const handleSave = handleSubmit(async (values) => {
+   const handleSave = handleSubmit(async ({ image }) => {
       try {
-         const formData = new FormData();
-         formData.append(`files`, values.image);
-         const res1 = await axios.post(`/upload`, formData, {
-            baseURL: 'https://hiven-api.herokuapp.com/api',
-         });
-         const newImage = res1.data[0];
+         let newImage;
+         if (image.url) {
+            newImage = {
+               id: hiven.attributes.news_banner.data.id,
+               ...image,
+            };
+         } else {
+            const formData = new FormData();
+            formData.append(`files`, image);
+            const uploadImage = await axiosClient.post(`/upload`, formData);
+            newImage = uploadImage[0];
+         }
 
-         const res = await axios.put(
-            `/hivens/${hiven.id}`,
-            {
-               data: {
-                  news_banner: newImage,
-               },
+         const res = await axiosClient.put(`/hivens/${hiven.id}`, {
+            data: {
+               news_banner: newImage,
             },
-            {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            }
-         );
-      } catch (error) {
-         console.log(error);
+         });
+         toast.success('Update About Us Banner Success.');
+      } catch ({ error }) {
+         toast.error(error.message);
       }
    });
 
@@ -85,15 +82,9 @@ export function NewsBannerEdit() {
          <CardContent>
             <FormProvider {...formMethods}>
                <form onSubmit={handleSubmit(handleSave)}>
-                  <Grid key={1} container columnSpacing={3} alignItems="center">
+                  <Grid container columnSpacing={3} alignItems="center">
                      <Grid item xs={12}>
-                        <ImageUploadField
-                           disabled={isSubmitting}
-                           name="image"
-                           label="Main Content"
-                           multiline
-                           rows={12}
-                        />
+                        <ImageUploadField disabled={isSubmitting} name="image" />
                      </Grid>
                   </Grid>
                </form>

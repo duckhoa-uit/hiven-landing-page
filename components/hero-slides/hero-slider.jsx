@@ -6,8 +6,31 @@ import IconChevronRight from '@components/icons/ic-chevron-right';
 import Hexagon from '@components/common/hexagon';
 import heroSliderImage from '../../assets/images/hero-slider-1.png';
 import LogoLarge from '@components/icons/logo-large';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-const IMAGES = [heroSliderImage, heroSliderImage, heroSliderImage, heroSliderImage];
+const IMAGES = [
+   {
+      attributes: {
+         url: heroSliderImage,
+      },
+   },
+   {
+      attributes: {
+         url: heroSliderImage,
+      },
+   },
+   {
+      attributes: {
+         url: heroSliderImage,
+      },
+   },
+   {
+      attributes: {
+         url: heroSliderImage,
+      },
+   },
+];
 
 const HeroSliderNavigation = () => (
    <div className="hero-slider__navigation">
@@ -23,6 +46,16 @@ const HeroSliderNavigation = () => (
 const HeroSliderPagination = () => <div className="hero-slider__pagination" />;
 
 export default function HeroSlider() {
+   const hiven = useSelector((x) => x.hiven.data);
+   const [content, setContent] = useState('Unlocking Potential In South-east Asia');
+   const [images, setImages] = useState(IMAGES);
+   useEffect(() => {
+      if (hiven?.id) {
+         setContent(hiven.attributes.hero_slider?.subtitle);
+         setImages(hiven.attributes.hero_slider?.banners?.data);
+      }
+   }, [hiven?.id]);
+
    const pagination = {
       el: '.hero-slider__pagination',
       clickable: true,
@@ -30,7 +63,6 @@ export default function HeroSlider() {
          return '<a class="' + className + '">0' + (index + 1) + '</a>';
       },
    };
-
    return (
       <section className="hero-slider__container">
          <div className="hero-slider__hexagon-container">
@@ -63,9 +95,9 @@ export default function HeroSlider() {
                prevEl: '#prev-btn',
             }}
          >
-            {IMAGES.map((img) => (
-               <SwiperSlide key={img}>
-                  <Image src={img} alt="" layout="fill" />
+            {images?.map((img) => (
+               <SwiperSlide key={img.id}>
+                  <Image src={img.attributes.url} alt="" layout="fill" priority />
                </SwiperSlide>
             ))}
          </Swiper>
@@ -80,7 +112,7 @@ export default function HeroSlider() {
                data-aos-delay="100"
                className="subtitle textWrapper"
             >
-               Unlocking Potential In South-east Asia
+               {content}
             </p>
          </div>
          <HeroSliderNavigation />

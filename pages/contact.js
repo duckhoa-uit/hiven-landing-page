@@ -9,8 +9,6 @@ const Contact = () => {
       <>
          <Head>
             <title>Hiven</title>
-            <meta name="description" content="Hiven" />
-            <link rel="icon" href="/favicon.ico" />
          </Head>
 
          <ContactInformation />

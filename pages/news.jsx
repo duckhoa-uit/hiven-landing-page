@@ -2,14 +2,66 @@ import AnimatedAppearText from '@components/animated-appear-text/animated-appear
 import Hexagon from '@components/common/hexagon';
 import IconHexagonSmall from '@components/icons/ic-hexagon-small';
 import MainLayout from '@components/layouts/main-layout';
-import NewsCard from '@components/news-card/news-card';
+import NewsCard, { NewsCardSkeleton } from '@components/news-card/news-card';
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import background from '../public/images/news-banner.png';
+import useSWR from 'swr';
 
 const News = () => {
+   const hiven = useSelector((x) => x.hiven.data);
+   const [bannerSource, setBannerSource] = useState(background.src);
+   const [news, setNews] = useState([]);
+   const [loading, setLoading] = useState(false);
+
+   const [pagination, setPagination] = useState({
+      page: 1,
+      pageSize: 4,
+   });
+
+   const { data: response, error } = useSWR(
+      `/news?populate=*&pagination[page]=${pagination.page}&pagination[pageSize]=${pagination.pageSize}`,
+      {
+         revalidateOnFocus: true,
+      }
+   );
+
+   useEffect(() => {
+      console.log('response', response);
+      if (response) {
+         setNews([...news, ...response.data]);
+         setLoading(false);
+      } else {
+         setLoading(true);
+      }
+   }, [response]);
+
    useEffect(() => {
       const text = new AnimatedAppearText([['Latest&nbsp']]);
-   }, []);
+      if(hiven.attributes.news_banner.data?.attributes.url) setBannerSource(hiven.attributes.news_banner.data?.attributes?.url);
+   }, [hiven]);
+
+   const handleLoadMore = () => {
+      setPagination({ ...pagination, page: pagination.page + 1 });
+   };
+
+   const renderLoadMorePost = useMemo(() => {
+      if (!response) return <></>;
+
+      const {
+         meta: { pagination },
+      } = response;
+      if (pagination.page >= pagination.pageCount) return <></>;
+
+      return (
+         <div className="load-more-post">
+            <span data-magnetic onClick={handleLoadMore}>
+               <div className="load-more-post_button">LOAD MORE POST</div>
+            </span>
+         </div>
+      );
+   }, [response]);
 
    return (
       <>
@@ -20,7 +72,10 @@ const News = () => {
          </Head>
 
          <main style={{ height: 'auto' }}>
-            <div className="news-banner__container">
+            <div
+               className="news-banner__container"
+               style={{ backgroundImage: `url(${bannerSource})` }}
+            >
                <div className="about-us-banner__hexagon-container">
                   <div className="news-banner__hexagon__inner">
                      <div
@@ -64,39 +119,20 @@ const News = () => {
                         </h3>
                      </div>
                      <div className="cards-grid">
-                        <NewsCard
-                           url="https://www.dealstreetasia.com/stories/cj-international-asia-kk-fund-jv-296381"
-                           banner={
-                              'https://cdn.dealstreetasia.com/uploads/2022/06/1st-picture-scaled-e1655137376173.jpg'
-                           }
-                        />
-                        {/* <NewsCard
-                           url="https://www.dealstreetasia.com/stories/cj-international-asia-kk-fund-jv-296381"
-                           banner={
-                              'https://cdn.dealstreetasia.com/uploads/2022/06/1st-picture-scaled-e1655137376173.jpg'
-                           }
-                        />
-                        <NewsCard
-                           url="https://www.dealstreetasia.com/stories/cj-international-asia-kk-fund-jv-296381"
-                           banner={
-                              'https://cdn.dealstreetasia.com/uploads/2022/06/1st-picture-scaled-e1655137376173.jpg'
-                           }
-                        />
-                        <NewsCard
-                           url="https://www.dealstreetasia.com/stories/cj-international-asia-kk-fund-jv-296381"
-                           banner={
-                              'https://cdn.dealstreetasia.com/uploads/2022/06/1st-picture-scaled-e1655137376173.jpg'
-                           }
-                        /> */}
+                        {news.length > 0 &&
+                           news.map((item, idx) => (
+                              <NewsCard key={idx} data={item.attributes} />
+                           ))}
+                        {loading &&
+                           Array.from(new Array(pagination.pageSize)).map((_, idx) => (
+                              <NewsCardSkeleton key={idx} />
+                           ))}
                      </div>
+
+                     {renderLoadMorePost}
                   </div>
                </div>
             </div>
-            {/* <div className="load-more-post">
-               <span data-magnetic>
-                  <div className="load-more-post_button">LOAD MORE POST</div>
-               </span>
-            </div> */}
          </main>
       </>
    );

@@ -12,7 +12,7 @@ import {
    Divider,
    Grid,
    Typography,
-   Label
+   Label,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
@@ -21,6 +21,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import axiosClient from '@components/api-client/axios-client';
+import { toast } from 'react-toastify';
 
 const schema = yup.object().shape({
    content: yup.array().of(
@@ -31,18 +33,22 @@ const schema = yup.object().shape({
             .matches(
                /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/
             ),
-         description: yup.string().required().label('Description'),  
-         logo: yup.mixed().test('required', 'Please select an image', (value) => value?.size),
-         image: yup.mixed().test('required', 'Please select an image', (value) => value?.size),
+         description: yup.string().required().label('Description'),
+         logo: yup
+            .mixed()
+            .test('required', 'Please select an image', (value) => value?.size),
+         image: yup
+            .mixed()
+            .test('required', 'Please select an image', (value) => value?.size),
       })
-   ),  
+   ),
 });
 
 export function CompanyInfoEdit({ onSave }) {
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
    const hiven = useSelector((x) => x.hiven.data);
 
-   const formMethods = useForm({   
+   const formMethods = useForm({
       resolver: yupResolver(schema),
       defaultValues: {
          content: [
@@ -50,16 +56,16 @@ export function CompanyInfoEdit({ onSave }) {
                url: '',
                description: '',
                logo: {},
-               image: {},         
+               image: {},
             },
             {
                url: '',
                description: '',
                logo: {},
-               image: {},         
-            }
-         ] 
-       }
+               image: {},
+            },
+         ],
+      },
    });
 
    const {
@@ -71,13 +77,13 @@ export function CompanyInfoEdit({ onSave }) {
    useEffect(() => {
       if (hiven?.id) {
          const formData = hiven.attributes.corporate_profile
-         ? hiven.attributes.corporate_profile.map((content) => ({
-               url: content.url,
-               description: content.description,
-               logo: content.logo.data.attributes,
-               image: content.image.data.attributes,
-           }))
-         : [];
+            ? hiven.attributes.corporate_profile.map((content) => ({
+                 url: content.url,
+                 description: content.description,
+                 logo: content.logo.data.attributes,
+                 image: content.image.data.attributes,
+              }))
+            : [];
 
          reset({
             content: formData,
@@ -86,14 +92,15 @@ export function CompanyInfoEdit({ onSave }) {
    }, [hiven?.id]);
 
    const handleSave = handleSubmit(async (values) => {
-      {JSON.stringify(values)}
+      {
+         JSON.stringify(values);
+      }
       if (!hiven.id) return;
 
-      console.log('🚀 ~ file CompanyInfoEdit.jsx ~ line 68 ~ handleSave ~ ̥', values);
       if (onSave) {
          const payload = { ...values };
          await onSave(payload);
-      }    
+      }
 
       const updatedImage = values.content.map(async (ct, idx) => {
          if (ct.image.url) {
@@ -105,10 +112,8 @@ export function CompanyInfoEdit({ onSave }) {
          try {
             const formDataImage = new FormData();
             formDataImage.append(`files`, ct.image);
-            const resImg = await axios.post(`/upload`, formDataImage, {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            });
-            return resImg.data[0];
+            const resImg = await axiosClient.post(`/upload`, formDataImage);
+            return resImg[0];
          } catch (error) {
             console.log(error);
          }
@@ -124,135 +129,120 @@ export function CompanyInfoEdit({ onSave }) {
          try {
             const formDataLogo = new FormData();
             formDataLogo.append(`files`, ct.logo);
-            const resLg = await axios.post(`/upload`, formDataLogo, {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            });
-            return resLg.data[0];
+            const resLg = await axiosClient.post(`/upload`, formDataLogo);
+            return resLg[0];
          } catch (error) {
             console.log(error);
          }
       });
 
-      const uploadedupdatedImage = await Promise.all(updatedImage);
-      const uploadedupdatedLogo = await Promise.all(updatedLogo);
+      const uploadedImages = await Promise.all(updatedImage);
+      const uploadedLogos = await Promise.all(updatedLogo);
 
-      try { 
-         const titleRes = await axios.put(
-            `/hivens/${hiven.id}`,
-            {
-               data: {
-                  corporate_profile: values.content.map((item,index) => {
-                     return{
-                        url: item.url,
-                        description: item.description,
-                        logo: uploadedupdatedLogo[index],
-                        image: uploadedupdatedImage[index],
-                     }
-                  })
-               }
+      try {
+         const titleRes = await axiosClient.put(`/hivens/${hiven.id}`, {
+            data: {
+               corporate_profile: values.content.map((item, index) => {
+                  return {
+                     url: item.url,
+                     description: item.description,
+                     logo: uploadedImages[index],
+                     image: uploadedLogos[index],
+                  };
+               }),
             },
-            {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            }
-         );
-      } catch (error) {
-         console.log(error);
+         });
+         toast.success('Update Corporate Profile Success.');
+      } catch ({ error }) {
+         toast.error(error.message);
       }
-      
    });
 
    return (
       <Card sx={{ fontSize: 16 }}>
          <CardHeader title="Corporate Profile" />
          <Divider />
-            <FormProvider {...formMethods}>
-               <form onSubmit={handleSubmit(handleSave)}>
+         <FormProvider {...formMethods}>
+            <form onSubmit={handleSubmit(handleSave)}>
                {Array.from(new Array(2)).map((_, idx) => (
-               <CardContent key={idx}>
-                  <Grid container columnSpacing={3} sx={{ mb: 2 }} alignItems="center">
-                     <Grid item md={12} xs={12}>
-                        <TextInputField
-                           disabled={isSubmitting}
-                           name={`content.${idx}.url`}
-                           label={`url`}
-                           multiline
-                           rows={4}
-                        />
-                     </Grid>
-                  </Grid>
-                  <Grid container columnSpacing={3} sx={{ mb: 2 }} alignItems="center">
-                     <Grid item md={12} xs={12}>
-                        <TextInputField
-                           disabled={isSubmitting}
-                           name={`content.${idx}.description`}
-                           label={`description`}
-                           multiline
-                           rows={4}
-                        />
-                     </Grid>
-                  </Grid>
-                  <Divider />
-
-                  <Typography sx={{mb:4}}variant="subtitle1">Images</Typography>
-                  <Grid
-                     sm={12}
-                     container
-                     columnSpacing={3}
-                     Spacing={3}
-                     sx={{ mb: 4, ml: 1}}
-                     alignItems="center"
-                  >
-                     <Grid
-                        sm={12} md={6}
-                        container
-                        columnSpacing={3}
-                        sx={{ mb: 4 }}
-                        alignItems="center"
-                     >
-                        <Grid item xs={12}>
-                           <ImageUploadField
+                  <CardContent key={idx}>
+                     <Typography sx={{ mb: 4 }} variant="subtitle1">
+                        {`Section ${idx + 1}`}
+                     </Typography>
+                     <Grid container columnSpacing={3} sx={{ mb: 2 }} alignItems="center">
+                        <Grid item md={12} xs={12}>
+                           <TextInputField
                               disabled={isSubmitting}
-                              name={`content.${idx}.logo`}
-                              label="logo"
+                              name={`content.${idx}.url`}
+                              label={`URL`}
+                           />
+                        </Grid>
+                     </Grid>
+                     <Grid container columnSpacing={3} sx={{ mb: 2 }} alignItems="center">
+                        <Grid item md={12} xs={12}>
+                           <TextInputField
+                              disabled={isSubmitting}
+                              name={`content.${idx}.description`}
+                              label={`Description`}
                               multiline
                               rows={4}
                            />
                         </Grid>
-                        <Grid item xs={12} alignItems="center">
-                           <label>
-                                 {`logo`}
-                           </label>
-                        </Grid>
                      </Grid>
 
                      <Grid
-                        sm={12} md={6}
+                        sm={12}
                         container
                         columnSpacing={3}
-                        sx={{ mb: 4 }}
+                        Spacing={3}
+                        sx={{ mb: 4, ml: 1 }}
                         alignItems="center"
                      >
-                        <Grid item xs={12}>
-                           <ImageUploadField
-                              disabled={isSubmitting}
-                              name={`content.${idx}.image`}
-                              label="image"
-                              multiline
-                              rows={4}
-                           />
+                        <Grid
+                           sm={12}
+                           md={6}
+                           container
+                           columnSpacing={3}
+                           sx={{ mb: 4 }}
+                           alignItems="center"
+                        >
+                           <Grid item xs={12}>
+                              <ImageUploadField
+                                 disabled={isSubmitting}
+                                 name={`content.${idx}.logo`}
+                                 label="logo"
+                              />
+                           </Grid>
+                           <Grid item xs={12} alignItems="center">
+                              <label>{`Image`}</label>
+                           </Grid>
                         </Grid>
-                        <Grid item xs={12} alignItems="center">
-                           <label>
-                                 {`image`}
-                           </label>
+
+                        <Grid
+                           sm={12}
+                           md={6}
+                           container
+                           columnSpacing={3}
+                           sx={{ mb: 4 }}
+                           alignItems="center"
+                        >
+                           <Grid item xs={12}>
+                              <ImageUploadField
+                                 disabled={isSubmitting}
+                                 name={`content.${idx}.image`}
+                                 label="image"
+                              />
+                           </Grid>
+                           <Grid item xs={12} alignItems="center">
+                              <label>{`Logo`}</label>
+                           </Grid>
                         </Grid>
                      </Grid>
-                  </Grid>
-                  <Divider />
-               </CardContent>
+                     <Divider />
+                  </CardContent>
                ))}
-               </form>
-            </FormProvider>
+            </form>
+         </FormProvider>
          <CardActions sx={{ m: 2, justifyContent: 'space-between' }}>
             <Box sx={{ display: 'flex', gap: 2 }}>
                <Button

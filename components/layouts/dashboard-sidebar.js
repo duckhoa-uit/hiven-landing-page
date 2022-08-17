@@ -1,4 +1,8 @@
 /* eslint-disable react/jsx-max-props-per-line */
+import IconHome from '@components/icons/ic-home';
+import IconInfo from '@components/icons/ic-info';
+import IconNews from '@components/icons/ic-news';
+import IconLogo from '@components/icons/logo';
 import { Box, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -9,13 +13,13 @@ import { NavItem } from './nav-item';
 
 const items = [
    {
-      href: '/admin',
-      icon: <IconPerson width={24} height={24} />,
+      href: '/admin/home',
+      icon: <IconHome />,
       title: 'Home',
    },
    {
       href: '/admin/about-us',
-      icon: <IconPerson width={24} height={24} />,
+      icon: <IconInfo />,
       title: 'About Us',
    },
    {
@@ -25,7 +29,7 @@ const items = [
    },
    {
       href: '/admin/news',
-      icon: <IconPerson width={24} height={24} />,
+      icon: <IconNews />,
       title: 'News',
    },
 ];
@@ -42,10 +46,8 @@ const Content = ({ lgUp }) => {
          <div>
             <Box sx={{ p: 3, display: 'flex', justifyContent: 'center' }}>
                <NextLink href="/admin" passHref>
-                  <a style={{ mt: 2, textDecoration: 'none' }}>
-                     <Typography variant="h3" sx={{ color: '#fff' }}>
-                        Hiven
-                     </Typography>
+                  <a style={{ mt: 2, textDecoration: 'none', color: 'inherit' }}>
+                     <IconLogo />
                   </a>
                </NextLink>
             </Box>
@@ -63,10 +65,10 @@ const Content = ({ lgUp }) => {
                   icon={item.icon}
                   href={item.href}
                   title={lgUp ? item.title : ''}
+                  // title={item.title}
                />
             ))}
          </Box>
-         {/* <Divider sx={{ borderColor: '#394f73' }} /> */}
       </Box>
    );
 };
@@ -78,13 +80,12 @@ export const DashboardSidebar = (props) => {
       defaultMatches: true,
       noSsr: false,
    });
-
    useEffect(
       () => {
          if (!router.isReady) {
             return;
          }
-
+         // if(lgUp) !open
          if (open) {
             onClose?.();
          }
@@ -93,17 +94,38 @@ export const DashboardSidebar = (props) => {
       [router.asPath]
    );
 
+   if (lgUp) {
+      return (
+         <Drawer
+            anchor="left"
+            open
+            PaperProps={{
+               sx: {
+                  backgroundColor: 'neutral.900',
+                  color: '#FFFFFF',
+                  width: lgUp ? 280 : 100,
+               }
+            }}
+            variant="permanent"
+         >
+            <Content lgUp={lgUp} />
+         </Drawer>
+      )
+   }
+
    return (
       <Drawer
          anchor="left"
-         open
+         open={open}
          PaperProps={{
             sx: {
-               backgroundColor: '#252E42',
+               backgroundColor: 'neutral.900',
                color: '#FFFFFF',
                width: lgUp ? 280 : 100,
+               // width: 280,
             },
          }}
+         sx={{ zIndex: theme => theme.zIndex.appBar + 100 }}
          variant="permanent"
       >
          <Content lgUp={lgUp} />

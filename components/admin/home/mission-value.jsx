@@ -1,3 +1,4 @@
+import axiosClient from '@components/api-client/axios-client';
 import ImageUploadField from '@components/form-controls/image-upload-field';
 import IconReportProblem from '@components/icons/ic-report-problem';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -18,6 +19,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
@@ -37,7 +39,7 @@ export function MissionAndValueEdit() {
    });
 
    const {
-      formState: { isSubmitting, errors },
+      formState: { isSubmitting, isDirty },
       reset,
       handleSubmit,
    } = formMethods;
@@ -48,42 +50,38 @@ export function MissionAndValueEdit() {
       }
    }, [hiven?.id]);
 
-   const handleSave = handleSubmit(async (values) => {
+   const handleSave = handleSubmit(async ({ image }) => {
       if (!hiven.id) return;
 
-      console.log(
-         '🚀 ~ file: mission-value.jsx ~ line 56 ~ handleSave ~ ̥',
-         values,
-         hiven
-      );
-      try {
-         const formData = new FormData();
-         formData.append(`files`, values.image);
-         const res1 = await axios.post(`/upload`, formData, {
-            baseURL: 'https://hiven-api.herokuapp.com/api',
-         });
-         const newImage = res1.data[0];
 
-         const res = await axios.put(
-            `/hivens/${hiven.id}`,
-            {
-               data: {
-                  mission_value_image: newImage,
-               },
+      try {
+         let newImage;
+         if (image.url) {
+            newImage = {
+               id: hiven.attributes.mission_value_image.data.id,
+               ...image,
+            };
+         } else {
+            const formData = new FormData();
+            formData.append(`files`, image);
+            const uploadImage = await axiosClient.post(`/upload`, formData);
+            newImage = uploadImage[0];
+         }
+
+         const res = await axiosClient.put(`/hivens/${hiven.id}`, {
+            data: {
+               mission_value_image: newImage,
             },
-            {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            }
-         );
-         console.log('🚀 ~ file: mission-value.jsx ~ line 85 ~ handleSave ~ res', res);
-      } catch (error) {
-         console.log(error);
+         });
+         toast.success('Update Mission & Value Success.');
+      } catch ({ error }) {
+         toast.error(error.message);
       }
    });
 
    return (
       <Card sx={{ fontSize: 16, mt: 4 }}>
-         <CardHeader title="Mission And Value" />
+         <CardHeader title="Mission & Value" />
          <Divider />
          <CardContent>
             <FormProvider {...formMethods}>
@@ -101,14 +99,6 @@ export function MissionAndValueEdit() {
                            name="image"
                            label="Main Content"
                         />
-                     </Grid>
-                     <Grid item xs={12} alignItems="center">
-                        <label
-                           name="image"
-                           //   label={`Image-${idx+1}'s description`}
-                        >
-                           {`Image`}
-                        </label>
                      </Grid>
                   </Grid>
                </form>

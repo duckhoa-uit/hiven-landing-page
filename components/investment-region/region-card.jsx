@@ -28,10 +28,9 @@ const RegionCard = memo(({ name, containerWidth, containerHeight, isSelected }) 
       >
          <div className="geography-map__card--container">
             <div className="head">
-               {info?.imgUrl && <Image src={info.imgUrl} alt={name} />}
+               {info?.imgUrl && <Image src={info.imgUrl} width={380} height={254} alt={name} priority />}
             </div>
-            {
-               windowWidth > 444 &&
+            {windowWidth > 444 && (
                <>
                   <div className="body">
                      <span className="body__no">{info?.no || ''}</span>Regions
@@ -45,7 +44,7 @@ const RegionCard = memo(({ name, containerWidth, containerHeight, isSelected }) 
                      <span className="foot__addr">{info?.address}</span>
                   </div>
                </>
-            }
+            )}
          </div>
       </div>
    );

@@ -1,10 +1,12 @@
 import { ConfirmDialog } from '@components/confirm-dialog/confirm-dialog';
+import IconAdd from '@components/icons/ic-add';
 import IconPencil from '@components/icons/ic-pencil';
 import IconReportProblem from '@components/icons/ic-report-problem';
 import IconTrash from '@components/icons/ic-trash';
 import {
    Avatar,
    Box,
+   Button,
    Card,
    CardHeader,
    IconButton,
@@ -21,6 +23,7 @@ import {
 import { formatDate } from '@utils/helper';
 import { deleteNews } from '@utils/hivenSlice';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -42,7 +45,7 @@ const headCells = [
    },
    {
       id: 'link',
-      align: 'center',
+      align: 'left',
       label: 'Link',
    },
    {
@@ -54,18 +57,38 @@ const headCells = [
 
 export default function NewsList() {
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
+   const [selectedId, setSelectedId] = useState('');
+   const [loading, setLoading] = useState(false);
    const newsList = useSelector((x) => x.hiven.news);
    const dispatch = useDispatch();
-   console.log('newsList', newsList);
+   const router = useRouter();
 
-   const handleDelete = async (id) => {
-      await dispatch(deleteNews(id));
+   const handleDelete = async () => {
       setOpenConfirmDialog(false);
+
+      setLoading(true);
+      await dispatch(deleteNews(selectedId));
+      setLoading(false);
+
+      setSelectedId('');
    };
 
    return (
       <Card sx={{ mt: 4 }}>
-         <CardHeader title="News List" />
+         <CardHeader
+            title={
+               <Stack direction="row" justifyContent="space-between" alignItems="center">
+                  <Typography variant="h4">News List</Typography>
+                  <Button
+                     startIcon={<IconAdd />}
+                     variant="contained"
+                     onClick={() => router.push('/admin/news/create')}
+                  >
+                     Add
+                  </Button>
+               </Stack>
+            }
+         />
          <Box sx={{ minWidth: 1050 }}>
             <Table>
                <TableHead>
@@ -78,9 +101,9 @@ export default function NewsList() {
                   </TableRow>
                </TableHead>
                <TableBody>
-                  {newsList
+                  {!loading && newsList
                      ? newsList.map((news) => (
-                          <TableRow hover key={news._id}>
+                          <TableRow hover key={news.id}>
                              <TableCell align="left">
                                 <Box
                                    sx={{
@@ -101,9 +124,22 @@ export default function NewsList() {
                                 {formatDate(news.createdAt)}
                              </TableCell>
                              <TableCell align="left">{news.content}</TableCell>
-                             <TableCell align="center">
-                                <Link href={news.link} style={{ color: 'inherit' }}>
-                                   {news.link}
+                             <TableCell align="left">
+                                <Link href={news.link} passHref>
+                                   <a target="_blank">
+                                      <Typography
+                                         color={'primary.light'}
+                                         style={{
+                                            fontSize: 14,
+                                            whiteSpace: 'nowrap',
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            maxWidth: '40ch',
+                                         }}
+                                      >
+                                         {news.link}
+                                      </Typography>
+                                   </a>
                                 </Link>
                              </TableCell>
 
@@ -112,7 +148,10 @@ export default function NewsList() {
                                    <Tooltip title="Delete" placement="top">
                                       <IconButton
                                          size="small"
-                                         onClick={() => setOpenConfirmDialog(true)}
+                                         onClick={() => {
+                                            setSelectedId(news.id);
+                                            setOpenConfirmDialog(true);
+                                         }}
                                       >
                                          <IconTrash width={20} />
                                       </IconButton>
@@ -153,17 +192,18 @@ export default function NewsList() {
 
          <ConfirmDialog
             icon={
-               <Avatar
-                  sx={{ bgcolor: 'rgba(209, 67, 67, 0.08)', color: 'rgb(209, 67, 67)' }}
-               >
+               <Avatar sx={{ bgcolor: 'rgba(209, 67, 67, 0.08)', color: '#c32f5b' }}>
                   <IconReportProblem />
                </Avatar>
             }
             isOpen={openConfirmDialog}
             title="Are you sure?"
-            body="Are you sure to delete this new?"
+            body="Are you sure to delete this news?"
             onSubmit={handleDelete}
-            onClose={() => setOpenConfirmDialog(false)}
+            onClose={() => {
+               setSelectedId('');
+               setOpenConfirmDialog(false);
+            }}
          />
       </Card>
    );

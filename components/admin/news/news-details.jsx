@@ -20,6 +20,12 @@ import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import axios from 'axios';
+import axiosClient from '@components/api-client/axios-client';
+import Loading from '@components/loading/loading';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { fetchHivenNews } from '@utils/hivenSlice';
 
 const schema = yup.object().shape({
    title: yup.string().required(),
@@ -29,8 +35,10 @@ const schema = yup.object().shape({
 });
 
 export function NewsDetailsCard({ newId }) {
+   const dispatch = useDispatch();
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
    const [loading, setLoading] = useState(false);
+   const router = useRouter();
 
    const formMethods = useForm({
       defaultValues: {
@@ -54,11 +62,9 @@ export function NewsDetailsCard({ newId }) {
       (async () => {
          try {
             setLoading(true);
-            const res = await axios.get(`/news/${newId}?populate=*`, {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            });
-            const newDetails = res.data.data.attributes;
-            console.log('newDetails', newDetails);
+            const res = await axiosClient.get(`/news/${newId}?populate=*`);
+            const newDetails = res.data.attributes;
+
             reset({
                title: newDetails.title,
                content: newDetails.content,
@@ -70,8 +76,8 @@ export function NewsDetailsCard({ newId }) {
                     }
                   : {},
             });
-         } catch (error) {
-            console.log(error);
+         } catch ({ error }) {
+            toast.error(error.message);
          } finally {
             setLoading(false);
          }
@@ -85,11 +91,8 @@ export function NewsDetailsCard({ newId }) {
          try {
             const formData = new FormData();
             formData.append(`files`, values.image);
-            const res = await axios.post(`/upload`, formData, {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            });
-            console.log(res);
-            return res.data[0];
+            const res = await axiosClient.post(`/upload`, formData);
+            return res[0];
          } catch (error) {
             console.log(error);
          }
@@ -97,39 +100,30 @@ export function NewsDetailsCard({ newId }) {
 
       if (newId) {
          try {
-            const res = await axios.put(
-               `/news/${newId}`,
-               {
-                  data: {
-                     ...values,
-                     image: newImage,
-                  },
+            const res = await axiosClient.put(`/news/${newId}`, {
+               data: {
+                  ...values,
+                  image: newImage,
                },
-               {
-                  baseURL: 'https://hiven-api.herokuapp.com/api',
-               }
-            );
-            console.log('res', res);
+            });
+            await dispatch(fetchHivenNews());
+            toast.success('Update News Success.');
          } catch (error) {
-            console.log(error);
+            toast.error(error.message);
          }
       } else {
          try {
-            const res = await axios.post(
-               `/news`,
-               {
-                  data: {
-                     ...values,
-                     image: newImage,
-                  },
+            const res = await axiosClient.post(`/news`, {
+               data: {
+                  ...values,
+                  image: newImage,
                },
-               {
-                  baseURL: 'https://hiven-api.herokuapp.com/api',
-               }
-            );
-            console.log('res', res);
-         } catch (error) {
-            console.log(error);
+            });
+            await dispatch(fetchHivenNews());
+            toast.success('Add News Success.');
+            router.push('/admin/news');
+         } catch ({ error }) {
+            toast.error(error.message);
          }
       }
    });
@@ -139,13 +133,13 @@ export function NewsDetailsCard({ newId }) {
          <Box
             sx={{
                width: '100%',
-               height: 300,
+               height: 'calc(100vh - 200px)',
                display: 'flex',
                alignItems: 'center',
                justifyContent: 'center',
             }}
          >
-            <CircularProgress />
+            <Loading />
          </Box>
       );
 
@@ -180,7 +174,7 @@ export function NewsDetailsCard({ newId }) {
                            rows={4}
                         />
                      </Grid>
-                     <Grid item md={12} xs={12}>
+                     <Grid item md={12} xs={12} sx={{ mt: 1 }}>
                         <ImageUploadField
                            disabled={isSubmitting}
                            name={`image`}

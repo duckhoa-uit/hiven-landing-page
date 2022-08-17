@@ -57,7 +57,7 @@ export const getCoordinate = (x, y, containerH) => {
    return { x, y };
 };
 
-const _dummyRegionData = {
+export const _dummyRegionData = {
    Singapore: {
       no: '06',
       address: '20 Cecil Street',

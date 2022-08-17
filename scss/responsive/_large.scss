@@ -252,7 +252,7 @@ header {
 }
 .news {
    &__inner {
-      padding: 0 60px;
+      padding: 0 60px 60px;
       .cards-grid {
          .card {
             margin-bottom: 40px;
@@ -264,7 +264,6 @@ header {
    grid-template-columns: 100%;
    justify-items: center;
    align-items: center;
-   padding-bottom: 80px;
    padding-top: 80px;
    grid-gap: 0;
 

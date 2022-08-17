@@ -1,3 +1,4 @@
+import axiosClient from '@components/api-client/axios-client';
 import ImageUploadField from '@components/form-controls/image-upload-field';
 import TextInputField from '@components/form-controls/text-input-field';
 import IconReportProblem from '@components/icons/ic-report-problem';
@@ -15,11 +16,11 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { toast } from 'react-toastify';
+import * as yup from 'yup';
 
 const schema = yup.object().shape({
    contentBusiness: yup.string().required(),
@@ -33,7 +34,7 @@ const schema = yup.object().shape({
    ),
 });
 
-export function BusinessAreaEdit({ onSave }) {
+export function BusinessAreaEdit() {
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
    const hiven = useSelector((x) => x.hiven.data);
 
@@ -70,15 +71,12 @@ export function BusinessAreaEdit({ onSave }) {
 
    useEffect(() => {
       if (hiven?.id) {
-         console.log(hiven.attributes.business_area_images);
          const formData = hiven.attributes.business_area_images
             ? hiven.attributes.business_area_images.map((image) => ({
-                 image: image.image.data.attributes,
+                 image: image.image.data?.attributes || {},
                  title: image.title,
               }))
             : [];
-
-         console.log('formData: ', formData);
 
          reset({
             contentBusiness: hiven.attributes.business_area_content || '',
@@ -90,10 +88,8 @@ export function BusinessAreaEdit({ onSave }) {
    const handleSave = handleSubmit(async (values) => {
       if (!hiven.id) return;
 
-      console.log(values);
       const updatedBanners = values.imagesBusiness.map(async (image, idx) => {
          if (image.image.url) {
-            console.log(hiven.attributes.business_area_images[idx]);
             return {
                id: hiven.attributes.business_area_images[idx].image.data.id,
                ...image.image,
@@ -102,36 +98,28 @@ export function BusinessAreaEdit({ onSave }) {
          try {
             const formData = new FormData();
             formData.append(`files`, image.image);
-            const res = await axios.post(`/upload`, formData, {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            });
-            console.log(res.data[0]);
-            return res.data[0];
+            const res = await axiosClient.post(`/upload`, formData);
+            return res[0];
          } catch (error) {
             console.log(error);
          }
       });
       const uploadedBanners = await Promise.all(updatedBanners);
       try {
-         const titleRes = await axios.put(
-            `/hivens/${hiven.id}`,
-            {
-               data: {
-                  business_area_content: values.contentBusiness,
-                  business_area_images: values.imagesBusiness.map((item, index) => {
-                     return {
-                        image: uploadedBanners[index],
-                        title: item.title,
-                     };
-                  }),
-               },
+         const titleRes = await axiosClient.put(`/hivens/${hiven.id}`, {
+            data: {
+               business_area_content: values.contentBusiness,
+               business_area_images: values.imagesBusiness.map((item, index) => {
+                  return {
+                     image: uploadedBanners[index],
+                     title: item.title,
+                  };
+               }),
             },
-            {
-               baseURL: 'https://hiven-api.herokuapp.com/api',
-            }
-         );
-      } catch (error) {
-         console.log(error);
+         });
+         toast.success('Update Business Area Success.');
+      } catch ({ error }) {
+         toast.error(error.message);
       }
    });
 
@@ -157,30 +145,33 @@ export function BusinessAreaEdit({ onSave }) {
                   <Typography sx={{ mb: 4 }} variant="subtitle1">
                      Images
                   </Typography>
-                  <Grid container columnSpacing={3} sx={{ ml: 1 }} alignItems="center">
+                  <Grid
+                     container
+                     columnSpacing={3}
+                     sx={{ pl: 3 }}
+                     justifyContent="center"
+                     alignItems="center"
+                  >
                      {Array.from(new Array(4)).map((_, idx) => (
                         <Grid
                            key={idx}
                            container
-                           columnSpacing={3}
+                           spacing={3}
                            sx={{ mb: 4 }}
-                           md={6}
-                           xl={3}
                            alignItems="center"
                         >
-                           <Grid item xs={12}>
+                           <Grid item sm={12} md={3}>
                               <ImageUploadField
                                  disabled={isSubmitting}
                                  name={`imagesBusiness.${idx}.image`}
                                  label="Main Content"
-                                 multiline
-                                 rows={4}
                               />
                            </Grid>
-                           <Grid item xs={11} alignItems="center">
+                           <Grid item sm={12} md={9}>
                               <TextInputField
                                  name={`imagesBusiness.${idx}.title`}
-                                 label={`Images-${idx + 1}'s title`}
+                                 label={`Images ${idx + 1}'s title`}
+                                 disabled={isSubmitting}
                               />
                            </Grid>
                         </Grid>

@@ -1,5 +1,5 @@
 import { AboutUsBannerEdit } from '@components/admin/about-us/about-us-banner';
-import { CompanyInfoEdit    } from '@components/admin/about-us/company-info';
+import { CompanyInfoEdit } from '@components/admin/about-us/company-info';
 import { ContactUsHexagonEdit } from '@components/admin/contact-us/contact-us-hexagon';
 import { ContactUsInfoEdit } from '@components/admin/contact-us/contact-us-info';
 import { ContactUsSendMailEdit } from '@components/admin/contact-us/contact-us-send-mail';
@@ -20,9 +20,7 @@ const AdminContact = () => {
       >
          <Container maxWidth={false}>
             <ContactUsHexagonEdit />
-            <br/>
             <ContactUsInfoEdit />
-            <br/>
             <ContactUsSendMailEdit />
          </Container>
       </Box>
