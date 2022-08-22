@@ -49,6 +49,7 @@ export const DashboardLayout = ({ children }) => {
          </Head>
          {loading ? (
             <Box
+               data-cursor="-hidden"
                sx={{
                   width: '100%',
                   height: '100vh',

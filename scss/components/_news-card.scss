@@ -24,6 +24,7 @@
    position: relative;
 
    &--skeleton {
+      margin-top: 0 !important;
       .card-body::after {
          background-color: transparent;
       }
@@ -106,7 +107,7 @@
       background-color: #f2f4f8;
       transition: background-color 0.2s ease;
    }
-   p{
+   p {
       max-height: 80px;
       overflow: hidden;
    }

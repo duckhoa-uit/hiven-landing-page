@@ -124,7 +124,7 @@ const AboutUs = () => {
                   <div className="CJIA" data-aos="fade-up">
                      <div
                         className="CJIA-website"
-                        style={{ backgroundImage: `url(${image})` }}
+                        style={{ backgroundImage: `url(${logo})` }}
                      ></div>
                      <a href={url} target="_blank" rel="noreferrer">
                         <MoreLink text={'View Website'} />
@@ -136,10 +136,10 @@ const AboutUs = () => {
                   </div>
                </div>
                <div className="about-us-hexagon-container">
-                  <HexagonImage source={logo} />
+                  <HexagonImage source={image} />
                </div>
                <div className="about-us-hexagon-container">
-                  <HexagonImage source={logo2} />
+                  <HexagonImage source={image2} />
                </div>
                <div className="about-us-group-content-final">
                   <div className="KKFung" data-aos="fade-up">
@@ -148,7 +148,7 @@ const AboutUs = () => {
                         style={{
                            width: 66,
                            height: 65,
-                           backgroundImage: `url(${image2})`,
+                           backgroundImage: `url(${logo2})`,
                            backgroundSize: 'cover',
                            backgroundPosition: 'center',
                         }}

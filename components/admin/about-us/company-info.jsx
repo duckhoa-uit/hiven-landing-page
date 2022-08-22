@@ -210,7 +210,7 @@ export function CompanyInfoEdit({ onSave }) {
                               />
                            </Grid>
                            <Grid item xs={12} alignItems="center">
-                              <label>{`Image`}</label>
+                              <label>{`Logo`}</label>
                            </Grid>
                         </Grid>
 
@@ -230,7 +230,7 @@ export function CompanyInfoEdit({ onSave }) {
                               />
                            </Grid>
                            <Grid item xs={12} alignItems="center">
-                              <label>{`Logo`}</label>
+                              <label>{`Image`}</label>
                            </Grid>
                         </Grid>
                      </Grid>

@@ -89,7 +89,7 @@ export default function NewsList() {
                </Stack>
             }
          />
-         <Box sx={{ minWidth: 1050 }}>
+         <Box sx={{ overflowX: 'scroll' }}>
             <Table>
                <TableHead>
                   <TableRow>
@@ -112,7 +112,13 @@ export default function NewsList() {
                                    }}
                                 >
                                    <Typography
-                                      sx={{ fontWeight: 500 }}
+                                      sx={{
+                                         fontWeight: 500,
+                                         whiteSpace: 'nowrap',
+                                         overflow: 'hidden',
+                                         textOverflow: 'ellipsis',
+                                         maxWidth: '20ch',
+                                      }}
                                       color="textPrimary"
                                       variant="body2"
                                    >
@@ -123,7 +129,17 @@ export default function NewsList() {
                              <TableCell align="center" sx={{ width: 200 }}>
                                 {formatDate(news.createdAt)}
                              </TableCell>
-                             <TableCell align="left">{news.content}</TableCell>
+                             <TableCell
+                                align="left"
+                                sx={{
+                                   whiteSpace: 'nowrap',
+                                   overflow: 'hidden',
+                                   textOverflow: 'ellipsis',
+                                   maxWidth: '40ch',
+                                }}
+                             >
+                                {news.content}
+                             </TableCell>
                              <TableCell align="left">
                                 <Link href={news.link} passHref>
                                    <a target="_blank">
@@ -134,7 +150,7 @@ export default function NewsList() {
                                             whiteSpace: 'nowrap',
                                             overflow: 'hidden',
                                             textOverflow: 'ellipsis',
-                                            maxWidth: '40ch',
+                                            maxWidth: '30ch',
                                          }}
                                       >
                                          {news.link}

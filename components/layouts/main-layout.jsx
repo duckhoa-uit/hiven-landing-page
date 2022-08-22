@@ -47,6 +47,7 @@ export default function MainLayout({ children }) {
                <title>Hiven</title>
             </Head>
             <Box
+               data-cursor="-hidden"
                sx={{
                   width: '100%',
                   height: '100vh',
