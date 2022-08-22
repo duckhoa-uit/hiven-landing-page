@@ -94,7 +94,7 @@ export function NewsDetailsCard({ newId }) {
             const res = await axiosClient.post(`/upload`, formData);
             return res[0];
          } catch (error) {
-            console.log(error);
+            // console.log(error);
          }
       })();
 

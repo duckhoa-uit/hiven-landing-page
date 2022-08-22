@@ -19,10 +19,11 @@ import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import axiosClient from '@components/api-client/axios-client';
+import { fetchHivenDetails } from '@utils/hivenSlice';
 
 const schema = yup.object().shape({
    content: yup.string().required(),
@@ -34,6 +35,7 @@ const schema = yup.object().shape({
 export function HeroSliderEdit({ onSubmit }) {
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
    const hiven = useSelector((x) => x.hiven.data);
+   const dispatch = useDispatch();
 
    const formMethods = useForm({
       defaultValues: {
@@ -76,7 +78,7 @@ export function HeroSliderEdit({ onSubmit }) {
             const res = await axiosClient.post(`/upload`, formData);
             return res[0];
          } catch (error) {
-            console.log(error);
+            // console.log(error);
          }
       });
 
@@ -91,6 +93,7 @@ export function HeroSliderEdit({ onSubmit }) {
                },
             },
          });
+         await dispatch(fetchHivenDetails());
          toast.success('Update Hero Slider Success.');
       } catch ({ error }) {
          toast.error(error.message);

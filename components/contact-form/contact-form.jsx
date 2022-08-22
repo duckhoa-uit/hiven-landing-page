@@ -16,11 +16,13 @@ const schema = yup.object({
       .matches(/^[A-Za-z\s]*$/, 'Only alphabets are allowed for this field')
       .required()
       .label('Name'),
-   email: yup.string().email().max(500).required().label('Email'),
+   email: yup.string().email().matches(/^[a-zA-Z0-9\.\@]+$/).max(500).required().label('Email'),
    phoneNumber: yup
       .string()
       .matches(
-         /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+         /^[\+\-\(\)\d\s]{3,30}$/,
+         // /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/,
+         // /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
          'Phone number is not valid'
       )
       .max(255)
@@ -69,7 +71,6 @@ export default function ContactForm() {
          //    'Content-Type': 'application/json',
          // });
          const res = await axiosClient.post(`/email`, formData);
-         console.log(res);
          toast.success(
             'Your submission has been sent, we will contact you as soon as possible.',
             {
@@ -79,7 +80,6 @@ export default function ContactForm() {
          reset();
       } catch (error) {
          toast.error('Something has error, please try again later.');
-         console.log(error);
       }
    });
 

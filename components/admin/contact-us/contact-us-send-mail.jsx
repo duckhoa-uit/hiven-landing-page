@@ -13,10 +13,11 @@ import {
    Grid,
 } from '@mui/material';
 import { Box } from '@mui/system';
+import { fetchHivenDetails } from '@utils/hivenSlice';
 import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 
@@ -27,6 +28,7 @@ const schema = yup.object().shape({
 export function ContactUsSendMailEdit({ onSave }) {
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
    const hiven = useSelector((x) => x.hiven.data);
+   const dispatch = useDispatch();
 
    const formMethods = useForm({
       defaultValues: {
@@ -58,9 +60,10 @@ export function ContactUsSendMailEdit({ onSave }) {
                contact_form_email_receive: email,
             },
          });
+         await dispatch(fetchHivenDetails());
+
          toast.success('Update Email Receive Contact Form Success.');
       } catch ({ error }) {
-         console.log('errro', error);
          toast.error(error.message);
       }
    });

@@ -12,11 +12,6 @@
          @include hexagon-button(70px);
       }
 
-      .icon {
-         //  width: 4px;
-         //  height:
-      }
-
       #prev-btn {
          & .icon {
             transform: rotate(180deg) translateY(50%);
@@ -54,12 +49,6 @@
    }
 }
 
-.about-us-content__container {
-   .container-full {
-      // padding: 5px;
-   }
-}
-
 .about-us-container-full {
 }
 
@@ -70,10 +59,6 @@
       }
    }
 }
-.geography-map__region--polyline {
-   // display: none;
-}
-
 .geography-map {
    &__card {
       .body,

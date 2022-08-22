@@ -7,8 +7,10 @@ import { useSelector } from 'react-redux';
 export default function MissionAndValue() {
    const hiven = useSelector((x) => x.hiven.data);
    const [bannerSource, setbannerSource] = useState('https://images.unsplash.com/photo-1462899006636-339e08d1844e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+   const [title, setTitle] = useState('Our mission is to find, invest, and help businesses grow. Our goal is to fund start-ups that are building the sustainable businesses of the future. ')
    useEffect(() => {
-      setbannerSource(hiven.attributes.mission_value_image.data?.attributes.url);
+      setbannerSource(hiven.attributes.mission_value?.image.data?.attributes.url) 
+      setTitle(hiven.attributes.mission_value?.title)
    }, [hiven]);
    return (
       <div className="mission-value__container">
@@ -39,9 +41,7 @@ export default function MissionAndValue() {
                         className="section-description color--blue-grey"
                         style={{ marginTop: 32, marginBottom: 32 }}
                      >
-                        Our mission is to find, invest, and help businesses grow. Our goal
-                        is to fund start-ups that are building the sustainable businesses
-                        of the future.
+                        {title}
                      </p>
                      <MoreLink text={'Find Out More'} link='/about-us'/>
                   </div>

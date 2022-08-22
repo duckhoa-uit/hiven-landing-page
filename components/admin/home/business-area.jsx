@@ -15,10 +15,11 @@ import {
    Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
+import { fetchHivenDetails } from '@utils/hivenSlice';
 import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 
@@ -37,6 +38,7 @@ const schema = yup.object().shape({
 export function BusinessAreaEdit() {
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
    const hiven = useSelector((x) => x.hiven.data);
+   const dispatch = useDispatch();
 
    const formMethods = useForm({
       defaultValues: {
@@ -101,7 +103,7 @@ export function BusinessAreaEdit() {
             const res = await axiosClient.post(`/upload`, formData);
             return res[0];
          } catch (error) {
-            console.log(error);
+            // console.log(error);
          }
       });
       const uploadedBanners = await Promise.all(updatedBanners);
@@ -117,6 +119,8 @@ export function BusinessAreaEdit() {
                }),
             },
          });
+         await dispatch(fetchHivenDetails());
+
          toast.success('Update Business Area Success.');
       } catch ({ error }) {
          toast.error(error.message);

@@ -15,11 +15,12 @@ import {
    Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
+import { fetchHivenDetails } from '@utils/hivenSlice';
 import axios from 'axios';
 import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 
@@ -47,6 +48,7 @@ const labels = [
 export function InvestmentEdit() {
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
    const hiven = useSelector((x) => x.hiven.data);
+   const dispatch = useDispatch();
 
    const formMethods = useForm({
       defaultValues: {
@@ -93,7 +95,7 @@ export function InvestmentEdit() {
    } = formMethods;
 
    useEffect(() => {
-      const formData = hiven.attributes.investment_region
+      const formData = hiven.attributes?.investment_region
          ? hiven.attributes.investment_region.map((region) => ({
               title: region.title,
               description: region.description,
@@ -135,6 +137,8 @@ export function InvestmentEdit() {
                })),
             },
          });
+         await dispatch(fetchHivenDetails());
+
          toast.success('Update Investment Region Success.');
       } catch ({ error }) {
          toast.error(error.message);

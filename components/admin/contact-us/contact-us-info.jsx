@@ -20,12 +20,14 @@ import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
 import { useState, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axiosClient from '@components/api-client/axios-client';
 import { toast } from 'react-toastify';
+import { fetchHivenDetails } from '@utils/hivenSlice';
 
-const phoneRegExp =
-   /^[\+]?[(]?[0-9]{2,3}[)]?[-\s\.]?[0-9]{3,4}[-\s\.]?[0-9]{4,6}$/im;
+const phoneRegExp = /^[\+\-\(\)\d\s]{3,30}$/
+// /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
+   // /^[\+]?[(]?[0-9]{2,3}[)]?[-\s\.]?[0-9]{3,4}[-\s\.]?[0-9]{4,6}$/im;
 
 const schema = yup.object().shape({
    contact_address: yup.string().max(1000).required(),
@@ -39,6 +41,7 @@ const schema = yup.object().shape({
 export function ContactUsInfoEdit() {
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
    const hiven = useSelector((x) => x.hiven.data);
+   const dispatch = useDispatch();
 
    const formMethods = useForm({
       defaultValues: {
@@ -76,9 +79,10 @@ export function ContactUsInfoEdit() {
                contact_email: values.contact_email,
             },
          });
+         await dispatch(fetchHivenDetails());
+
          toast.success('Update Contact Information Success.');
       } catch ({ error }) {
-         console.log('errro', error);
          toast.error(error.message);
       }
    });

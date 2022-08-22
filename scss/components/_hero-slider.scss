@@ -31,7 +31,6 @@
          object-fit: cover;
       }
       .word {
-         // opacity: 0;
          animation: up 1.5s;
          animation-delay: 0.5s;
       }
@@ -119,7 +118,6 @@
    &__content {
       position: absolute;
       bottom: 60px;
-      // left: 260px;
       width: 100%;
       max-width: 1800px;
       padding: 0 260px;

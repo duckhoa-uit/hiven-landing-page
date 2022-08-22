@@ -41,7 +41,6 @@ const AdminLogin = () => {
          localStorage.setItem('user', user);
          router.push('/admin/home');
       } catch ({ error }) {
-         console.log(error);
          toast.error(error.message);
       }
    });

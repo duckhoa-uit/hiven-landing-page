@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 export const fetchHivenDetails = createAsyncThunk('hiven/fetchDetails', async () => {
    try {
       const res = await axiosClient.get(
-         `/hivens?populate=hero_slider.banners&populate=investment_region.image&populate=business_area_images.image&populate=mission_value_image&populate=investment_region&populate=about_us_banner&populate=corporate_profile.image&populate=corporate_profile.logo&populate=news_banner&populate=contact_banner`
+         `/hivens?populate=hero_slider.banners&populate=investment_region.image&populate=business_area_images.image&populate=mission_value&populate=mission_value.image&populate=investment_region&populate=about_us_banner&populate=corporate_profile.image&populate=corporate_profile.logo&populate=news_banner&populate=contact_banner`
       );
       return res.data[0];
    } catch (error) {

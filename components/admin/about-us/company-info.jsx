@@ -19,10 +19,11 @@ import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
 import { useState, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import axiosClient from '@components/api-client/axios-client';
 import { toast } from 'react-toastify';
+import { fetchHivenDetails } from '@utils/hivenSlice';
 
 const schema = yup.object().shape({
    content: yup.array().of(
@@ -47,6 +48,7 @@ const schema = yup.object().shape({
 export function CompanyInfoEdit({ onSave }) {
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
    const hiven = useSelector((x) => x.hiven.data);
+   const dispatch = useDispatch();
 
    const formMethods = useForm({
       resolver: yupResolver(schema),
@@ -92,15 +94,7 @@ export function CompanyInfoEdit({ onSave }) {
    }, [hiven?.id]);
 
    const handleSave = handleSubmit(async (values) => {
-      {
-         JSON.stringify(values);
-      }
       if (!hiven.id) return;
-
-      if (onSave) {
-         const payload = { ...values };
-         await onSave(payload);
-      }
 
       const updatedImage = values.content.map(async (ct, idx) => {
          if (ct.image.url) {
@@ -115,7 +109,7 @@ export function CompanyInfoEdit({ onSave }) {
             const resImg = await axiosClient.post(`/upload`, formDataImage);
             return resImg[0];
          } catch (error) {
-            console.log(error);
+            // console.log(error);
          }
       });
 
@@ -132,7 +126,7 @@ export function CompanyInfoEdit({ onSave }) {
             const resLg = await axiosClient.post(`/upload`, formDataLogo);
             return resLg[0];
          } catch (error) {
-            console.log(error);
+            // console.log(error);
          }
       });
 
@@ -140,7 +134,7 @@ export function CompanyInfoEdit({ onSave }) {
       const uploadedLogos = await Promise.all(updatedLogo);
 
       try {
-         const titleRes = await axiosClient.put(`/hivens/${hiven.id}`, {
+         await axiosClient.put(`/hivens/${hiven.id}`, {
             data: {
                corporate_profile: values.content.map((item, index) => {
                   return {
@@ -152,6 +146,8 @@ export function CompanyInfoEdit({ onSave }) {
                }),
             },
          });
+         await dispatch(fetchHivenDetails());
+
          toast.success('Update Corporate Profile Success.');
       } catch ({ error }) {
          toast.error(error.message);

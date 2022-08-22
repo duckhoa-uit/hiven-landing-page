@@ -16,7 +16,6 @@ async function emailHandler(req, res) {
       },
       secure: true,
    });
-   console.log(req.body);
 
    const mailData = {
       from: `Hiven`,
@@ -41,10 +40,8 @@ async function emailHandler(req, res) {
    await new Promise((resolve, reject) => {
       transporter.sendMail(mailData, function (err, info) {
          if (err) {
-            console.log(err);
             reject(err);
          } else {
-            console.log(info);
             resolve(info);
          }
       });

@@ -24,14 +24,15 @@ const News = () => {
    const { data: response, error } = useSWR(
       `/news?populate=*&pagination[page]=${pagination.page}&pagination[pageSize]=${pagination.pageSize}`,
       {
-         revalidateOnFocus: true,
+         revalidateOnFocus: false,
       }
    );
 
    useEffect(() => {
-      console.log('response', response);
       if (response) {
          setNews([...news, ...response.data]);
+         console.log('news', ...news);
+         console.log('respond data', ...response.data);
          setLoading(false);
       } else {
          setLoading(true);

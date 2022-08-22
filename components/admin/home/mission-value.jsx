@@ -1,5 +1,6 @@
 import axiosClient from '@components/api-client/axios-client';
 import ImageUploadField from '@components/form-controls/image-upload-field';
+import TextInputField from '@components/form-controls/text-input-field';
 import IconReportProblem from '@components/icons/ic-report-problem';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -13,21 +14,22 @@ import {
    Grid,
 } from '@mui/material';
 import { Box } from '@mui/system';
-import axios from 'axios';
+import { fetchHivenDetails } from '@utils/hivenSlice';
 import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
    image: yup.mixed().test('required', 'Please select an image', (value) => value?.size),
+   title: yup.string().max(255).required().label('title'),
 });
 
 export function MissionAndValueEdit() {
    const hiven = useSelector((x) => x.hiven.data);
+   const dispatch = useDispatch();
 
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
 
@@ -46,19 +48,25 @@ export function MissionAndValueEdit() {
 
    useEffect(() => {
       if (hiven?.id) {
-         reset({ image: hiven.attributes.mission_value_image?.data?.attributes || {} });
+         console.log(hiven.attributes);
+         reset({
+            image: hiven.attributes.mission_value?.image.data?.attributes || {},
+            title: hiven.attributes.mission_value?.title,
+         });
       }
    }, [hiven?.id]);
 
-   const handleSave = handleSubmit(async ({ image }) => {
+   const handleSave = handleSubmit(async ({ image, title }) => {
       if (!hiven.id) return;
 
+      console.log('img', image);
+      console.log('title', title);
 
       try {
          let newImage;
          if (image.url) {
             newImage = {
-               id: hiven.attributes.mission_value_image.data.id,
+               id: hiven.attributes.mission_value.image.data.id,
                ...image,
             };
          } else {
@@ -67,12 +75,16 @@ export function MissionAndValueEdit() {
             const uploadImage = await axiosClient.post(`/upload`, formData);
             newImage = uploadImage[0];
          }
-
+         if (newImage) console.log(newImage);
          const res = await axiosClient.put(`/hivens/${hiven.id}`, {
             data: {
-               mission_value_image: newImage,
+               mission_value: {
+                  image: newImage,
+                  title: title,
+               },
             },
          });
+         await dispatch(fetchHivenDetails());
          toast.success('Update Mission & Value Success.');
       } catch ({ error }) {
          toast.error(error.message);
@@ -93,11 +105,20 @@ export function MissionAndValueEdit() {
                      sx={{ mb: 4 }}
                      alignItems="center"
                   >
-                     <Grid item xs={12}>
+                     <Grid item xs={12} md={3}>
                         <ImageUploadField
                            disabled={isSubmitting}
                            name="image"
                            label="Main Content"
+                        />
+                     </Grid>
+                     <Grid item sm={12} md={9} sx={{ mt: 2 }}>
+                        <TextInputField
+                           name={`title`}
+                           label={`content`}
+                           disabled={isSubmitting}
+                           multiline
+                           rows={4}
                         />
                      </Grid>
                   </Grid>

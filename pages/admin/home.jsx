@@ -4,7 +4,6 @@ import { InvestmentEdit } from '@components/admin/home/investment-region';
 import { MissionAndValueEdit } from '@components/admin/home/mission-value';
 import { DashboardLayout } from '@components/layouts/dashboard-layout';
 import { Box, Container } from '@mui/material';
-import { useSelector } from 'react-redux';
 
 const AdminHome = () => {
    return (

@@ -18,11 +18,12 @@ import {
 import { Box } from '@mui/system';
 import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FormProvider, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import axiosClient from '@components/api-client/axios-client';
 import { toast } from 'react-toastify';
+import { fetchHivenDetails } from '@utils/hivenSlice';
 
 const schema = yup.object().shape({
    image: yup.mixed().test('required', 'Please select an image', (value) => value?.size),
@@ -31,6 +32,7 @@ const schema = yup.object().shape({
 export function ContactUsHexagonEdit({ onSave }) {
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
    const hiven = useSelector((x) => x.hiven.data);
+   const dispatch = useDispatch();
 
    const formMethods = useForm({
       defaultValues: {
@@ -64,9 +66,10 @@ export function ContactUsHexagonEdit({ onSave }) {
                contact_banner: newImage,
             },
          });
+         await dispatch(fetchHivenDetails());
+
          toast.success('Update Hexagon Image Success.');
       } catch ({ error }) {
-         console.log('errro', error);
          toast.error(error.message);
       }
    });

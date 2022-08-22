@@ -93,16 +93,6 @@
 
       &--grid {
          gap: 80px;
-         // .business-area__image:nth-child(3){
-         //    .business-area__image-container{
-         //       span{
-         //          Image{
-         //             src: url("../../assets/images/03.svg");
-         //             margin-top: -20px;
-         //          }
-         //       }
-         //    }
-         // }
       }
    }
    &__content {
@@ -246,7 +236,7 @@
 }
 .card {
    max-height: 702px;
-
+   max-width: unset;
    &-body {
       padding: 32px;
       .view-more {

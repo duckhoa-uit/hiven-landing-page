@@ -13,11 +13,12 @@ import {
    Grid,
 } from '@mui/material';
 import { Box } from '@mui/system';
+import { fetchHivenDetails } from '@utils/hivenSlice';
 import axios from 'axios';
 import { ConfirmDialog } from 'components/confirm-dialog/confirm-dialog';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 
@@ -27,6 +28,7 @@ const schema = yup.object().shape({
 
 export function NewsBannerEdit() {
    const hiven = useSelector((x) => x.hiven.data);
+   const dispatch = useDispatch();
 
    const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
 
@@ -69,6 +71,8 @@ export function NewsBannerEdit() {
                news_banner: newImage,
             },
          });
+         await dispatch(fetchHivenDetails());
+
          toast.success('Update About Us Banner Success.');
       } catch ({ error }) {
          toast.error(error.message);
