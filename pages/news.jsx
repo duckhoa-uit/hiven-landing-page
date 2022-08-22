@@ -126,7 +126,7 @@ const News = () => {
                            news.map((item, idx) => (
                               <NewsCard key={idx} data={item.attributes} />
                            ))}
-                        {true &&
+                        {loading &&
                            Array.from(new Array(pagination.pageSize)).map((_, idx) => (
                               <NewsCardSkeleton key={idx} />
                            ))}
