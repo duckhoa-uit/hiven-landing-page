@@ -5,8 +5,11 @@
       // background-image: url(../../assets/images/about-us-banner.png);
       background-size: cover;
       background-position: center;
-      padding-top: 442px;
       position: relative;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
 
       &:before {
          content: '';
@@ -29,26 +32,20 @@
       }
    }
 
+   &__content {
+      padding-bottom: 60px;
+   }
+
    &__title {
       display: flex;
       justify-content: flex-start;
       font-weight: 300;
       font-size: 126px;
       line-height: 141px;
-      h2 {
-         font-family: 'Poppins';
-         font-style: normal;
+      h1 {
          font-weight: 700;
          font-size: 110px;
          line-height: 120px;
-         color: #ffffff;
-      }
-      h1 {
-         font-family: 'Poppins';
-         font-style: normal;
-         font-weight: 400;
-         font-size: 180px;
-         line-height: 181px;
       }
       .icon {
          display: flex;
@@ -59,11 +56,14 @@
          margin-left: 15px;
       }
    }
+   &__description {
+   }
    &__inner {
       padding: 0 200px;
       width: 100%;
       max-width: 1800px;
       z-index: 1;
+      color: #ffffff;
    }
 
    &__hexagon-group {

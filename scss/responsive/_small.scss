@@ -231,11 +231,18 @@
       }
    }
 }
+.about-us-banner__description {
+   font-weight: 600;
+   font-size: 16px;
+   line-height: 24px;
+}
 
 .about-us-banner__inner {
-   font-weight: 700;
-   font-size: 56px;
-   line-height: 61px;
+   h1 {
+      font-weight: 700;
+      font-size: 56px;
+      line-height: 61px;
+   }
 }
 
 .about-us-content__container {
@@ -465,7 +472,7 @@
       .card-body {
          padding: 20px;
 
-         h2 {
+         h3 {
             font-size: 24px;
             margin-bottom: 12px;
             line-height: 29px;

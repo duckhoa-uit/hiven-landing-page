@@ -3,7 +3,7 @@ import useBreakpoint from '@components/common/breakpoint/useBreakpoint';
 import ResizeDetector from '@components/common/resize-detector';
 import IconChevron from '@components/icons/ic-chevron';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { areas, getRegionInfo, _dummyRegionData } from './geography-manager';
+import { getRegionInfo, _dummyRegionData } from './geography-manager';
 import GeographyMap from './geography-map';
 import { useSelector } from 'react-redux';
 
@@ -11,20 +11,23 @@ const InvestmentRegion = () => {
    const { windowWidth } = useBreakpoint();
    const [selectedRegion, setSelectedRegion] = useState('');
    const [containerHeight, setContainerHeight] = useState(0);
-   const hiven = useSelector((x) => x.hiven.data);
-   useEffect(() => {
-      setSelectedRegion(areas[0]?.name || '');
-   }, []);
+   const areas = useSelector((x) => x.hiven.areas);
 
    useEffect(() => {
-      hiven.attributes.investment_region.map((region) => {
-         _dummyRegionData[region.title].address =  region.description
-         _dummyRegionData[region.title].imgUrl = region.image?.data.attributes.url
-      })
-   }, [hiven?.id]);
+      if (areas.length) {
+         setSelectedRegion(areas[0]?.name || '');
+      }
+   }, [areas]);
+
+   // useEffect(() => {
+   //    hiven.attributes.investment_region.map((region) => {
+   //       _dummyRegionData[region.title].address = region.description;
+   //       _dummyRegionData[region.title].imgUrl = region.image?.data.attributes.url;
+   //    });
+   // }, [hiven?.id]);
 
    const handleChangeRegion = useCallback((regionName) => {
-      if(regionName) setSelectedRegion(regionName);
+      if (regionName) setSelectedRegion(regionName);
    }, []);
 
    const regions = useMemo(() => {
@@ -78,7 +81,7 @@ const InvestmentRegion = () => {
                         <IconChevron />
                      </div>
                      <div className="body">
-                        <RegionInfoSmall name={region.name} />
+                        <RegionInfoSmall id={region.id} />
                      </div>
                   </div>
                );
@@ -88,7 +91,7 @@ const InvestmentRegion = () => {
    };
 
    const style = {};
-   if(windowWidth >= 1366) {
+   if (windowWidth >= 1366) {
       style.minHeight = containerHeight;
    }
 
@@ -110,9 +113,11 @@ const InvestmentRegion = () => {
                   Investment <br />
                   Area
                </h3>
-               <Breakpoint xl up>
-                  {regions}
-               </Breakpoint>
+               <div className="investment-region__control--items">
+                  <Breakpoint xl up>
+                     {regions}
+                  </Breakpoint>
+               </div>
             </div>
             <GeographyMap selected={selectedRegion} onChange={handleChangeRegion} />
             <Breakpoint lg down>
@@ -124,13 +129,14 @@ const InvestmentRegion = () => {
    );
 };
 
-const RegionInfoSmall = ({ name }) => {
+const RegionInfoSmall = ({ id, name }) => {
    const [info, setInfo] = useState(null);
+   const areas = useSelector((x) => x.hiven.areas);
 
    useEffect(() => {
-      const regionInfo = getRegionInfo(name);
+      const regionInfo = areas.find((i) => i.id === id) || getRegionInfo(name);
       setInfo(regionInfo);
-   }, [name]);
+   }, [id, name, areas]);
 
    return (
       <div className="region-info-small">
@@ -153,21 +159,23 @@ const RegionItem = (props) => {
    const ref = useRef();
    const onClick = () => {
       props.setSelectedRegion(props.name);
-      ref.current.scrollIntoView({behavior : 'smooth', block : 'nearest', inline : 'nearest'});
-   }
+      ref.current.scrollIntoView({
+         behavior: 'smooth',
+         block: 'nearest',
+         inline: 'nearest',
+      });
+   };
 
    return (
       <div
          ref={ref}
-         className={`investment-region__control--item ${
-            props.isActive ? 'active' : ''
-         }`}
+         className={`investment-region__control--item ${props.isActive ? 'active' : ''}`}
          onClick={onClick}
       >
          <span>{props.name}</span>
          <IconChevron />
       </div>
-   )
-}
+   );
+};
 
 export default InvestmentRegion;

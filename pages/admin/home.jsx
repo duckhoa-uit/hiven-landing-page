@@ -20,7 +20,6 @@ const AdminHome = () => {
             <HeroSliderEdit />
             <MissionAndValueEdit />
             <BusinessAreaEdit />
-            <InvestmentEdit />
          </Container>
       </Box>
    );

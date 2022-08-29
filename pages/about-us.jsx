@@ -64,114 +64,115 @@ const AboutUs = () => {
       }
    }, [hiven]);
    return (
-      <>
-         <Head>
-            <title>Hiven</title>
-            <meta name="description" content="Hiven" />
-            <link rel="icon" href="/favicon.ico" />
-         </Head>
-
-         <main style={{ height: 'auto' }}>
-            <div
-               className="about-us-banner__container"
-               style={{ backgroundImage: `url(${bannerSource})` }}
-            >
-               <div className="about-us-banner__hexagon-container">
-                  <div className="about-us-banner__hexagon__inner">
-                     <div
-                        className="about-us-banner__hexagon-group hexagon-group"
-                        data-aos="zoom-in"
-                     >
-                        <Hexagon className="hex1" />
-                        <Hexagon className="hex2" size="s" />
-                        <Hexagon className="hex3" size="m" />
-                     </div>
-                     <div
-                        className="about-us-banner__hexagon-group2 hexagon-group2"
-                        data-aos="zoom-in"
-                     >
-                        <Hexagon className="hex1" size="s" />
-                        <Hexagon className="hex2" size="m" />
-                     </div>
+      <main style={{ height: 'auto' }}>
+         <div
+            className="about-us-banner__container"
+            style={{ backgroundImage: `url(${bannerSource})` }}
+         >
+            <div className="about-us-banner__hexagon-container">
+               <div className="about-us-banner__hexagon__inner">
+                  <div
+                     className="about-us-banner__hexagon-group hexagon-group"
+                     data-aos="zoom-in"
+                  >
+                     <Hexagon className="hex1" />
+                     <Hexagon className="hex2" size="s" />
+                     <Hexagon className="hex3" size="m" />
+                  </div>
+                  <div
+                     className="about-us-banner__hexagon-group2 hexagon-group2"
+                     data-aos="zoom-in"
+                  >
+                     <Hexagon className="hex1" size="s" />
+                     <Hexagon className="hex2" size="m" />
                   </div>
                </div>
+            </div>
+            <div className="about-us-banner__content">
                <div className="container-full">
                   <div className="about-us-banner__inner">
                      <div className="about-us-banner__title" data-aos="fade-up">
-                        <h2>About Us</h2>
+                        <h1>About Us</h1>
                         <div className="icon">
                            <IconHexagonSmall width={28} height={32} />
                         </div>
                      </div>
+                     <h2
+                        className="about-us-banner__description"
+                        data-aos="fade-up"
+                        data-aos-delay="100"
+                     >
+                        Focused Venture Capital South East Asia
+                     </h2>
                   </div>
                </div>
             </div>
-            <div className="about-us-content">
-               <div className="about-us-content__container">
-                  <div className="container-full">
-                     <div className="about-us-content__inner">
-                        <div className="title">
-                           <pre data-aos="fade-down">Corporate</pre>
-                           <p data-aos="fade-up">Profile</p>
-                        </div>
+         </div>
+         <div className="about-us-content">
+            <div className="about-us-content__container">
+               <div className="container-full">
+                  <div className="about-us-content__inner">
+                     <div className="title">
+                        <pre data-aos="fade-down">Corporate</pre>
+                        <p data-aos="fade-up">Profile</p>
                      </div>
                   </div>
                </div>
             </div>
+         </div>
 
-            <div className="about-us-container-full">
-               <div className="about-us-group-content">
-                  <div className="CJIA" data-aos="fade-up">
-                     <div
-                        className="CJIA-website"
-                        style={{ backgroundImage: `url(${logo})` }}
-                     ></div>
-                     <a href={url} target="_blank" rel="noreferrer">
-                        <MoreLink text={'View Website'} />
-                     </a>
-                  </div>
-                  <div className="web-intro" data-aos="fade-up">
-                     <p className="intro">{description}</p>
-                     <p className="intro">{nextDescription}</p>
-                  </div>
-               </div>
-               <div className="about-us-hexagon-container">
-                  <HexagonImage source={image} />
-               </div>
-               <div className="about-us-hexagon-container">
-                  <HexagonImage source={image2} />
-               </div>
-               <div className="about-us-group-content-final">
-                  <div className="KKFung" data-aos="fade-up">
-                     <div
-                        className="KKFund-website"
-                        style={{
-                           width: 66,
-                           height: 65,
-                           backgroundImage: `url(${logo2})`,
-                           backgroundSize: 'cover',
-                           backgroundPosition: 'center',
-                        }}
-                     ></div>
-                     <h2 className="KKFung-Title">KK Fund Pte Ltd</h2>
-                  </div>
-                  <a href={url2} target="_blank" rel="noreferrer">
-                     <MoreLink
-                        text={'View Website'}
-                        data-aos="fade-up"
-                        data-aos-anchor=".KKFung"
-                     />
+         <div className="about-us-container-full">
+            <div className="about-us-group-content">
+               <div className="CJIA" data-aos="fade-up">
+                  <div
+                     className="CJIA-website"
+                     style={{ backgroundImage: `url(${logo})` }}
+                  ></div>
+                  <a href={url} target="_blank" rel="noreferrer">
+                     <MoreLink text={'View Website'} />
                   </a>
-                  <div className="web-intro" data-aos="fade-up">
-                     <p className="intro">{description2}</p>
-                     <p className="intro">{nextDescription2}</p>
-                  </div>
+               </div>
+               <div className="web-intro" data-aos="fade-up">
+                  <p className="intro">{description}</p>
+                  <p className="intro">{nextDescription}</p>
                </div>
             </div>
-            <ScrollToTop></ScrollToTop>
-            <ContactWithUs />
-         </main>
-      </>
+            <div className="about-us-hexagon-container">
+               <HexagonImage source={image} />
+            </div>
+            <div className="about-us-hexagon-container">
+               <HexagonImage source={image2} />
+            </div>
+            <div className="about-us-group-content-final">
+               <div className="KKFung" data-aos="fade-up">
+                  <div
+                     className="KKFund-website"
+                     style={{
+                        width: 66,
+                        height: 65,
+                        backgroundImage: `url(${logo2})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                     }}
+                  ></div>
+                  <h2 className="KKFung-Title">KK Fund Pte Ltd</h2>
+               </div>
+               <a href={url2} target="_blank" rel="noreferrer">
+                  <MoreLink
+                     text={'View Website'}
+                     data-aos="fade-up"
+                     data-aos-anchor=".KKFung"
+                  />
+               </a>
+               <div className="web-intro" data-aos="fade-up">
+                  <p className="intro">{description2}</p>
+                  <p className="intro">{nextDescription2}</p>
+               </div>
+            </div>
+         </div>
+         <ScrollToTop></ScrollToTop>
+         <ContactWithUs />
+      </main>
    );
 };
 AboutUs.Layout = MainLayout;

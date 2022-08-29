@@ -21,7 +21,7 @@ const News = () => {
       pageSize: 4,
    });
 
-   const { data: response, error } = useSWR(
+   const { data: response } = useSWR(
       `/news?populate=*&pagination[page]=${pagination.page}&pagination[pageSize]=${pagination.pageSize}`,
       {
          revalidateOnFocus: false,
@@ -31,8 +31,6 @@ const News = () => {
    useEffect(() => {
       if (response) {
          setNews([...news, ...response.data]);
-         console.log('news', ...news);
-         console.log('respond data', ...response.data);
          setLoading(false);
       } else {
          setLoading(true);

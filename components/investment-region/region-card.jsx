@@ -3,17 +3,20 @@ import React, { memo, useEffect, useMemo, useState } from 'react';
 import { getCoordinate, getRegionInfo } from './geography-manager';
 import Image from 'next/image';
 import useBreakpoint from '@components/common/breakpoint/useBreakpoint';
+import { useSelector } from 'react-redux';
 
-const RegionCard = memo(({ name, containerWidth, containerHeight, isSelected }) => {
+const RegionCard = memo(({ id, name, containerWidth, containerHeight, isSelected }) => {
+   const areas = useSelector((x) => x.hiven.areas);
+
    const [info, setInfo] = useState(null);
    const { windowWidth } = useBreakpoint();
 
    useEffect(() => {
-      const regionInfo = getRegionInfo(name);
+      const regionInfo = areas.find((i) => i.id === id) || getRegionInfo(name);
       setInfo(regionInfo);
-   }, [name]);
+   }, [id, name, areas]);
 
-   const coodinate = useMemo(() => {
+   const coordinate = useMemo(() => {
       return getCoordinate(0, 193, containerHeight);
    }, [containerHeight]);
 
@@ -21,14 +24,23 @@ const RegionCard = memo(({ name, containerWidth, containerHeight, isSelected }) 
       <div
          className={`geography-map__card ${isSelected ? 'active' : ''}`}
          style={{
-            bottom: `${containerHeight - (coodinate.y + 170)}px`,
+            bottom: `${containerHeight - (coordinate.y + 170)}px`,
             left: `${containerWidth}px`,
             transform: !isSelected ? 'none' : `translateX(-380px)`,
          }}
       >
          <div className="geography-map__card--container">
             <div className="head">
-               {info?.imgUrl && <Image src={info.imgUrl} width={380} height={254} alt={name} priority />}
+               {info?.image.data && (
+                  <Image
+                     src={info?.image.data.attributes.url}
+                     width={380}
+                     height={254}
+                     alt={name}
+                     objectFit="cover"
+                     priority
+                  />
+               )}
             </div>
             {windowWidth > 444 && (
                <>

@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import IconPerson from './ic-person';
+import IconRegion from './ic-region';
 import { NavItem } from './nav-item';
 
 const items = [
@@ -31,6 +32,11 @@ const items = [
       href: '/admin/news',
       icon: <IconNews />,
       title: 'News',
+   },
+   {
+      href: '/admin/investment-area',
+      icon: <IconRegion />,
+      title: 'Investment Area',
    },
 ];
 
@@ -104,13 +110,13 @@ export const DashboardSidebar = (props) => {
                   backgroundColor: 'neutral.900',
                   color: '#FFFFFF',
                   width: lgUp ? 280 : 100,
-               }
+               },
             }}
             variant="permanent"
          >
             <Content lgUp={lgUp} />
          </Drawer>
-      )
+      );
    }
 
    return (
@@ -125,7 +131,7 @@ export const DashboardSidebar = (props) => {
                // width: 280,
             },
          }}
-         sx={{ zIndex: theme => theme.zIndex.appBar + 100 }}
+         sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}
          variant="permanent"
       >
          <Content lgUp={lgUp} />

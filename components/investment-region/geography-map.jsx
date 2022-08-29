@@ -2,7 +2,8 @@
 import useBreakpoint from '@components/common/breakpoint/useBreakpoint';
 import ResizeDetector from '@components/common/resize-detector';
 import React, { useCallback, useMemo, useState, memo, Fragment } from 'react';
-import { areas, getCoordinate } from './geography-manager';
+import { useSelector } from 'react-redux';
+import { getCoordinate } from './geography-manager';
 import MapGraph from './map-graph';
 import MapGraphMini from './map-graph-mini';
 import Polyline from './polyline';
@@ -10,6 +11,7 @@ import RegionCard from './region-card';
 
 const GeographyMap = (props) => {
    const { selected, onChange } = props;
+   const areas = useSelector((x) => x.hiven.areas);
    const { windowWidth } = useBreakpoint();
    const [containerSize, setContainerSize] = useState({
       w: 0,
@@ -28,7 +30,7 @@ const GeographyMap = (props) => {
    if (windowWidth <= 444) {
       mapHeight = 557;
       mapMarginLeft = 60;
-      if(windowWidth <= 393) {
+      if (windowWidth <= 393) {
          mapMarginLeft = 45;
          mapHeight = 457;
       }
@@ -36,10 +38,13 @@ const GeographyMap = (props) => {
 
    return (
       <div className="geography-map">
-         <div className="geography-map__container" style={{
-            marginLeft: `-${mapMarginLeft}px`,
-            width: `calc(100% + ${mapMarginLeft}px)`,
-         }}>
+         <div
+            className="geography-map__container"
+            style={{
+               marginLeft: `-${mapMarginLeft}px`,
+               width: `calc(100% + ${mapMarginLeft}px)`,
+            }}
+         >
             {areas.map((region) => {
                return (
                   <RegionCard
@@ -74,12 +79,11 @@ const GeographyMap = (props) => {
                data-aos="zoom-in"
                data-aos-delay="300"
             >
-               {
-                  windowWidth <= 444 ?
-                     <MapGraphMini height={mapHeight} />
-                  :
-                     <MapGraph height={mapHeight} />
-               }
+               {windowWidth <= 444 ? (
+                  <MapGraphMini height={mapHeight} />
+               ) : (
+                  <MapGraph height={mapHeight} />
+               )}
             </div>
             <ResizeDetector onResize={onResize} />
          </div>
@@ -89,7 +93,7 @@ const GeographyMap = (props) => {
 
 const Region = ({ name, x, y, containerWidth, containerHeight, isSelected, onClick }) => {
    const { windowWidth } = useBreakpoint();
-   const coodinate = useMemo(() => {
+   const coordinate = useMemo(() => {
       return getCoordinate(x, y, containerHeight);
    }, [x, y, containerHeight]);
 
@@ -98,8 +102,8 @@ const Region = ({ name, x, y, containerWidth, containerHeight, isSelected, onCli
          <div
             className={`geography-map__region ${isSelected ? 'active' : ''}`}
             style={{
-               left: coodinate.x,
-               top: coodinate.y,
+               left: coordinate.x,
+               top: coordinate.y,
             }}
          >
             <div
@@ -118,8 +122,8 @@ const Region = ({ name, x, y, containerWidth, containerHeight, isSelected, onCli
          <div
             className={`geography-map__region mask ${isSelected ? 'active' : ''}`}
             style={{
-               left: coodinate.x,
-               top: coodinate.y,
+               left: coordinate.x,
+               top: coordinate.y,
             }}
          >
             <div

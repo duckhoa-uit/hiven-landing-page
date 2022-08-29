@@ -11,21 +11,26 @@ import { useSelector } from 'react-redux';
 
 const IMAGES = [
    {
+      id: 1,
       attributes: {
          url: heroSliderImage,
       },
    },
    {
+      id: 2,
+
       attributes: {
          url: heroSliderImage,
       },
    },
    {
+      id: 3,
       attributes: {
          url: heroSliderImage,
       },
    },
    {
+      id: 4,
       attributes: {
          url: heroSliderImage,
       },

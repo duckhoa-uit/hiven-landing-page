@@ -8,7 +8,7 @@ import gsap from 'gsap';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, CircularProgress } from '@mui/material';
-import { fetchHivenDetails, fetchHivenNews } from '@utils/hivenSlice';
+import { fetchCountries, fetchHivenDetails, fetchHivenNews } from '@utils/hivenSlice';
 import Loading from '@components/loading/loading';
 import Head from 'next/head';
 
@@ -19,7 +19,7 @@ export default function MainLayout({ children }) {
    useEffect(() => {
       (async () => {
          await dispatch(fetchHivenDetails());
-         await dispatch(fetchHivenNews());
+         await dispatch(fetchCountries());
       })();
 
       const userAgent = navigator.userAgent.toLowerCase();
@@ -43,9 +43,6 @@ export default function MainLayout({ children }) {
    if (!hiven?.id) {
       return (
          <>
-            <Head>
-               <title>Hiven</title>
-            </Head>
             <Box
                data-cursor="-hidden"
                sx={{

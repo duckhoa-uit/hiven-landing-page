@@ -22,7 +22,7 @@ class CardBody extends React.Component {
       return (
          <div className="card-body">
             <p className="date">{formatDate(createdAt)}</p>
-            <h2>{title}</h2>
+            <h3>{title}</h3>
             <p className="body-content">{content}</p>
             <div className="view-more">
                <MoreLink text={'Find Out More'} href={link} />

@@ -24,6 +24,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import MainContext from '@components/common/main-context/main-context';
 import { SWRConfig } from 'swr';
 import axiosClient from '@components/api-client/axios-client';
+import Head from 'next/head';
 
 const MyApp = memo(({ Component, pageProps }) => {
    const Layout = Component.Layout ?? EmptyLayout;
@@ -43,32 +44,37 @@ const MyApp = memo(({ Component, pageProps }) => {
    }, []);
 
    return (
-      <SWRConfig
-         value={{
-            fetcher: (url) => axiosClient.get(url).then((res) => res),
-            shouldRetryOnError: false,
-         }}
-      >
-         <Provider store={store}>
-            <BreakpointProvider>
-               <MainContext>
-                  <Layout>
-                     <Component {...pageProps} />
-                  </Layout>
-               </MainContext>
-            </BreakpointProvider>
+      <>
+         <Head>
+            <title>Unlocking Potential in South-East Asia</title>
+         </Head>
+         <SWRConfig
+            value={{
+               fetcher: (url) => axiosClient.get(url).then((res) => res),
+               shouldRetryOnError: false,
+            }}
+         >
+            <Provider store={store}>
+               <BreakpointProvider>
+                  <MainContext>
+                     <Layout>
+                        <Component {...pageProps} />
+                     </Layout>
+                  </MainContext>
+               </BreakpointProvider>
 
-            <ToastContainer
-               position="top-right"
-               autoClose={5000}
-               newestOnTop
-               draggable={false}
-               pauseOnVisibilityChange
-               closeOnClick
-               pauseOnHover
-            />
-         </Provider>
-      </SWRConfig>
+               <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  newestOnTop
+                  draggable={false}
+                  pauseOnVisibilityChange
+                  closeOnClick
+                  pauseOnHover
+               />
+            </Provider>
+         </SWRConfig>
+      </>
    );
 });
 

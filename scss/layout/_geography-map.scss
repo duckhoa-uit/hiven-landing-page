@@ -49,6 +49,15 @@ $region-control-width: 573px;
          cursor: default;
       }
 
+      &--items {
+         max-height: 700px;
+         overflow-y: scroll;
+
+         display: flex;
+         flex-direction: column;
+         gap: 16px;
+      }
+
       &--item {
          background-color: white;
          color: $color--blue;
@@ -72,6 +81,10 @@ $region-control-width: 573px;
             svg {
                color: $color--pink;
             }
+         }
+
+         &:last-child {
+            margin-bottom: 16px;
          }
       }
    }

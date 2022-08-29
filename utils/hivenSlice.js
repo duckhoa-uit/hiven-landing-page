@@ -13,6 +13,22 @@ export const fetchHivenDetails = createAsyncThunk('hiven/fetchDetails', async ()
    }
 });
 
+export const fetchCountries = createAsyncThunk('hiven/fetchCountries', async () => {
+   try {
+      const res = await axiosClient.get(`/countries?populate=*`);
+      return res.data.map((item, idx) => ({
+         id: item.id,
+         ...item.attributes,
+         no:
+            res.data.length - idx > 9
+               ? res.data.length - idx
+               : `0${res.data.length - idx}`,
+      }));
+   } catch (error) {
+      return [];
+   }
+});
+
 export const fetchHivenNews = createAsyncThunk('hiven/fetchNews', async () => {
    try {
       const res = await axiosClient.get(`/news?populate=*`);
@@ -23,7 +39,7 @@ export const fetchHivenNews = createAsyncThunk('hiven/fetchNews', async () => {
 });
 export const deleteNews = createAsyncThunk('hiven/deleteNews', async (id) => {
    try {
-      const res = await axiosClient.delete(`/news/${id}`);
+      await axiosClient.delete(`/news/${id}`);
       toast.success('Delete News Success.');
       return id;
    } catch ({ error }) {
@@ -37,11 +53,15 @@ const hivenSlice = createSlice({
    initialState: {
       data: {},
       news: [],
+      areas: [],
    },
    reducers: {},
    extraReducers: (builder) => {
       builder.addCase(fetchHivenNews.fulfilled, (state, action) => {
          state.news = action.payload;
+      });
+      builder.addCase(fetchCountries.fulfilled, (state, action) => {
+         state.areas = action.payload;
       });
       builder.addCase(deleteNews.fulfilled, (state, action) => {
          const deletedId = action.payload;
