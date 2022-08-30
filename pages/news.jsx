@@ -39,8 +39,10 @@ const News = () => {
 
    useEffect(() => {
       const text = new AnimatedAppearText([['Latest&nbsp']]);
-      if (hiven.attributes.news_banner.data?.attributes.url)
-         setBannerSource(hiven.attributes.news_banner.data?.attributes?.url);
+      if (hiven?.id) {
+         if (hiven.attributes.news_banner.data?.attributes.url)
+            setBannerSource(hiven.attributes.news_banner.data?.attributes?.url);
+      }
    }, [hiven]);
 
    const handleLoadMore = () => {

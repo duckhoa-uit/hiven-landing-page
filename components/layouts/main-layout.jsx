@@ -1,16 +1,13 @@
 import Footer from '@components/footer/footer';
 import Header from '@components/header/header';
-import ContactWithUs from '@components/contact-with-us/contact-with-us';
-import ScrollToTop from '@components/scroll-to-top/scroll-to-top';
-import Contact from 'pages/contact';
+import Loading from '@components/loading/loading';
 import MouseFollower from '@components/mouse-follower/mouse-follower';
+import ScrollToTop from '@components/scroll-to-top/scroll-to-top';
+import { Box } from '@mui/material';
+import { fetchCountries, fetchHivenDetails } from '@utils/hivenSlice';
 import gsap from 'gsap';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, CircularProgress } from '@mui/material';
-import { fetchCountries, fetchHivenDetails, fetchHivenNews } from '@utils/hivenSlice';
-import Loading from '@components/loading/loading';
-import Head from 'next/head';
 
 export default function MainLayout({ children }) {
    const hiven = useSelector((x) => x.hiven.data);
@@ -40,38 +37,23 @@ export default function MainLayout({ children }) {
       };
    }, []);
 
-   if (!hiven?.id) {
-      return (
-         <>
-            <Box
-               data-cursor="-hidden"
-               sx={{
-                  width: '100%',
-                  height: '100vh',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'opacity 0.4s ease',
-               }}
-            >
-               <Loading />
-            </Box>
-         </>
-      );
-   }
-
    return (
       <>
          <Box
             sx={{
-               width: '100%',
+               width: hiven?.id ? 0 : '100%',
                height: '100vh',
                display: 'flex',
                alignItems: 'center',
                justifyContent: 'center',
                opacity: hiven?.id ? 0 : 1,
-               display: hiven?.id ? 'none' : 'block',
-               transition: 'opacity 0.4s ease',
+               transition: 'opacity 0.4s ease, width 0.1s ease 0.5s',
+
+               position: 'fixed',
+               top: 0,
+               left: 0,
+               zIndex: 999,
+               backgroundColor: '#f2f4f8',
             }}
          >
             <Loading />

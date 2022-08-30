@@ -95,17 +95,19 @@ export function InvestmentEdit() {
    } = formMethods;
 
    useEffect(() => {
-      const formData = hiven.attributes?.investment_region
-         ? hiven.attributes.investment_region.map((region) => ({
-              title: region.title,
-              description: region.description,
-              image: region.image ? region.image.data.attributes : {},
-           }))
-         : [];
+      if (hiven?.id) {
+         const formData = hiven.attributes?.investment_region
+            ? hiven.attributes.investment_region.map((region) => ({
+                 title: region.title,
+                 description: region.description,
+                 image: region.image ? region.image.data.attributes : {},
+              }))
+            : [];
 
-      reset({
-         content: formData,
-      });
+         reset({
+            content: formData,
+         });
+      }
    }, [hiven?.id]);
 
    const handleSave = handleSubmit(async (values) => {

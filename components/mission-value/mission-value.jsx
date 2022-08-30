@@ -13,8 +13,10 @@ export default function MissionAndValue() {
       'Our mission is to find, invest, and help businesses grow. Our goal is to fund start-ups that are building the sustainable businesses of the future. '
    );
    useEffect(() => {
-      setbannerSource(hiven.attributes.mission_value?.image.data?.attributes.url);
-      setTitle(hiven.attributes.mission_value?.title);
+      if (hiven?.id) {
+         setbannerSource(hiven.attributes.mission_value?.image.data?.attributes.url);
+         setTitle(hiven.attributes.mission_value?.title);
+      }
    }, [hiven]);
    return (
       <div className="mission-value__container">

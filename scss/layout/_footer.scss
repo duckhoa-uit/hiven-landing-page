@@ -11,7 +11,7 @@
          svg {
             margin-bottom: 24px;
          }
-         h3 {
+         p {
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 600;
@@ -75,7 +75,7 @@
       font-size: 60px;
       line-height: 132px;
       color: $color--blue;
-      &__container{
+      &__container {
          display: flex;
          justify-content: space-between;
          width: 100%;
@@ -114,7 +114,7 @@
 
 .link-group {
    padding-top: 10px;
-   li{
+   li {
       list-style-type: none;
    }
    .quick-link {

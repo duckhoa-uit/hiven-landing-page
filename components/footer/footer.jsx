@@ -4,11 +4,24 @@ import IconLinkedIn from '@components/icons/ic-linkedin';
 import IconLogo from '@components/icons/ic-logo-footer';
 import IconTwitter from '@components/icons/ic-twitter';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function Footer() {
-   const handleScrollToTop = () => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-   };
+   const hiven = useSelector((x) => x.hiven.data);
+   const [address, setAddress] = useState(
+      `20 Cecil Street <br /> #12-03 PLUS <br /> Singapore 049705`
+   );
+   const [phone, setPhone] = useState('+65 6645 3838');
+   const [email, setEmail] = useState('info@hiven.com.sg');
+
+   useEffect(() => {
+      if (hiven?.id) {
+         setAddress(hiven.attributes.contact_address.replace(/\n/g, '<br />'));
+         setPhone(hiven.attributes.contact_phone);
+         setEmail(hiven.attributes.contact_email);
+      }
+   }, [hiven?.id]);
 
    return (
       <footer className="footer-container">
@@ -16,9 +29,9 @@ export default function Footer() {
             <div className="row footer-content">
                <div className="Hiven-info">
                   <IconLogo className="logo footer-logo" />
-                  <h3>20 Cecil Street</h3>
-                  <h3>#12-03 PLUS</h3>
-                  <h3>Singapore 049705</h3>
+                  {address.split('<br />').map((str) => (
+                     <p key={str}>{str}</p>
+                  ))}
                </div>
 
                <div className="link-group">
@@ -66,22 +79,22 @@ export default function Footer() {
                      <ul className="footer-links">
                         <li>
                            <a
-                              href="tel:+65 6645 3838"
+                              href={`tel:${phone}`}
                               className="translate-btn"
-                              data-text="+65 6645 3838"
+                              data-text={phone}
                               data-cursor="-opaque"
                            >
-                              <span>+65 6645 3838</span>
+                              <span>{phone}</span>
                            </a>
                         </li>
                         <li>
                            <a
-                              href="mailto:info@hiven.com.sg"
+                              href={`mailto:${email}`}
                               className="translate-btn"
-                              data-text="info@hiven.com.sg"
+                              data-text={email}
                               data-cursor="-opaque"
                            >
-                              <span>info@hiven.com.sg</span>
+                              <span>{email}</span>
                            </a>
                         </li>
                      </ul>
