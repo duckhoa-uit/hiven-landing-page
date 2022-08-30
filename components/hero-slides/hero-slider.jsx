@@ -119,6 +119,7 @@ export default function HeroSlider() {
             >
                {content}
             </p>
+            <h1>UNLOCKING POTENTIAL IN SOUTH-EAST ASIA</h1>
          </div>
          <HeroSliderNavigation />
       </section>

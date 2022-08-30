@@ -1,14 +1,9 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import React, { useEffect, useState, useRef } from 'react';
-import Link from 'next/link';
-import IconLogo from '@components/icons/ic-logo-footer';
-import ActiveLink from '@components/active-link/active-link';
-import IconNext from '@components/icons/ic-next';
-import IconLogoRight from '@components/icons/ic-logo-white';
 import IconFacebook from '@components/icons/ic-fb';
-import IconTwitter from '@components/icons/ic-twitter';
 import IconLinkedIn from '@components/icons/ic-linkedin';
-import ContactWithUs from '@components/contact-with-us/contact-with-us';
+import IconLogo from '@components/icons/ic-logo-footer';
+import IconTwitter from '@components/icons/ic-twitter';
+import Link from 'next/link';
 
 export default function Footer() {
    const handleScrollToTop = () => {
@@ -31,34 +26,37 @@ export default function Footer() {
                      <h6>QUICKLINK</h6>
                      <ul className="footer-links">
                         <li>
-                           <a
-                              href="/"
-                              className="translate-btn"
-                              data-text="Home"
-                              data-cursor="-opaque"
-                           >
-                              <span>Home</span>
-                           </a>
+                           <Link href="/" passHref>
+                              <a
+                                 className="translate-btn"
+                                 data-text="Home"
+                                 data-cursor="-opaque"
+                              >
+                                 <span>Home</span>
+                              </a>
+                           </Link>
                         </li>
                         <li>
-                           <a
-                              href="/about-us"
-                              className="translate-btn"
-                              data-text="About Us"
-                              data-cursor="-opaque"
-                           >
-                              <span>About Us</span>
-                           </a>
+                           <Link href="/about-us" passHref>
+                              <a
+                                 className="translate-btn"
+                                 data-text="About Us"
+                                 data-cursor="-opaque"
+                              >
+                                 <span>About Us</span>
+                              </a>
+                           </Link>
                         </li>
                         <li>
-                           <a
-                              href="/news"
-                              className="translate-btn"
-                              data-text="New"
-                              data-cursor="-opaque"
-                           >
-                              <span>News</span>
-                           </a>
+                           <Link href="/news" passHref>
+                              <a
+                                 className="translate-btn"
+                                 data-text="News"
+                                 data-cursor="-opaque"
+                              >
+                                 <span>News</span>
+                              </a>
+                           </Link>
                         </li>
                      </ul>
                   </div>
@@ -91,9 +89,7 @@ export default function Footer() {
                </div>
             </div>
             <div className="row copy-right-Social">
-               <a href="#" className="copyright-text">
-                  @ Copyright 2022 - Hiven Group
-               </a>
+               <p className="copyright-text">@ Copyright 2022 - Hiven Group</p>
 
                <div className="social">
                   <p>Social Media</p>

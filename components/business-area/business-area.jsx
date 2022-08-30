@@ -11,7 +11,8 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 const defaultValues = {
-   contentBusiness: 'We are an early-stage, Southeast Asia focused venture capital, covering Agri Tech, Food Tech, Bio Tech, Media & Entertainment, Mobility, Fin Tech, etc.',
+   contentBusiness:
+      'We are an early-stage, Southeast Asia focused venture capital, covering Agri Tech, Food Tech, Bio Tech, Media & Entertainment, Mobility, Fin Tech, etc.',
    imagesBusiness: [
       {
          image: '/images/business-area-1.png',
@@ -30,7 +31,7 @@ const defaultValues = {
          title: 'Media & Entertainment, Mobility, Fin Tech, etcMedia & Entertainment, Mobility, Fin Tech, etc',
       },
    ],
-}
+};
 const BusinessAreaImage = ({ src, number, title, ...rest }) => (
    <div className="business-area__image" {...rest}>
       <div className="business-area__image-container">
@@ -74,15 +75,15 @@ export default function BusinessArea() {
    return (
       <section className="business-area__container" data-cursor="-inverse">
          <div className="business-area__content">
-            <h3 className="section-title" data-aos="fade-up">
-               POFTOLIO
-            </h3>
+            <h2 className="section-title" data-aos="fade-up">
+               Poftoflio
+            </h2>
             <div className="divider" />
 
             <div className="color--light" style={{ width: 405 }}>
-               <h4 className="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+               <h3 className="section-subtitle" data-aos="fade-up" data-aos-delay="100">
                   Business Area
-               </h4>
+               </h3>
                <p
                   className="section-description"
                   style={{ marginTop: 32 }}
