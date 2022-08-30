@@ -51,7 +51,7 @@ $region-control-width: 573px;
 
       &--items {
          max-height: 700px;
-         overflow-y: scroll;
+         overflow-y: auto;
 
          display: flex;
          flex-direction: column;
