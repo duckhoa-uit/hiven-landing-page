@@ -1,5 +1,4 @@
-import IconHexagon from '@components/icons/ic-hexagon';
-import React from 'react';
+/* eslint-disable @next/next/no-img-element */
 
 export default function HexagonImage({ source, alt = '' }) {
    return (
@@ -11,18 +10,32 @@ export default function HexagonImage({ source, alt = '' }) {
             data-aos="zoom-in"
          />
          <div className="hexagon__outer-1">
-            <IconHexagon
+            <img
+               src="/icon-hexagon.png"
+               alt="icon-hexagon-outer"
                data-aos-anchor={`[data-source="${source}"]`}
                data-aos="zoom-in"
                data-aos-delay="100"
             />
+            {/* <IconHexagon
+               data-aos-anchor={`[data-source="${source}"]`}
+               data-aos="zoom-in"
+               data-aos-delay="100"
+            /> */}
          </div>
          <div className="hexagon__outer-2">
-            <IconHexagon
+            <img
+               src="/icon-hexagon.png"
+               alt="icon-hexagon-outer"
                data-aos-anchor={`[data-source="${source}"]`}
                data-aos="zoom-in"
                data-aos-delay="200"
             />
+            {/* <IconHexagon
+               data-aos-anchor={`[data-source="${source}"]`}
+               data-aos="zoom-in"
+               data-aos-delay="200"
+            /> */}
          </div>
       </div>
    );

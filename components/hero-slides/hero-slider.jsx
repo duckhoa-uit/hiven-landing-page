@@ -100,9 +100,14 @@ export default function HeroSlider() {
                prevEl: '#prev-btn',
             }}
          >
-            {images?.map((img) => (
+            {images?.map((img, idx) => (
                <SwiperSlide key={img.id}>
-                  <Image src={img.attributes.url} alt="" layout="fill" priority />
+                  <Image
+                     src={img.attributes.url}
+                     alt={`Hero slider image ${idx}`}
+                     layout="fill"
+                     priority
+                  />
                </SwiperSlide>
             ))}
          </Swiper>

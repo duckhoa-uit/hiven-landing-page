@@ -36,7 +36,7 @@ export default function Footer() {
 
                <div className="link-group">
                   <div className="quick-link">
-                     <h6>QUICKLINK</h6>
+                     <p className="quick-link__title">QUICKLINK</p>
                      <ul className="footer-links">
                         <li>
                            <Link href="/" passHref>
@@ -75,7 +75,7 @@ export default function Footer() {
                   </div>
 
                   <div className="contact">
-                     <h6>CONTACT</h6>
+                     <p className="contact__title">CONTACT</p>
                      <ul className="footer-links">
                         <li>
                            <a

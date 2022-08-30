@@ -48,7 +48,7 @@ export default function ImageUploadField(props) {
             layout="fill"
             src={renderFileURL(value)}
             width="200"
-            alt=""
+            alt="image-preview"
             style={{ borderRadius: 4 }}
          />
          {!disabled && (
