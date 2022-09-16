@@ -16,7 +16,13 @@ const schema = yup.object({
       .matches(/^[A-Za-z\s]*$/, 'Only alphabets are allowed for this field')
       .required()
       .label('Name'),
-   email: yup.string().email().matches(/^[a-zA-Z0-9\.\@]+$/).max(500).required().label('Email'),
+   email: yup
+      .string()
+      .email()
+      .required()
+      .matches(/^[a-zA-Z0-9\.\@]+$/, 'Only alphabets are allowed for this field')
+      .max(500)
+      .label('Email'),
    phoneNumber: yup
       .string()
       .matches(
@@ -51,7 +57,6 @@ export default function ContactForm() {
    } = formMethods;
 
    const onSubmit = handleSubmit(async (data) => {
-
       const receiveEmail = hiven.attributes.contact_form_email_receive;
       if (!receiveEmail) {
          toast.error('Something has error, please try again later.');

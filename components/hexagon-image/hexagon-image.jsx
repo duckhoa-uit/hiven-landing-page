@@ -17,11 +17,6 @@ export default function HexagonImage({ source, alt = '' }) {
                data-aos="zoom-in"
                data-aos-delay="100"
             />
-            {/* <IconHexagon
-               data-aos-anchor={`[data-source="${source}"]`}
-               data-aos="zoom-in"
-               data-aos-delay="100"
-            /> */}
          </div>
          <div className="hexagon__outer-2">
             <img
@@ -31,11 +26,6 @@ export default function HexagonImage({ source, alt = '' }) {
                data-aos="zoom-in"
                data-aos-delay="200"
             />
-            {/* <IconHexagon
-               data-aos-anchor={`[data-source="${source}"]`}
-               data-aos="zoom-in"
-               data-aos-delay="200"
-            /> */}
          </div>
       </div>
    );

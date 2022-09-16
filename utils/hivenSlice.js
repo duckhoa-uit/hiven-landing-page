@@ -19,10 +19,7 @@ export const fetchCountries = createAsyncThunk('hiven/fetchCountries', async () 
       return res.data.map((item, idx) => ({
          id: item.id,
          ...item.attributes,
-         no:
-            res.data.length - idx > 9
-               ? res.data.length - idx
-               : `0${res.data.length - idx}`,
+         no: idx + 1 > 9 ? idx + 1 : `0${idx + 1}`,
       }));
    } catch (error) {
       return [];
