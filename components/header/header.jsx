@@ -95,7 +95,7 @@ export default function Header() {
                </div>
 
                <span data-magnetic>
-                  <Link href="/contact">
+                  <Link href="/contact" prefetch={false}>
                      <button id="nav-cta">
                         <a>Contact Us</a>
                      </button>

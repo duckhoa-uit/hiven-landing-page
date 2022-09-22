@@ -9,8 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^35.0.1",
-    "@ckeditor/ckeditor5-react": "^5.0.2",
     "@emotion/cache": "^11.10.1",
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.10.0",
@@ -21,7 +19,6 @@
     "@reduxjs/toolkit": "^1.8.4",
     "aos": "^2.3.4",
     "axios": "^0.27.2",
-    "cookies": "^0.8.0",
     "gsap": "^3.10.4",
     "http-proxy": "^1.18.1",
     "next": "12.2.3",
@@ -31,7 +28,6 @@
     "react-hook-form": "^7.34.0",
     "react-redux": "^8.0.2",
     "react-toastify": "^9.0.8",
-    "sparkpost": "^2.1.4",
     "swiper": "^8.3.2",
     "swr": "^1.3.0",
     "yup": "^0.32.11"

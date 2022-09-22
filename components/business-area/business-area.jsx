@@ -35,7 +35,7 @@ const defaultValues = {
 const BusinessAreaImage = ({ src, number, title, ...rest }) => (
    <div className="business-area__image" {...rest}>
       <div className="business-area__image-container">
-         <Image src={src} alt={`Business area image ${number}`} layout="fill" priority />
+         <Image src={src} alt={`Business area image ${number}`} layout="fill" />
          <div className="business-area__image-content">
             <p className="counter">{number}</p>
             <p className="title">{title}</p>

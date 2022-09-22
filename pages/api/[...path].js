@@ -1,4 +1,3 @@
-import Cookies from 'cookies';
 import httpProxy from 'http-proxy';
 
 const proxy = httpProxy.createProxyServer();

@@ -40,7 +40,7 @@ const ActiveLink = ({ children, activeClassName, ...props }) => {
    ]);
 
    return (
-      <Link {...props}>
+      <Link {...props} prefetch={false}>
          {React.cloneElement(child, {
             className: className || null,
          })}

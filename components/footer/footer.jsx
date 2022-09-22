@@ -39,7 +39,7 @@ export default function Footer() {
                      <p className="quick-link__title">QUICKLINK</p>
                      <ul className="footer-links">
                         <li>
-                           <Link href="/" passHref>
+                           <Link href="/" passHref prefetch={false}>
                               <a
                                  className="translate-btn"
                                  data-text="Home"
@@ -50,7 +50,7 @@ export default function Footer() {
                            </Link>
                         </li>
                         <li>
-                           <Link href="/about-us" passHref>
+                           <Link href="/about-us" passHref prefetch={false}>
                               <a
                                  className="translate-btn"
                                  data-text="About Us"
@@ -61,7 +61,7 @@ export default function Footer() {
                            </Link>
                         </li>
                         <li>
-                           <Link href="/news" passHref>
+                           <Link href="/news" passHref prefetch={false}>
                               <a
                                  className="translate-btn"
                                  data-text="News"

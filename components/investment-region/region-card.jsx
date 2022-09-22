@@ -38,7 +38,6 @@ const RegionCard = memo(({ id, name, containerWidth, containerHeight, isSelected
                      height={254}
                      alt={name}
                      objectFit="cover"
-                     priority
                   />
                )}
             </div>
