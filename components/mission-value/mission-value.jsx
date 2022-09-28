@@ -6,18 +6,19 @@ import { useSelector } from 'react-redux';
 
 export default function MissionAndValue() {
    const hiven = useSelector((x) => x.hiven.data);
-   const [bannerSource, setbannerSource] = useState(
-      'https://images.unsplash.com/photo-1462899006636-339e08d1844e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-   );
-   const [title, setTitle] = useState(
-      'Our mission is to find, invest, and help businesses grow. Our goal is to fund start-ups that are building the sustainable businesses of the future. '
-   );
+   const [bannerSource, setbannerSource] = useState('');
+   const [title, setTitle] = useState('');
+
    useEffect(() => {
       if (hiven?.id) {
-         setbannerSource(hiven.attributes.mission_value?.image.data?.attributes.url);
-         setTitle(hiven.attributes.mission_value?.title);
+         setbannerSource(
+            hiven.attributes.mission_value?.image.data?.attributes?.formats?.large?.url ||
+               ''
+         );
+         setTitle(hiven.attributes.mission_value?.title || '');
       }
-   }, [hiven]);
+   }, [hiven?.id]);
+
    return (
       <div className="mission-value__container">
          <div className="container-full">

@@ -11,7 +11,7 @@ export default function HexagonImage({ source, alt = '' }) {
          />
          <div className="hexagon__outer-1">
             <img
-               src="/icon-hexagon.png"
+               src="/icon-hexagon.webp"
                alt="icon-hexagon-outer"
                data-aos-anchor={`[data-source="${source}"]`}
                data-aos="zoom-in"
@@ -20,7 +20,7 @@ export default function HexagonImage({ source, alt = '' }) {
          </div>
          <div className="hexagon__outer-2">
             <img
-               src="/icon-hexagon.png"
+               src="/icon-hexagon.webp"
                alt="icon-hexagon-outer"
                data-aos-anchor={`[data-source="${source}"]`}
                data-aos="zoom-in"

@@ -1,9 +1,7 @@
 import BreakpointProvider from '@components/common/breakpoint/breakpoint-provider';
 import { EmptyLayout } from '@components/layouts/empty-layout';
 import { memo, useEffect } from 'react';
-import gsap from 'gsap';
 
-import MouseFollower from '@components/mouse-follower/mouse-follower';
 import '../scss/main.scss';
 
 // AOS styles
@@ -15,16 +13,16 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 
 import Magnetic from '@components/mouse-follower/magnetic';
-import { Provider } from 'react-redux';
 import store from '@utils/store';
+import { Provider } from 'react-redux';
 
 // Toastify
+import axiosClient from '@components/api-client/axios-client';
+import MainContext from '@components/common/main-context/main-context';
+import Head from 'next/head';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import MainContext from '@components/common/main-context/main-context';
 import { SWRConfig } from 'swr';
-import axiosClient from '@components/api-client/axios-client';
-import Head from 'next/head';
 
 const MyApp = memo(({ Component, pageProps }) => {
    const Layout = Component.Layout ?? EmptyLayout;

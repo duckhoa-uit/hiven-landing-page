@@ -1,41 +1,40 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper';
-import Image from 'next/image';
-import IconChevronRight from '@components/icons/ic-chevron-right';
 import Hexagon from '@components/common/hexagon';
-import heroSliderImage from '../../assets/images/hero-slider-1.png';
+import IconChevronRight from '@components/icons/ic-chevron-right';
 import LogoLarge from '@components/icons/logo-large';
-import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
+import { Navigation, Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-const IMAGES = [
-   {
-      id: 1,
-      attributes: {
-         url: heroSliderImage,
-      },
-   },
-   {
-      id: 2,
+const CONTENT_DEFAULT = 'Unlocking Potential In South-east Asia';
+// const IMAGES_DEFAULT = [
+//    {
+//       id: 1,
+//       attributes: {
+//          url: heroSliderImage,
+//       },
+//    },
+//    {
+//       id: 2,
 
-      attributes: {
-         url: heroSliderImage,
-      },
-   },
-   {
-      id: 3,
-      attributes: {
-         url: heroSliderImage,
-      },
-   },
-   {
-      id: 4,
-      attributes: {
-         url: heroSliderImage,
-      },
-   },
-];
+//       attributes: {
+//          url: heroSliderImage,
+//       },
+//    },
+//    {
+//       id: 3,
+//       attributes: {
+//          url: heroSliderImage,
+//       },
+//    },
+//    {
+//       id: 4,
+//       attributes: {
+//          url: heroSliderImage,
+//       },
+//    },
+// ];
 
 const HeroSliderNavigation = () => (
    <div className="hero-slider__navigation">
@@ -51,13 +50,17 @@ const HeroSliderNavigation = () => (
 const HeroSliderPagination = () => <div className="hero-slider__pagination" />;
 
 export default function HeroSlider() {
+   const ref = useRef(null);
    const hiven = useSelector((x) => x.hiven.data);
-   const [content, setContent] = useState('Unlocking Potential In South-east Asia');
-   const [images, setImages] = useState(IMAGES);
+   const [content, setContent] = useState('');
+   const [images, setImages] = useState([]);
+
    useEffect(() => {
       if (hiven?.id) {
-         setContent(hiven.attributes.hero_slider?.subtitle);
-         setImages(hiven.attributes.hero_slider?.banners?.data);
+         setContent(hiven.attributes.hero_slider?.subtitle || '');
+         setImages(hiven.attributes.hero_slider?.banners?.data || []);
+
+         ref.current.swiper.activeIndex = 1;
       }
    }, [hiven?.id]);
 
@@ -68,6 +71,7 @@ export default function HeroSlider() {
          return '<a class="' + className + '">0' + (index + 1) + '</a>';
       },
    };
+
    return (
       <section className="hero-slider__container">
          <div className="hero-slider__hexagon-container">
@@ -90,11 +94,13 @@ export default function HeroSlider() {
             </div>
          </div>
          <Swiper
+            ref={ref}
             loop
             className="hero-slider"
             modules={[Pagination, Navigation]}
             slidesPerView={1}
             pagination={pagination}
+            ac
             navigation={{
                nextEl: '#next-btn',
                prevEl: '#prev-btn',

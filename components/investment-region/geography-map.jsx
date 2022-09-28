@@ -1,13 +1,17 @@
 /* eslint-disable react/display-name */
 import useBreakpoint from '@components/common/breakpoint/useBreakpoint';
 import ResizeDetector from '@components/common/resize-detector';
+import dynamic from 'next/dynamic';
 import React, { useCallback, useMemo, useState, memo, Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import { getCoordinate } from './geography-manager';
-import MapGraph from './map-graph';
-import MapGraphMini from './map-graph-mini';
+// import MapGraph from './map-graph';
+// import MapGraphMini from './map-graph-mini';
 import Polyline from './polyline';
 import RegionCard from './region-card';
+
+const MapGraph = dynamic(() => import('./map-graph'));
+const MapGraphMini = dynamic(() => import('./map-graph-mini'));
 
 const GeographyMap = (props) => {
    const { selected, onChange } = props;

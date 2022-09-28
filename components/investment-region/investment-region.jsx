@@ -65,6 +65,7 @@ const InvestmentRegion = () => {
             </div>
          );
       }
+
       return (
          <div className="investment-region__xsmall">
             {areas.map((region) => {

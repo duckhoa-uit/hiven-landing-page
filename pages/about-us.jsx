@@ -5,8 +5,7 @@ import IconHexagonSmall from '@components/icons/ic-hexagon-small';
 import MainLayout from '@components/layouts/main-layout';
 import MoreLink from '@components/more-link/more-link';
 import ScrollToTop from '@components/scroll-to-top/scroll-to-top';
-import Head from 'next/head';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import background from '../public/images/about-us-banner.png';
 
@@ -26,13 +25,11 @@ const AboutUs = () => {
    const [logo2, setLogo2] = useState('/KKFund-logo.svg');
    const [image2, setImage2] = useState('/black.svg');
 
-   var ld;
-   var lnd;
    useEffect(() => {
-      if (hiven.attributes.about_us_banner.data?.attributes.url)
-         setbannerSource(hiven.attributes.about_us_banner.data?.attributes.url);
-
       if (hiven?.id) {
+         if (hiven.attributes.about_us_banner.data?.attributes.url)
+            setbannerSource(hiven.attributes.about_us_banner.data?.attributes.url);
+
          const formData = hiven.attributes.corporate_profile
             ? hiven.attributes.corporate_profile.map((content) => ({
                  url: content.url,

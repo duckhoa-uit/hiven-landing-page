@@ -8,13 +8,13 @@ export const config = {
 
 async function emailHandler(req, res) {
    const transporter = nodemailer.createTransport({
-      port: 465,
-      host: 'smtp.gmail.com',
+      port: process.env.EMAIL_PORT,
+      host: process.env.EMAIL_HOST,
       auth: {
          user: process.env.EMAIL,
          pass: process.env.EMAIL_APP_PASSWORD,
       },
-      secure: true,
+      secure: process.env.EMAIL_SSL,
    });
 
    const mailData = {

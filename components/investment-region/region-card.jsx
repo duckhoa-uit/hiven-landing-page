@@ -33,7 +33,7 @@ const RegionCard = memo(({ id, name, containerWidth, containerHeight, isSelected
             <div className="head">
                {info?.image.data && (
                   <Image
-                     src={info?.image.data.attributes.url}
+                     src={info?.image.data.attributes?.formats?.small?.url}
                      width={380}
                      height={254}
                      alt={name}
